@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Planes Difu</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #ffffff;
+      --bg2: #f5f5f3;
+      --bg3: #eeecea;
+      --text: #1a1a1a;
+      --text2: #666660;
+      --text3: #999993;
+      --border: rgba(0,0,0,0.12);
+      --border2: rgba(0,0,0,0.22);
+      --radius: 8px;
+      --radius-lg: 12px;
+      --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --purple-bg: #EEEDFE;
+      --purple-border: #AFA9EC;
+      --purple-text: #3C3489;
+      --purple-mid: #7F77DD;
+      --teal-bg: #E1F5EE;
+      --teal-border: #5DCAA5;
+      --teal-text: #085041;
+      --coral-bg: #FAECE7;
+      --coral-border: #F0997B;
+      --coral-text: #712B13;
+      --green-bg: #EAF3DE;
+      --green-bar: #639922;
+      --green-text: #3B6D11;
+      --amber-bg: #FAEEDA;
+      --amber-bar: #EF9F27;
+      --amber-text: #633806;
+      --red-bg: #FCEBEB;
+      --red-bar: #E24B4A;
+      --red-text: #791F1F;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #1c1c1a;
+        --bg2: #252523;
+        --bg3: #2e2e2b;
+        --text: #f0ede8;
+        --text2: #999993;
+        --text3: #666660;
+        --border: rgba(255,255,255,0.1);
+        --border2: rgba(255,255,255,0.2);
+        --purple-bg: #26215C;
+        --purple-border: #534AB7;
+        --purple-text: #CECBF6;
+        --teal-bg: #04342C;
+        --teal-border: #1D9E75;
+        --teal-text: #9FE1CB;
+        --coral-bg: #4A1B0C;
+        --coral-border: #D85A30;
+        --coral-text: #F5C4B3;
+        --green-bg: #173404;
+        --green-bar: #97C459;
+        --green-text: #C0DD97;
+        --amber-bg: #412402;
+        --amber-bar: #BA7517;
+        --amber-text: #FAC775;
+        --red-bg: #501313;
+        --red-bar: #E24B4A;
+        --red-text: #F7C1C1;
+      }
+    }
+
+    body { font-family: var(--font); background: var(--bg3); color: var(--text); min-height: 100vh; }
+
+    .app { max-width: 680px; margin: 0 auto; padding: 1.25rem 1rem 3rem; }
+
+    .app-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 0.5px solid var(--border); }
+    .app-title { font-size: 22px; font-weight: 600; color: var(--text); letter-spacing: -0.3px; }
+    .app-title span { color: #534AB7; }
+    .config-btn { padding: 7px 14px; font-size: 12px; border: 0.5px solid var(--border2); border-radius: var(--radius); background: var(--bg2); color: var(--text2); cursor: pointer; font-family: var(--font); }
+    .config-btn:hover { background: var(--bg); }
+
+    .sheets-banner { display: flex; align-items: center; gap: 10px; padding: 10px 14px; border: 0.5px solid var(--border); border-radius: var(--radius); background: var(--bg2); margin-bottom: 1rem; }
+    .sheets-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+    .sheets-dot.ok { background: var(--green-bar); }
+    .sheets-dot.warn { background: var(--amber-bar); }
+    .sheets-text { font-size: 13px; color: var(--text2); flex: 1; }
+    .sheets-link { font-size: 12px; color: #534AB7; text-decoration: none; font-weight: 500; white-space: nowrap; }
+
+    .tabs { display: flex; border-bottom: 0.5px solid var(--border); margin-bottom: 1.5rem; gap: 2px; overflow-x: auto; }
+    .tab { padding: 9px 20px; font-size: 14px; font-weight: 500; border: none; background: none; color: var(--text2); cursor: pointer; border-bottom: 2px solid transparent; transition: all 0.15s; white-space: nowrap; flex-shrink: 0; font-family: var(--font); }
+    .tab.active { color: var(--text); border-bottom: 2px solid var(--text); }
+    .tab:hover:not(.active) { color: var(--text); }
+
+    .section { display: none; }
+    .section.active { display: block; }
+
+    .card { background: var(--bg); border: 0.5px solid var(--border); border-radius: var(--radius-lg); padding: 1.25rem; margin-bottom: 1rem; }
+
+    .section-title { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 14px; }
+
+    .field { margin-bottom: 1rem; }
+    .field label { display: block; font-size: 12px; color: var(--text2); margin-bottom: 6px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.4px; }
+    .field input, .field select, .field textarea {
+      width: 100%; padding: 9px 12px; font-size: 14px;
+      border: 0.5px solid var(--border2); border-radius: var(--radius);
+      background: var(--bg); color: var(--text); font-family: var(--font);
+      outline: none; transition: border-color 0.15s;
+    }
+    .field input:focus, .field select:focus, .field textarea:focus { border-color: var(--purple-mid); }
+    .field textarea { height: 64px; resize: none; }
+
+    .row { display: flex; gap: 12px; }
+    .row .field { flex: 1; min-width: 0; }
+
+    .sel-all-row { display: flex; gap: 6px; margin-bottom: 8px; }
+    .sel-all-row button { padding: 4px 10px; font-size: 12px; border: 0.5px solid var(--border); border-radius: var(--radius); background: var(--bg2); color: var(--text2); cursor: pointer; font-family: var(--font); }
+    .sel-all-row button:hover { background: var(--bg3); }
+
+    .btn-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 7px; }
+    .toggle-btn { padding: 8px 10px; font-size: 13px; border: 0.5px solid var(--border); border-radius: var(--radius); background: var(--bg2); color: var(--text2); cursor: pointer; text-align: center; transition: all 0.15s; font-family: var(--font); }
+    .toggle-btn:hover { border-color: var(--border2); }
+    .toggle-btn.sel-purple { background: var(--purple-bg); border-color: var(--purple-border); color: var(--purple-text); font-weight: 500; }
+    .toggle-btn.sel-teal { background: var(--teal-bg); border-color: var(--teal-border); color: var(--teal-text); font-weight: 500; }
+    .toggle-btn.sel-coral { background: var(--coral-bg); border-color: var(--coral-border); color: var(--coral-text); font-weight: 500; }
+
+    .add-row { display: flex; gap: 8px; margin-top: 9px; }
+    .add-row input { flex: 1; padding: 8px 12px; font-size: 13px; border: 0.5px solid var(--border2); border-radius: var(--radius); background: var(--bg); color: var(--text); font-family: var(--font); outline: none; }
+    .add-row input:focus { border-color: var(--purple-mid); }
+    .add-row button { padding: 8px 14px; font-size: 13px; border-radius: var(--radius); cursor: pointer; font-family: var(--font); font-weight: 500; white-space: nowrap; border: 0.5px solid; }
+    .add-row button.purple { border-color: var(--purple-border); background: var(--purple-bg); color: var(--purple-text); }
+    .add-row button.teal { border-color: var(--teal-border); background: var(--teal-bg); color: var(--teal-text); }
+    .add-row button.coral { border-color: var(--coral-border); background: var(--coral-bg); color: var(--coral-text); }
+
+    .divider { border: none; border-top: 0.5px solid var(--border); margin: 1.1rem 0; }
+
+    .btn-save { display: inline-flex; align-items: center; gap: 8px; padding: 10px 26px; font-size: 14px; font-weight: 500; border: 0.5px solid var(--purple-border); border-radius: var(--radius); background: var(--purple-bg); color: var(--purple-text); cursor: pointer; font-family: var(--font); transition: all 0.15s; }
+    .btn-save:hover { filter: brightness(0.95); }
+    .btn-save:active { transform: scale(0.98); }
+    .btn-save:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+    .filter-tabs { display: flex; gap: 6px; margin-bottom: 1rem; flex-wrap: wrap; }
+    .filter-tab { padding: 5px 14px; font-size: 13px; border: 0.5px solid var(--border2); border-radius: 99px; background: var(--bg2); color: var(--text2); cursor: pointer; font-family: var(--font); transition: all 0.15s; }
+    .filter-tab.active { background: var(--purple-bg); border-color: var(--purple-border); color: var(--purple-text); font-weight: 500; }
+
+    .attend-row { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border: 0.5px solid var(--border); border-radius: var(--radius); background: var(--bg); margin-bottom: 6px; }
+    .attend-avatar { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 600; flex-shrink: 0; }
+    .attend-name { font-size: 14px; font-weight: 500; flex: 1; min-width: 0; }
+    .attend-bar-wrap { flex: 2; height: 6px; background: var(--bg3); border-radius: 99px; overflow: hidden; min-width: 60px; }
+    .attend-bar { height: 100%; border-radius: 99px; transition: width 0.4s; }
+    .attend-count { font-size: 12px; color: var(--text3); min-width: 44px; text-align: right; }
+    .attend-pct { font-size: 13px; font-weight: 600; min-width: 36px; text-align: right; }
+
+    .history-list { display: flex; flex-direction: column; gap: 8px; }
+    .history-item { padding: 12px 14px; border: 0.5px solid var(--border); border-radius: var(--radius); background: var(--bg); }
+    .history-meta { display: flex; gap: 6px; align-items: center; margin-bottom: 6px; flex-wrap: wrap; }
+    .badge { font-size: 11px; padding: 2px 9px; border-radius: 99px; font-weight: 500; }
+    .badge-plan { background: var(--purple-bg); color: var(--purple-text); }
+    .badge-asado { background: var(--coral-bg); color: var(--coral-text); }
+    .badge-casa { background: var(--teal-bg); color: var(--teal-text); }
+    .history-date { font-size: 12px; color: var(--text3); }
+    .history-desc { font-size: 13px; color: var(--text2); margin-bottom: 5px; }
+    .history-friends { font-size: 12px; color: var(--text3); }
+
+    .empty { text-align: center; padding: 2.5rem; color: var(--text3); font-size: 14px; }
+
+    /* MODAL */
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.45); z-index: 100; align-items: center; justify-content: center; padding: 1rem; }
+    .modal-overlay.open { display: flex; }
+    .modal { background: var(--bg); border: 0.5px solid var(--border); border-radius: var(--radius-lg); padding: 1.5rem; width: 100%; max-width: 540px; max-height: 90vh; overflow-y: auto; }
+    .modal h2 { font-size: 17px; font-weight: 600; margin-bottom: 6px; }
+    .modal > p { font-size: 13px; color: var(--text2); margin-bottom: 1.2rem; line-height: 1.6; }
+    .step { display: flex; gap: 10px; margin-bottom: 12px; }
+    .step-num { width: 22px; height: 22px; border-radius: 50%; background: var(--purple-bg); color: var(--purple-text); font-size: 11px; font-weight: 600; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+    .step-text { font-size: 13px; color: var(--text2); line-height: 1.6; }
+    .step-text strong { color: var(--text); font-weight: 500; }
+    pre { font-size: 11px; background: var(--bg2); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 12px; overflow-x: auto; color: var(--text); font-family: monospace; line-height: 1.6; margin: 10px 0; white-space: pre-wrap; word-break: break-all; }
+    .modal-btns { display: flex; gap: 8px; justify-content: flex-end; margin-top: 1rem; }
+    .modal-btns button { padding: 9px 20px; font-size: 13px; border-radius: var(--radius); cursor: pointer; font-family: var(--font); font-weight: 500; border: 0.5px solid; }
+    .btn-cancel { border-color: var(--border2); background: var(--bg2); color: var(--text2); }
+    .btn-connect { border-color: var(--purple-border); background: var(--purple-bg); color: var(--purple-text); }
+
+    /* SPINNER */
+    .spinner { display: inline-block; width: 14px; height: 14px; border: 2px solid var(--purple-border); border-top-color: #534AB7; border-radius: 50%; animation: spin 0.7s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* TOAST */
+    .toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); padding: 11px 22px; border-radius: var(--radius); font-size: 13px; font-weight: 500; opacity: 0; transition: opacity 0.3s; pointer-events: none; z-index: 9999; white-space: nowrap; color: #fff; box-shadow: 0 4px 16px rgba(0,0,0,0.2); }
+    .toast.show { opacity: 1; }
+
+    @media (max-width: 480px) {
+      .row { flex-direction: column; gap: 0; }
+      .app-title { font-size: 19px; }
+      .tab { padding: 8px 14px; font-size: 13px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="app">
+  <div class="app-header">
+    <div class="app-title">Planes <span>Difu</span></div>
+    <button class="config-btn" onclick="openConfig()">⚙ Configurar Sheets</button>
+  </div>
+
+  <div class="sheets-banner">
+    <div class="sheets-dot warn" id="sheets-dot"></div>
+    <div class="sheets-text" id="sheets-text">Google Sheets no configurado. Los datos se guardan en este dispositivo.</div>
+    <a id="sheets-link" href="#" style="display:none;" class="sheets-link" target="_blank">Abrir Sheets →</a>
+  </div>
+
+  <div class="tabs">
+    <button class="tab active" onclick="switchTab('plan')">Planes</button>
+    <button class="tab" onclick="switchTab('asado')">Asados</button>
+    <button class="tab" onclick="switchTab('stats')">Asistencia</button>
+    <button class="tab" onclick="switchTab('historial')">Historial</button>
+  </div>
+
+  <!-- PLANES -->
+  <div id="tab-plan" class="section active">
+    <div class="card">
+      <div class="section-title">Registrar plan</div>
+      <div class="row">
+        <div class="field"><label>Fecha</label><input type="date" id="plan-fecha" /></div>
+        <div class="field"><label>Tipo de plan</label><input type="text" id="plan-tipo" placeholder="Fútbol, Cine, Cumple..." /></div>
+      </div>
+      <div class="field"><label>Descripción (opcional)</label><textarea id="plan-desc" placeholder="Detalles del plan..."></textarea></div>
+      <div class="field">
+        <label>¿Quiénes asistieron?</label>
+        <div class="sel-all-row">
+          <button onclick="selectAll('plan')">Todos</button>
+          <button onclick="deselectAll('plan')">Ninguno</button>
+        </div>
+        <div class="btn-grid" id="plan-friends-grid"></div>
+        <div class="add-row">
+          <input type="text" id="plan-new-friend" placeholder="Agregar amigo..." />
+          <button class="purple" onclick="addFriend('plan')">+ Agregar</button>
+        </div>
+      </div>
+      <div style="display:flex;justify-content:flex-end;margin-top:6px;">
+        <button class="btn-save" id="btn-plan" onclick="guardarEvento('plan')">Guardar plan</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ASADOS -->
+  <div id="tab-asado" class="section">
+    <div class="card">
+      <div class="section-title">Registrar asado</div>
+      <div class="row">
+        <div class="field"><label>Fecha</label><input type="date" id="asado-fecha" /></div>
+        <div class="field"><label>Descripción (opcional)</label><input type="text" id="asado-desc" placeholder="Quincho, cumple..." /></div>
+      </div>
+      <hr class="divider">
+      <div class="field">
+        <label>Casa donde se hace</label>
+        <div class="btn-grid" id="house-grid"></div>
+        <div class="add-row">
+          <input type="text" id="new-house" placeholder="Otro lugar..." />
+          <button class="teal" onclick="addHouse()">+ Agregar</button>
+        </div>
+      </div>
+      <hr class="divider">
+      <div class="field">
+        <label>Corte(s) de carne</label>
+        <div class="btn-grid" id="cuts-grid"></div>
+        <div class="add-row">
+          <input type="text" id="new-cut" placeholder="Otro corte..." />
+          <button class="coral" onclick="addCut()">+ Agregar</button>
+        </div>
+      </div>
+      <hr class="divider">
+      <div class="field">
+        <label>¿Quiénes asistieron?</label>
+        <div class="sel-all-row">
+          <button onclick="selectAll('asado')">Todos</button>
+          <button onclick="deselectAll('asado')">Ninguno</button>
+        </div>
+        <div class="btn-grid" id="asado-friends-grid"></div>
+        <div class="add-row">
+          <input type="text" id="asado-new-friend" placeholder="Agregar amigo..." />
+          <button class="purple" onclick="addFriend('asado')">+ Agregar</button>
+        </div>
+      </div>
+      <div style="display:flex;justify-content:flex-end;margin-top:6px;">
+        <button class="btn-save" id="btn-asado" onclick="guardarEvento('asado')">Guardar asado</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div id="tab-stats" class="section">
+    <div class="filter-tabs">
+      <button class="filter-tab active" onclick="setFilter('todos')">Todos</button>
+      <button class="filter-tab" onclick="setFilter('plan')">Solo planes</button>
+      <button class="filter-tab" onclick="setFilter('asado')">Solo asados</button>
+    </div>
+    <div class="card" id="stats-card"><div class="empty">No hay eventos registrados aún</div></div>
+  </div>
+
+  <!-- HISTORIAL -->
+  <div id="tab-historial" class="section">
+    <div class="filter-tabs">
+      <button class="filter-tab active" onclick="setHistFilter('todos')">Todos</button>
+      <button class="filter-tab" onclick="setHistFilter('plan')">Planes</button>
+      <button class="filter-tab" onclick="setHistFilter('asado')">Asados</button>
+    </div>
+    <div id="historial-list"></div>
+  </div>
+</div>
+
+<!-- CONFIG MODAL -->
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal">
+    <h2>Conectar Google Sheets</h2>
+    <p>Seguí estos pasos para sincronizar automáticamente cada evento con tu planilla.</p>
+    <div class="step"><div class="step-num">1</div><div class="step-text">Abrí <strong>Google Sheets</strong>, creá un spreadsheet nuevo y llamalo <strong>Planes Difu</strong>.</div></div>
+    <div class="step"><div class="step-num">2</div><div class="step-text">Andá a <strong>Extensiones → Apps Script</strong>, borrá el contenido y pegá este código:</div></div>
+    <pre>function doPost(e) {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var data = JSON.parse(e.postData.contents);
+  var sheet = ss.getSheetByName(data.hoja)
+              || ss.insertSheet(data.hoja);
+  if (sheet.getLastRow() === 0) {
+    sheet.appendRow(data.encabezados);
+    sheet.getRange(1,1,1,data.encabezados.length)
+         .setFontWeight('bold')
+         .setBackground('#e8eaf6');
+  }
+  sheet.appendRow(data.fila);
+  return ContentService
+    .createTextOutput(JSON.stringify({
+      ok: true, url: ss.getUrl()
+    }))
+    .setMimeType(ContentService.MimeType.JSON);
+}</pre>
+    <div class="step"><div class="step-num">3</div><div class="step-text">Hacé clic en <strong>Implementar → Nueva implementación</strong>. Tipo: <strong>Aplicación web</strong>. Acceso: <strong>Cualquier persona</strong>. Guardá y copiá la URL.</div></div>
+    <div class="step"><div class="step-num">4</div><div class="step-text">Pegá la URL acá abajo y guardá.</div></div>
+    <div class="field" style="margin-bottom:0;">
+      <input type="text" id="sheets-url-input" placeholder="https://script.google.com/macros/s/.../exec" />
+    </div>
+    <div class="modal-btns">
+      <button class="btn-cancel" onclick="closeConfig()">Cancelar</button>
+      <button class="btn-connect" onclick="saveConfig()">Guardar y conectar</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+  const FRIENDS_DEFAULT = ['Raubvo','Zucho','Babbe','Lucas','Galo','Costi','Colo','Dylan','Tiago','Hamu','Nacho'];
+  const CUTS_DEFAULT = ['Vacío','Asado de tira','Entraña','Chorizo','Morcilla','Colita de cuadril','Bife de chorizo','Matambre','Mollejas'];
+
+  const load = k => { try { return JSON.parse(localStorage.getItem(k)) } catch { return null } };
+  const save = (k,v) => localStorage.setItem(k, JSON.stringify(v));
+
+  let friends = load('pd_friends') || [...FRIENDS_DEFAULT];
+  let cuts    = load('pd_cuts')    || [...CUTS_DEFAULT];
+  let houses  = load('pd_houses')  || [...FRIENDS_DEFAULT, 'Otro lugar'];
+  let eventos = load('pd_eventos') || [];
+  let sheetsUrl       = localStorage.getItem('pd_sheets_url') || '';
+  let spreadsheetUrl  = localStorage.getItem('pd_spreadsheet_url') || '';
+
+  let planSel   = new Set();
+  let asadoSel  = new Set();
+  let cutsSel   = new Set();
+  let houseSel  = null;
+  let statsFilter = 'todos';
+  let histFilter  = 'todos';
+
+  // ── Banner ─────────────────────────────────────────────
+  function updateBanner() {
+    const dot  = document.getElementById('sheets-dot');
+    const text = document.getElementById('sheets-text');
+    const link = document.getElementById('sheets-link');
+    if (sheetsUrl) {
+      dot.className = 'sheets-dot ok';
+      text.textContent = 'Conectado a Google Sheets. Los eventos se sincronizan automáticamente.';
+      if (spreadsheetUrl) { link.href = spreadsheetUrl; link.style.display = 'block'; }
+    } else {
+      dot.className = 'sheets-dot warn';
+      text.textContent = 'Google Sheets no configurado. Los datos se guardan en este dispositivo.';
+      link.style.display = 'none';
+    }
+  }
+
+  // ── Modal config ───────────────────────────────────────
+  function openConfig() {
+    document.getElementById('sheets-url-input').value = sheetsUrl;
+    document.getElementById('modal-overlay').classList.add('open');
+  }
+  function closeConfig() { document.getElementById('modal-overlay').classList.remove('open'); }
+  function saveConfig() {
+    const url = document.getElementById('sheets-url-input').value.trim();
+    sheetsUrl = url;
+    localStorage.setItem('pd_sheets_url', url);
+    updateBanner();
+    closeConfig();
+    showToast(url ? 'Google Sheets conectado' : 'Configuración eliminada', url ? '#3B6D11' : '#633806');
+  }
+
+  // ── Toast ──────────────────────────────────────────────
+  function showToast(msg, bg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.style.background = bg || '#3C3489';
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 3200);
+  }
+
+  // ── Tabs ───────────────────────────────────────────────
+  function switchTab(name) {
+    document.querySelectorAll('.tab').forEach((t,i) =>
+      t.classList.toggle('active', ['plan','asado','stats','historial'][i] === name));
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.getElementById('tab-' + name).classList.add('active');
+    if (name === 'stats')    renderStats();
+    if (name === 'historial') renderHistorial();
+  }
+
+  // ── Grids ──────────────────────────────────────────────
+  function makeToggleGrid(containerId, items, selectedSet, colorClass, onToggle) {
+    const grid = document.getElementById(containerId);
+    grid.innerHTML = '';
+    items.forEach(item => {
+      const btn = document.createElement('button');
+      btn.className = 'toggle-btn' + (selectedSet.has(item) ? ' ' + colorClass : '');
+      btn.textContent = item;
+      btn.onclick = () => {
+        selectedSet.has(item) ? selectedSet.delete(item) : selectedSet.add(item);
+        btn.className = 'toggle-btn' + (selectedSet.has(item) ? ' ' + colorClass : '');
+        if (onToggle) onToggle();
+      };
+      grid.appendChild(btn);
+    });
+  }
+
+  function renderFriends(id, sel) { makeToggleGrid(id, friends, sel, 'sel-purple'); }
+  function renderCutsGrid()       { makeToggleGrid('cuts-grid', cuts, cutsSel, 'sel-coral'); }
+
+  function renderHouseGrid() {
+    const grid = document.getElementById('house-grid');
+    grid.innerHTML = '';
+    houses.forEach(h => {
+      const btn = document.createElement('button');
+      btn.className = 'toggle-btn' + (houseSel === h ? ' sel-teal' : '');
+      btn.textContent = h === 'Otro lugar' ? '📍 Otro lugar' : 'Casa ' + h;
+      btn.onclick = () => { houseSel = houseSel === h ? null : h; renderHouseGrid(); };
+      grid.appendChild(btn);
+    });
+  }
+
+  // ── Agregar ────────────────────────────────────────────
+  function addFriend(mode) {
+    const inp = document.getElementById(mode + '-new-friend');
+    const n = inp.value.trim(); if (!n) return;
+    if (!friends.includes(n)) {
+      friends.push(n);
+      houses.splice(houses.length - 1, 0, n);
+      save('pd_friends', friends);
+      save('pd_houses', houses);
+    }
+    inp.value = '';
+    renderFriends('plan-friends-grid', planSel);
+    renderFriends('asado-friends-grid', asadoSel);
+    renderHouseGrid();
+  }
+
+  function addHouse() {
+    const inp = document.getElementById('new-house');
+    const n = inp.value.trim(); if (!n) return;
+    if (!houses.includes(n)) { houses.splice(houses.length - 1, 0, n); save('pd_houses', houses); }
+    inp.value = ''; houseSel = n; renderHouseGrid();
+  }
+
+  function addCut() {
+    const inp = document.getElementById('new-cut');
+    const n = inp.value.trim(); if (!n) return;
+    if (!cuts.includes(n)) { cuts.push(n); save('pd_cuts', cuts); }
+    inp.value = ''; renderCutsGrid();
+  }
+
+  function selectAll(m)  { const s = m==='plan'?planSel:asadoSel; friends.forEach(f=>s.add(f)); renderFriends(m+'-friends-grid', s); }
+  function deselectAll(m){ const s = m==='plan'?planSel:asadoSel; s.clear(); renderFriends(m+'-friends-grid', s); }
+
+  // ── Guardar ────────────────────────────────────────────
+  async function guardarEvento(mode) {
+    const fecha = document.getElementById(mode + '-fecha').value;
+    if (!fecha) { showToast('Seleccioná una fecha', '#A32D2D'); return; }
+    const asistentes = mode === 'plan' ? [...planSel] : [...asadoSel];
+    if (!asistentes.length) { showToast('Seleccioná al menos un asistente', '#A32D2D'); return; }
+
+    const ev = { tipo: mode, fecha, asistentes };
+
+    if (mode === 'plan') {
+      const tipo = document.getElementById('plan-tipo').value.trim();
+      if (!tipo) { showToast('Escribí el tipo de plan', '#A32D2D'); return; }
+      ev.planTipo = tipo;
+      ev.desc = document.getElementById('plan-desc').value.trim();
+    } else {
+      if (!houseSel)      { showToast('Seleccioná la casa', '#A32D2D'); return; }
+      if (!cutsSel.size)  { showToast('Seleccioná al menos un corte', '#A32D2D'); return; }
+      ev.casa   = houseSel;
+      ev.cortes = [...cutsSel];
+      ev.desc   = document.getElementById('asado-desc').value.trim();
+    }
+
+    const btn = document.getElementById('btn-' + mode);
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner"></span> Guardando...';
+
+    eventos.push(ev);
+    save('pd_eventos', eventos);
+
+    if (sheetsUrl) {
+      const ok = await syncSheets(ev);
+      showToast(ok ? '¡Guardado y sincronizado!' : 'Guardado localmente (error en Sheets)', ok ? '#3B6D11' : '#854F0B');
+    } else {
+      showToast('Guardado localmente', '#3B6D11');
+    }
+
+    // Reset
+    if (mode === 'plan') {
+      document.getElementById('plan-tipo').value = '';
+      document.getElementById('plan-desc').value = '';
+      planSel.clear(); renderFriends('plan-friends-grid', planSel);
+    } else {
+      document.getElementById('asado-desc').value = '';
+      asadoSel.clear(); cutsSel.clear(); houseSel = null;
+      renderFriends('asado-friends-grid', asadoSel);
+      renderCutsGrid(); renderHouseGrid();
+    }
+
+    btn.disabled = false;
+    btn.innerHTML = mode === 'plan' ? 'Guardar plan' : 'Guardar asado';
+  }
+
+  // ── Sync Sheets ────────────────────────────────────────
+  async function syncSheets(ev) {
+    try {
+      let hoja, encabezados, fila;
+      if (ev.tipo === 'plan') {
+        hoja = 'Planes';
+        encabezados = ['Fecha','Tipo','Descripción','Asistentes','Total'];
+        fila = [ev.fecha, ev.planTipo, ev.desc||'-', ev.asistentes.join(', '), ev.asistentes.length];
+      } else {
+        hoja = 'Asados';
+        encabezados = ['Fecha','Casa','Cortes','Descripción','Asistentes','Total'];
+        fila = [ev.fecha, ev.casa, ev.cortes.join(', '), ev.desc||'-', ev.asistentes.join(', '), ev.asistentes.length];
+      }
+      const res = await fetch(sheetsUrl, {
+        method: 'POST',
+        body: JSON.stringify({ hoja, encabezados, fila }),
+        headers: { 'Content-Type': 'text/plain' }
+      });
+      const data = await res.json();
+      if (data.ok && data.url) {
+        spreadsheetUrl = data.url;
+        localStorage.setItem('pd_spreadsheet_url', data.url);
+        const link = document.getElementById('sheets-link');
+        link.href = data.url; link.style.display = 'block';
+      }
+      return !!data.ok;
+    } catch { return false; }
+  }
+
+  // ── Stats ──────────────────────────────────────────────
+  function setFilter(f) {
+    statsFilter = f;
+    document.querySelectorAll('#tab-stats .filter-tab').forEach((b,i) =>
+      b.classList.toggle('active', ['todos','plan','asado'][i] === f));
+    renderStats();
+  }
+
+  function colorFor(pct) {
+    if (pct >= 80) return { bar:'var(--green-bar)', text:'var(--green-text)', bg:'var(--green-bg)' };
+    if (pct >= 50) return { bar:'var(--amber-bar)', text:'var(--amber-text)', bg:'var(--amber-bg)' };
+    return { bar:'var(--red-bar)', text:'var(--red-text)', bg:'var(--red-bg)' };
+  }
+
+  function renderStats() {
+    const card = document.getElementById('stats-card');
+    const evs = eventos.filter(e => statsFilter === 'todos' || e.tipo === statsFilter);
+    if (!evs.length) { card.innerHTML = '<div class="empty">No hay eventos registrados aún</div>'; return; }
+    const counts = {};
+    friends.forEach(f => counts[f] = 0);
+    evs.forEach(e => e.asistentes.forEach(a => { counts[a] = (counts[a]||0) + 1; }));
+    const sorted = Object.keys(counts).sort((a,b) => counts[b] - counts[a]);
+    card.innerHTML = sorted.map(name => {
+      const c = counts[name], total = evs.length;
+      const pct = Math.round(c / total * 100);
+      const col = colorFor(pct);
+      return `<div class="attend-row">
+        <div class="attend-avatar" style="background:${col.bg};color:${col.text};">${name.slice(0,2).toUpperCase()}</div>
+        <div class="attend-name">${name}</div>
+        <div class="attend-bar-wrap"><div class="attend-bar" style="width:${pct}%;background:${col.bar};"></div></div>
+        <div class="attend-count">${c}/${total}</div>
+        <div class="attend-pct" style="color:${col.text};">${pct}%</div>
+      </div>`;
+    }).join('');
+  }
+
+  // ── Historial ──────────────────────────────────────────
+  function setHistFilter(f) {
+    histFilter = f;
+    document.querySelectorAll('#tab-historial .filter-tab').forEach((b,i) =>
+      b.classList.toggle('active', ['todos','plan','asado'][i] === f));
+    renderHistorial();
+  }
+
+  function renderHistorial() {
+    const list = document.getElementById('historial-list');
+    const evs = eventos.filter(e => histFilter === 'todos' || e.tipo === histFilter).slice().reverse();
+    if (!evs.length) { list.innerHTML = '<div class="empty">No hay eventos registrados aún</div>'; return; }
+    list.innerHTML = '<div class="history-list">' + evs.map(e => `
+      <div class="history-item">
+        <div class="history-meta">
+          <span class="badge ${e.tipo==='plan'?'badge-plan':'badge-asado'}">${e.tipo==='plan'?e.planTipo:'Asado'}</span>
+          <span class="history-date">${e.fecha}</span>
+          ${e.casa ? `<span class="badge badge-casa">Casa ${e.casa}</span>` : ''}
+          ${e.cortes ? `<span style="font-size:12px;color:var(--text3);">${e.cortes.join(', ')}</span>` : ''}
+        </div>
+        ${e.desc ? `<div class="history-desc">${e.desc}</div>` : ''}
+        <div class="history-friends">${e.asistentes.join(' · ')}</div>
+      </div>`).join('') + '</div>';
+  }
+
+  // ── Init ───────────────────────────────────────────────
+  function today() { return new Date().toISOString().split('T')[0]; }
+
+  renderFriends('plan-friends-grid', planSel);
+  renderFriends('asado-friends-grid', asadoSel);
+  renderHouseGrid();
+  renderCutsGrid();
+  document.getElementById('plan-fecha').value = today();
+  document.getElementById('asado-fecha').value = today();
+  updateBanner();
+</script>
+</body>
+</html>
