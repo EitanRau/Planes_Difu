@@ -543,7 +543,7 @@
     const asistentes = mode === 'plan' ? [...planSel] : [...asadoSel];
     if (!asistentes.length) { showToast('Seleccioná al menos un asistente', '#A32D2D'); return; }
  
-    const ev = { tipo: mode, fecha, asistentes };
+    const ev = { id: Date.now().toString(36) + Math.random().toString(36).slice(2,6), tipo: mode, fecha, asistentes };
  
     if (mode === 'plan') {
       const tipo = document.getElementById('plan-tipo').value.trim();
@@ -596,16 +596,16 @@
       let hoja, encabezados, fila;
       if (ev.tipo === 'plan') {
         hoja = 'Planes';
-        encabezados = ['Fecha','Tipo','Descripción','Asistentes','Total'];
-        fila = [ev.fecha, ev.planTipo, ev.desc||'-', ev.asistentes.join(', '), ev.asistentes.length];
+        encabezados = ['id','Fecha','Tipo','Descripcion','Asistentes','Total'];
+        fila = [ev.id, ev.fecha, ev.planTipo, ev.desc||'-', ev.asistentes.join(', '), ev.asistentes.length];
       } else {
         hoja = 'Asados';
-        encabezados = ['Fecha','Casa','Cortes','Descripción','Asistentes','Total'];
-        fila = [ev.fecha, ev.casa, ev.cortes.join(', '), ev.desc||'-', ev.asistentes.join(', '), ev.asistentes.length];
+        encabezados = ['id','Fecha','Casa','Cortes','Asador','Descripcion','Asistentes','Total'];
+        fila = [ev.id, ev.fecha, ev.casa, ev.cortes.join(', '), ev.asador||'-', ev.desc||'-', ev.asistentes.join(', '), ev.asistentes.length];
       }
       const res = await fetch(sheetsUrl, {
         method: 'POST',
-        body: JSON.stringify({ hoja, encabezados, fila }),
+        body: JSON.stringify({ accion: 'guardar', hoja, encabezados, fila }),
         headers: { 'Content-Type': 'text/plain' }
       });
       const data = await res.json();
@@ -617,6 +617,52 @@
       }
       return !!data.ok;
     } catch { return false; }
+  }
+ 
+  async function syncSheetsEdit(ev) {
+    try {
+      const res = await fetch(sheetsUrl, {
+        method: 'POST',
+        body: JSON.stringify({ accion: 'editar', evento: ev }),
+        headers: { 'Content-Type': 'text/plain' }
+      });
+      const data = await res.json();
+      return !!data.ok;
+    } catch { return false; }
+  }
+ 
+  async function syncSheetsDelete(id) {
+    try {
+      const res = await fetch(sheetsUrl, {
+        method: 'POST',
+        body: JSON.stringify({ accion: 'borrar', id }),
+        headers: { 'Content-Type': 'text/plain' }
+      });
+      const data = await res.json();
+      return !!data.ok;
+    } catch { return false; }
+  }
+ 
+  async function cargarDesdeSheets() {
+    const banner = document.getElementById('sheets-text');
+    banner.textContent = 'Sincronizando eventos...';
+    try {
+      const res = await fetch(sheetsUrl + '?accion=leer');
+      const data = await res.json();
+      if (data.eventos) {
+        eventos = data.eventos;
+        save('pd_eventos', eventos);
+        if (data.url) {
+          spreadsheetUrl = data.url;
+          localStorage.setItem('pd_spreadsheet_url', data.url);
+          const link = document.getElementById('sheets-link');
+          link.href = data.url; link.style.display = 'block';
+        }
+      }
+    } catch (e) { /* fallback a localStorage */ }
+    updateBanner();
+    renderStats();
+    renderHistorial();
   }
  
   // ── Stats ──────────────────────────────────────────────
@@ -718,12 +764,14 @@
   let editCutsSel = new Set();
   let editHouseSel = null;
  
-  function deleteEvento(idx) {
+  async function deleteEvento(idx) {
     if (!confirm('¿Borrar este evento? Esta acción no se puede deshacer.')) return;
+    const id = eventos[idx].id;
     eventos.splice(idx, 1);
     save('pd_eventos', eventos);
     renderHistorial();
     renderStats();
+    if (id) await syncSheetsDelete(id);
     showToast('Evento eliminado', '#791F1F');
   }
  
@@ -778,7 +826,7 @@
     });
   }
  
-  function saveEdit() {
+  async function saveEdit() {
     const ev = eventos[editIdx];
     const fecha = document.getElementById('edit-fecha').value;
     if (!fecha) { showToast('Seleccioná una fecha', '#A32D2D'); return; }
@@ -803,6 +851,7 @@
     closeEditModal();
     renderHistorial();
     renderStats();
+    await syncSheetsEdit(ev);
     showToast('Evento actualizado', '#3B6D11');
   }
  
@@ -820,7 +869,7 @@
   renderCutsGrid();
   document.getElementById('plan-fecha').value = today();
   document.getElementById('asado-fecha').value = today();
-  updateBanner();
+  cargarDesdeSheets();
 </script>
 </body>
 </html>
