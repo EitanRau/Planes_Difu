@@ -410,7 +410,9 @@
   let cuts    = [...CUTS_DEFAULT];
   let houses  = [...FRIENDS_DEFAULT, 'Otro lugar'];
   let eventos = load('pd_eventos') || [];
-  let sheetsUrl       = localStorage.getItem('pd_sheets_url') || '';
+  const SHEETS_URL_FIXED = 'https://script.google.com/macros/s/AKfycbwO-RWYS1cLcm9d3p2BuxXV12jOq3LGCPJFeXA6S7EZaifqYkDLCkzm6juTFOKgvQhH/exec';
+  let sheetsUrl       = SHEETS_URL_FIXED;
+  localStorage.setItem('pd_sheets_url', SHEETS_URL_FIXED);
   let spreadsheetUrl  = localStorage.getItem('pd_spreadsheet_url') || '';
  
   let planSel   = new Set();
