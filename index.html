@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
@@ -6,7 +6,7 @@
   <title>Planes Difu</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
+ 
     :root {
       --bg: #ffffff;
       --bg2: #f5f5f3;
@@ -39,7 +39,7 @@
       --red-bar: #E24B4A;
       --red-text: #791F1F;
     }
-
+ 
     @media (prefers-color-scheme: dark) {
       :root {
         --bg: #1c1c1a;
@@ -70,36 +70,36 @@
         --red-text: #F7C1C1;
       }
     }
-
+ 
     body { font-family: var(--font); background: var(--bg3); color: var(--text); min-height: 100vh; }
-
+ 
     .app { max-width: 680px; margin: 0 auto; padding: 1.25rem 1rem 3rem; }
-
+ 
     .app-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 0.5px solid var(--border); }
     .app-title { font-size: 22px; font-weight: 600; color: var(--text); letter-spacing: -0.3px; }
     .app-title span { color: #534AB7; }
     .config-btn { padding: 7px 14px; font-size: 12px; border: 0.5px solid var(--border2); border-radius: var(--radius); background: var(--bg2); color: var(--text2); cursor: pointer; font-family: var(--font); }
     .config-btn:hover { background: var(--bg); }
-
+ 
     .sheets-banner { display: flex; align-items: center; gap: 10px; padding: 10px 14px; border: 0.5px solid var(--border); border-radius: var(--radius); background: var(--bg2); margin-bottom: 1rem; }
     .sheets-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
     .sheets-dot.ok { background: var(--green-bar); }
     .sheets-dot.warn { background: var(--amber-bar); }
     .sheets-text { font-size: 13px; color: var(--text2); flex: 1; }
     .sheets-link { font-size: 12px; color: #534AB7; text-decoration: none; font-weight: 500; white-space: nowrap; }
-
+ 
     .tabs { display: flex; border-bottom: 0.5px solid var(--border); margin-bottom: 1.5rem; gap: 2px; overflow-x: auto; }
     .tab { padding: 9px 20px; font-size: 14px; font-weight: 500; border: none; background: none; color: var(--text2); cursor: pointer; border-bottom: 2px solid transparent; transition: all 0.15s; white-space: nowrap; flex-shrink: 0; font-family: var(--font); }
     .tab.active { color: var(--text); border-bottom: 2px solid var(--text); }
     .tab:hover:not(.active) { color: var(--text); }
-
+ 
     .section { display: none; }
     .section.active { display: block; }
-
+ 
     .card { background: var(--bg); border: 0.5px solid var(--border); border-radius: var(--radius-lg); padding: 1.25rem; margin-bottom: 1rem; }
-
+ 
     .section-title { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 14px; }
-
+ 
     .field { margin-bottom: 1rem; }
     .field label { display: block; font-size: 12px; color: var(--text2); margin-bottom: 6px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.4px; }
     .field input, .field select, .field textarea {
@@ -110,21 +110,21 @@
     }
     .field input:focus, .field select:focus, .field textarea:focus { border-color: var(--purple-mid); }
     .field textarea { height: 64px; resize: none; }
-
+ 
     .row { display: flex; gap: 12px; }
     .row .field { flex: 1; min-width: 0; }
-
+ 
     .sel-all-row { display: flex; gap: 6px; margin-bottom: 8px; }
     .sel-all-row button { padding: 4px 10px; font-size: 12px; border: 0.5px solid var(--border); border-radius: var(--radius); background: var(--bg2); color: var(--text2); cursor: pointer; font-family: var(--font); }
     .sel-all-row button:hover { background: var(--bg3); }
-
+ 
     .btn-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 7px; }
     .toggle-btn { padding: 8px 10px; font-size: 13px; border: 0.5px solid var(--border); border-radius: var(--radius); background: var(--bg2); color: var(--text2); cursor: pointer; text-align: center; transition: all 0.15s; font-family: var(--font); }
     .toggle-btn:hover { border-color: var(--border2); }
     .toggle-btn.sel-purple { background: var(--purple-bg); border-color: var(--purple-border); color: var(--purple-text); font-weight: 500; }
     .toggle-btn.sel-teal { background: var(--teal-bg); border-color: var(--teal-border); color: var(--teal-text); font-weight: 500; }
     .toggle-btn.sel-coral { background: var(--coral-bg); border-color: var(--coral-border); color: var(--coral-text); font-weight: 500; }
-
+ 
     .add-row { display: flex; gap: 8px; margin-top: 9px; }
     .add-row input { flex: 1; padding: 8px 12px; font-size: 13px; border: 0.5px solid var(--border2); border-radius: var(--radius); background: var(--bg); color: var(--text); font-family: var(--font); outline: none; }
     .add-row input:focus { border-color: var(--purple-mid); }
@@ -132,18 +132,18 @@
     .add-row button.purple { border-color: var(--purple-border); background: var(--purple-bg); color: var(--purple-text); }
     .add-row button.teal { border-color: var(--teal-border); background: var(--teal-bg); color: var(--teal-text); }
     .add-row button.coral { border-color: var(--coral-border); background: var(--coral-bg); color: var(--coral-text); }
-
+ 
     .divider { border: none; border-top: 0.5px solid var(--border); margin: 1.1rem 0; }
-
+ 
     .btn-save { display: inline-flex; align-items: center; gap: 8px; padding: 10px 26px; font-size: 14px; font-weight: 500; border: 0.5px solid var(--purple-border); border-radius: var(--radius); background: var(--purple-bg); color: var(--purple-text); cursor: pointer; font-family: var(--font); transition: all 0.15s; }
     .btn-save:hover { filter: brightness(0.95); }
     .btn-save:active { transform: scale(0.98); }
     .btn-save:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
-
+ 
     .filter-tabs { display: flex; gap: 6px; margin-bottom: 1rem; flex-wrap: wrap; }
     .filter-tab { padding: 5px 14px; font-size: 13px; border: 0.5px solid var(--border2); border-radius: 99px; background: var(--bg2); color: var(--text2); cursor: pointer; font-family: var(--font); transition: all 0.15s; }
     .filter-tab.active { background: var(--purple-bg); border-color: var(--purple-border); color: var(--purple-text); font-weight: 500; }
-
+ 
     .attend-row { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border: 0.5px solid var(--border); border-radius: var(--radius); background: var(--bg); margin-bottom: 6px; }
     .attend-avatar { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 600; flex-shrink: 0; }
     .attend-name { font-size: 14px; font-weight: 500; flex: 1; min-width: 0; }
@@ -151,7 +151,7 @@
     .attend-bar { height: 100%; border-radius: 99px; transition: width 0.4s; }
     .attend-count { font-size: 12px; color: var(--text3); min-width: 44px; text-align: right; }
     .attend-pct { font-size: 13px; font-weight: 600; min-width: 36px; text-align: right; }
-
+ 
     .history-list { display: flex; flex-direction: column; gap: 8px; }
     .history-item { padding: 12px 14px; border: 0.5px solid var(--border); border-radius: var(--radius); background: var(--bg); }
     .history-meta { display: flex; gap: 6px; align-items: center; margin-bottom: 6px; flex-wrap: wrap; }
@@ -167,11 +167,11 @@
     .btn-delete-ev { padding: 4px 12px; font-size: 12px; border: 0.5px solid var(--coral-border); border-radius: var(--radius); background: var(--coral-bg); color: var(--coral-text); cursor: pointer; font-family: var(--font); font-weight: 500; }
     .btn-edit-ev:hover { filter: brightness(0.95); }
     .btn-delete-ev:hover { filter: brightness(0.95); }
-
+ 
     /* MODAL EDITAR EVENTO */
     .modal-edit { background: var(--bg); border: 0.5px solid var(--border); border-radius: var(--radius-lg); padding: 1.5rem; width: 100%; max-width: 560px; max-height: 92vh; overflow-y: auto; }
     .modal-edit h2 { font-size: 17px; font-weight: 600; margin-bottom: 1rem; }
-
+ 
     /* MODAL DETALLE ASISTENCIA */
     .attend-row { cursor: pointer; }
     .attend-row:hover { background: var(--bg2); }
@@ -179,9 +179,9 @@
     .event-detail-item { display: flex; gap: 8px; align-items: center; padding: 7px 10px; border: 0.5px solid var(--border); border-radius: var(--radius); background: var(--bg2); margin-bottom: 5px; font-size: 13px; }
     .event-detail-badge { font-size: 11px; padding: 2px 8px; border-radius: 99px; font-weight: 500; flex-shrink: 0; }
     .event-detail-date { font-size: 12px; color: var(--text3); margin-left: auto; }
-
+ 
     .empty { text-align: center; padding: 2.5rem; color: var(--text3); font-size: 14px; }
-
+ 
     /* MODAL */
     .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.45); z-index: 100; align-items: center; justify-content: center; padding: 1rem; }
     .modal-overlay.open { display: flex; }
@@ -197,15 +197,15 @@
     .modal-btns button { padding: 9px 20px; font-size: 13px; border-radius: var(--radius); cursor: pointer; font-family: var(--font); font-weight: 500; border: 0.5px solid; }
     .btn-cancel { border-color: var(--border2); background: var(--bg2); color: var(--text2); }
     .btn-connect { border-color: var(--purple-border); background: var(--purple-bg); color: var(--purple-text); }
-
+ 
     /* SPINNER */
     .spinner { display: inline-block; width: 14px; height: 14px; border: 2px solid var(--purple-border); border-top-color: #534AB7; border-radius: 50%; animation: spin 0.7s linear infinite; }
     @keyframes spin { to { transform: rotate(360deg); } }
-
+ 
     /* TOAST */
     .toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); padding: 11px 22px; border-radius: var(--radius); font-size: 13px; font-weight: 500; opacity: 0; transition: opacity 0.3s; pointer-events: none; z-index: 9999; white-space: nowrap; color: #fff; box-shadow: 0 4px 16px rgba(0,0,0,0.2); }
     .toast.show { opacity: 1; }
-
+ 
     @media (max-width: 480px) {
       .row { flex-direction: column; gap: 0; }
       .app-title { font-size: 19px; }
@@ -214,26 +214,26 @@
   </style>
 </head>
 <body>
-
+ 
 <div class="app">
   <div class="app-header">
     <div class="app-title">Planes <span>Difu</span></div>
     <button class="config-btn" onclick="openConfig()">⚙ Configurar Sheets</button>
   </div>
-
+ 
   <div class="sheets-banner">
     <div class="sheets-dot warn" id="sheets-dot"></div>
     <div class="sheets-text" id="sheets-text">Google Sheets no configurado. Los datos se guardan en este dispositivo.</div>
     <a id="sheets-link" href="#" style="display:none;" class="sheets-link" target="_blank">Abrir Sheets →</a>
   </div>
-
+ 
   <div class="tabs">
     <button class="tab active" onclick="switchTab('plan')">Planes</button>
     <button class="tab" onclick="switchTab('asado')">Asados</button>
     <button class="tab" onclick="switchTab('stats')">Asistencia</button>
     <button class="tab" onclick="switchTab('historial')">Historial</button>
   </div>
-
+ 
   <!-- PLANES -->
   <div id="tab-plan" class="section active">
     <div class="card">
@@ -260,7 +260,7 @@
       </div>
     </div>
   </div>
-
+ 
   <!-- ASADOS -->
   <div id="tab-asado" class="section">
     <div class="card">
@@ -310,7 +310,7 @@
       </div>
     </div>
   </div>
-
+ 
   <!-- STATS -->
   <div id="tab-stats" class="section">
     <div class="filter-tabs">
@@ -320,7 +320,7 @@
     </div>
     <div class="card" id="stats-card"><div class="empty">No hay eventos registrados aún</div></div>
   </div>
-
+ 
   <!-- HISTORIAL -->
   <div id="tab-historial" class="section">
     <div class="filter-tabs">
@@ -331,7 +331,7 @@
     <div id="historial-list"></div>
   </div>
 </div>
-
+ 
 <!-- CONFIG MODAL -->
 <div class="modal-overlay" id="modal-overlay">
   <div class="modal">
@@ -368,9 +368,9 @@
     </div>
   </div>
 </div>
-
+ 
 <div class="toast" id="toast"></div>
-
+ 
 <!-- MODAL EDITAR EVENTO -->
 <div class="modal-overlay" id="modal-edit-overlay">
   <div class="modal-edit">
@@ -382,7 +382,7 @@
     </div>
   </div>
 </div>
-
+ 
 <!-- MODAL DETALLE ASISTENCIA -->
 <div class="modal-overlay" id="modal-attend-overlay">
   <div class="modal-edit">
@@ -394,14 +394,14 @@
     </div>
   </div>
 </div>
-
+ 
 <script>
   const FRIENDS_DEFAULT = ['Raubvo','Zucho','Babbe','Lucas','Galo','Costi','Colo','Dylan','Tiago','Hamu','Nacho'];
   const CUTS_DEFAULT = ['Vacío','Asado de tira','Entraña','Chorizo','Morcilla','Colita de cuadril','Bife de chorizo','Matambre','Mollejas','Lomo','Chinchulín','Picaña'];
-
+ 
   const load = k => { try { return JSON.parse(localStorage.getItem(k)) } catch { return null } };
   const save = (k,v) => localStorage.setItem(k, JSON.stringify(v));
-
+ 
   // Siempre desde defaults — nunca persiste en localStorage
   localStorage.removeItem('pd_friends');
   localStorage.removeItem('pd_cuts');
@@ -410,18 +410,18 @@
   let cuts    = [...CUTS_DEFAULT];
   let houses  = [...FRIENDS_DEFAULT, 'Otro lugar'];
   let eventos = load('pd_eventos') || [];
-  const SHEETS_URL_FIXED = 'https://script.google.com/macros/s/AKfycbwO-RWYS1cLcm9d3p2BuxXV12jOq3LGCPJFeXA6S7EZaifqYkDLCkzm6juTFOKgvQhH/exec';
-  let sheetsUrl       = SHEETS_URL_FIXED;
+  const SHEETS_URL_FIXED = 'https://script.google.com/macros/s/AKfycbxZwlXyZ4XqVyQtPTb_6oWpr7484wwjWFGkS25lNNyoDpVHg548XG--efWpMC6yPyKi/exec';
+  let sheetsUrl = SHEETS_URL_FIXED;
   localStorage.setItem('pd_sheets_url', SHEETS_URL_FIXED);
   let spreadsheetUrl  = localStorage.getItem('pd_spreadsheet_url') || '';
-
+ 
   let planSel   = new Set();
   let asadoSel  = new Set();
   let cutsSel   = new Set();
   let houseSel  = null;
   let statsFilter = 'todos';
   let histFilter  = 'todos';
-
+ 
   // ── Banner ─────────────────────────────────────────────
   function updateBanner() {
     const dot  = document.getElementById('sheets-dot');
@@ -437,7 +437,7 @@
       link.style.display = 'none';
     }
   }
-
+ 
   // ── Modal config ───────────────────────────────────────
   function openConfig() {
     document.getElementById('sheets-url-input').value = sheetsUrl;
@@ -452,7 +452,7 @@
     closeConfig();
     showToast(url ? 'Google Sheets conectado' : 'Configuración eliminada', url ? '#3B6D11' : '#633806');
   }
-
+ 
   // ── Toast ──────────────────────────────────────────────
   function showToast(msg, bg) {
     const t = document.getElementById('toast');
@@ -461,7 +461,7 @@
     t.classList.add('show');
     setTimeout(() => t.classList.remove('show'), 3200);
   }
-
+ 
   // ── Tabs ───────────────────────────────────────────────
   function switchTab(name) {
     document.querySelectorAll('.tab').forEach((t,i) =>
@@ -471,7 +471,7 @@
     if (name === 'stats')    renderStats();
     if (name === 'historial') renderHistorial();
   }
-
+ 
   // ── Grids ──────────────────────────────────────────────
   function makeToggleGrid(containerId, items, selectedSet, colorClass, onToggle) {
     const grid = document.getElementById(containerId);
@@ -488,10 +488,10 @@
       grid.appendChild(btn);
     });
   }
-
+ 
   function renderFriends(id, sel) { makeToggleGrid(id, friends, sel, 'sel-purple'); }
   function renderCutsGrid()       { makeToggleGrid('cuts-grid', cuts, cutsSel, 'sel-coral'); }
-
+ 
   function renderHouseGrid() {
     const grid = document.getElementById('house-grid');
     grid.innerHTML = '';
@@ -503,7 +503,7 @@
       grid.appendChild(btn);
     });
   }
-
+ 
   // ── Agregar ────────────────────────────────────────────
   function addFriend(mode) {
     const inp = document.getElementById(mode + '-new-friend');
@@ -518,33 +518,33 @@
     renderFriends('asado-friends-grid', asadoSel);
     renderHouseGrid();
   }
-
+ 
   function addHouse() {
     const inp = document.getElementById('new-house');
     const n = inp.value.trim(); if (!n) return;
     if (!houses.includes(n)) { houses.splice(houses.length - 1, 0, n); /* NO persiste */ }
     inp.value = ''; houseSel = n; renderHouseGrid();
   }
-
+ 
   function addCut() {
     const inp = document.getElementById('new-cut');
     const n = inp.value.trim(); if (!n) return;
     if (!cuts.includes(n)) { cuts.push(n); /* NO persiste */ }
     inp.value = ''; renderCutsGrid();
   }
-
+ 
   function selectAll(m)  { const s = m==='plan'?planSel:asadoSel; friends.forEach(f=>s.add(f)); renderFriends(m+'-friends-grid', s); }
   function deselectAll(m){ const s = m==='plan'?planSel:asadoSel; s.clear(); renderFriends(m+'-friends-grid', s); }
-
+ 
   // ── Guardar ────────────────────────────────────────────
   async function guardarEvento(mode) {
     const fecha = document.getElementById(mode + '-fecha').value;
     if (!fecha) { showToast('Seleccioná una fecha', '#A32D2D'); return; }
     const asistentes = mode === 'plan' ? [...planSel] : [...asadoSel];
     if (!asistentes.length) { showToast('Seleccioná al menos un asistente', '#A32D2D'); return; }
-
+ 
     const ev = { id: Date.now().toString(36) + Math.random().toString(36).slice(2,6), tipo: mode, fecha, asistentes };
-
+ 
     if (mode === 'plan') {
       const tipo = document.getElementById('plan-tipo').value.trim();
       if (!tipo) { showToast('Escribí el tipo de plan', '#A32D2D'); return; }
@@ -558,21 +558,21 @@
       ev.asador = document.getElementById('asado-asador').value.trim();
       ev.desc   = document.getElementById('asado-desc').value.trim();
     }
-
+ 
     const btn = document.getElementById('btn-' + mode);
     btn.disabled = true;
     btn.innerHTML = '<span class="spinner"></span> Guardando...';
-
+ 
     eventos.push(ev);
     save('pd_eventos', eventos);
-
+ 
     if (sheetsUrl) {
       const ok = await syncSheets(ev);
       showToast(ok ? '¡Guardado y sincronizado!' : 'Guardado localmente (error en Sheets)', ok ? '#3B6D11' : '#854F0B');
     } else {
       showToast('Guardado localmente', '#3B6D11');
     }
-
+ 
     // Reset
     if (mode === 'plan') {
       document.getElementById('plan-tipo').value = '';
@@ -585,11 +585,11 @@
       renderFriends('asado-friends-grid', asadoSel);
       renderCutsGrid(); renderHouseGrid();
     }
-
+ 
     btn.disabled = false;
     btn.innerHTML = mode === 'plan' ? 'Guardar plan' : 'Guardar asado';
   }
-
+ 
   // ── Sync Sheets ────────────────────────────────────────
   async function syncSheets(ev) {
     try {
@@ -618,7 +618,7 @@
       return !!data.ok;
     } catch { return false; }
   }
-
+ 
   async function syncSheetsEdit(ev) {
     try {
       const res = await fetch(sheetsUrl, {
@@ -630,7 +630,7 @@
       return !!data.ok;
     } catch { return false; }
   }
-
+ 
   async function syncSheetsDelete(id) {
     try {
       const res = await fetch(sheetsUrl, {
@@ -642,7 +642,7 @@
       return !!data.ok;
     } catch { return false; }
   }
-
+ 
   async function cargarDesdeSheets() {
     const banner = document.getElementById('sheets-text');
     banner.textContent = 'Sincronizando eventos...';
@@ -664,7 +664,7 @@
     renderStats();
     renderHistorial();
   }
-
+ 
   // ── Stats ──────────────────────────────────────────────
   function setFilter(f) {
     statsFilter = f;
@@ -672,13 +672,13 @@
       b.classList.toggle('active', ['todos','plan','asado'][i] === f));
     renderStats();
   }
-
+ 
   function colorFor(pct) {
     if (pct >= 80) return { bar:'var(--green-bar)', text:'var(--green-text)', bg:'var(--green-bg)' };
     if (pct >= 50) return { bar:'var(--amber-bar)', text:'var(--amber-text)', bg:'var(--amber-bg)' };
     return { bar:'var(--red-bar)', text:'var(--red-text)', bg:'var(--red-bg)' };
   }
-
+ 
   function renderStats() {
     const card = document.getElementById('stats-card');
     const evs = eventos.filter(e => statsFilter === 'todos' || e.tipo === statsFilter);
@@ -700,7 +700,7 @@
       </div>`;
     }).join('');
   }
-
+ 
   function openAttendDetail(name) {
     const evs = eventos.filter(e => statsFilter === 'todos' || e.tipo === statsFilter);
     const attended = evs.filter(e => e.asistentes.includes(name));
@@ -725,7 +725,7 @@
       (missed.length   ? `<div style="font-size:12px;font-weight:600;color:var(--text2);margin:10px 0 6px;text-transform:uppercase;letter-spacing:.4px;">❌ No fue</div><div class="event-detail-list">${missed.map(fmt).join('')}</div>` : '');
     document.getElementById('modal-attend-overlay').classList.add('open');
   }
-
+ 
   // ── Historial ──────────────────────────────────────────
   function setHistFilter(f) {
     histFilter = f;
@@ -733,7 +733,7 @@
       b.classList.toggle('active', ['todos','plan','asado'][i] === f));
     renderHistorial();
   }
-
+ 
   function renderHistorial() {
     const list = document.getElementById('historial-list');
     const evs = eventos.map((e,i) => ({...e, _idx: i}))
@@ -757,13 +757,13 @@
         </div>
       </div>`).join('') + '</div>';
   }
-
+ 
   // ── Editar / Borrar evento ──────────────────────────────
   let editIdx = null;
   let editFriendsSel = new Set();
   let editCutsSel = new Set();
   let editHouseSel = null;
-
+ 
   async function deleteEvento(idx) {
     if (!confirm('¿Borrar este evento? Esta acción no se puede deshacer.')) return;
     const id = eventos[idx].id;
@@ -774,19 +774,19 @@
     if (id) await syncSheetsDelete(id);
     showToast('Evento eliminado', '#791F1F');
   }
-
+ 
   function openEditModal(idx) {
     editIdx = idx;
     const ev = eventos[idx];
     editFriendsSel = new Set(ev.asistentes);
     editCutsSel    = ev.cortes ? new Set(ev.cortes) : new Set();
     editHouseSel   = ev.casa || null;
-
+ 
     const title = document.getElementById('modal-edit-title');
     title.textContent = ev.tipo === 'plan' ? 'Editar plan' : 'Editar asado';
-
+ 
     const body = document.getElementById('modal-edit-body');
-
+ 
     if (ev.tipo === 'plan') {
       body.innerHTML = `
         <div class="field"><label>Fecha</label><input type="date" id="edit-fecha" value="${ev.fecha}" /></div>
@@ -802,9 +802,9 @@
         <div class="field"><label>Cortes</label><div class="btn-grid" id="edit-cuts-grid"></div></div>
         <div class="field"><label>¿Quiénes asistieron?</label><div class="btn-grid" id="edit-friends-grid"></div></div>`;
     }
-
+ 
     document.getElementById('modal-edit-overlay').classList.add('open');
-
+ 
     // Render grids
     makeToggleGrid('edit-friends-grid', friends, editFriendsSel, 'sel-purple');
     if (ev.tipo === 'asado') {
@@ -812,7 +812,7 @@
       makeToggleGrid('edit-cuts-grid', cuts, editCutsSel, 'sel-coral');
     }
   }
-
+ 
   function renderEditHouseGrid() {
     const grid = document.getElementById('edit-house-grid');
     if (!grid) return;
@@ -825,18 +825,18 @@
       grid.appendChild(btn);
     });
   }
-
+ 
   async function saveEdit() {
     const ev = eventos[editIdx];
     const fecha = document.getElementById('edit-fecha').value;
     if (!fecha) { showToast('Seleccioná una fecha', '#A32D2D'); return; }
     if (!editFriendsSel.size) { showToast('Seleccioná al menos un asistente', '#A32D2D'); return; }
-
+ 
     ev.fecha = fecha;
     ev.asistentes = [...editFriendsSel];
     const descEl = document.getElementById('edit-desc');
     ev.desc = descEl ? descEl.value.trim() : '';
-
+ 
     if (ev.tipo === 'plan') {
       ev.planTipo = document.getElementById('edit-tipo').value.trim();
     } else {
@@ -846,7 +846,7 @@
       ev.cortes = [...editCutsSel];
       ev.asador = document.getElementById('edit-asador').value.trim();
     }
-
+ 
     save('pd_eventos', eventos);
     closeEditModal();
     renderHistorial();
@@ -854,15 +854,15 @@
     await syncSheetsEdit(ev);
     showToast('Evento actualizado', '#3B6D11');
   }
-
+ 
   function closeEditModal() {
     document.getElementById('modal-edit-overlay').classList.remove('open');
     editIdx = null;
   }
-
+ 
   // ── Init ───────────────────────────────────────────────
   function today() { return new Date().toISOString().split('T')[0]; }
-
+ 
   renderFriends('plan-friends-grid', planSel);
   renderFriends('asado-friends-grid', asadoSel);
   renderHouseGrid();
