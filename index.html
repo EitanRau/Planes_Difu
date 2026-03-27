@@ -1,6 +1,3 @@
-Index · HTML
-Copiar
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -405,9 +402,13 @@ Copiar
   const load = k => { try { return JSON.parse(localStorage.getItem(k)) } catch { return null } };
   const save = (k,v) => localStorage.setItem(k, JSON.stringify(v));
  
-  let friends = load('pd_friends') || [...FRIENDS_DEFAULT];
-  let cuts    = load('pd_cuts')    || [...CUTS_DEFAULT];
-  let houses  = load('pd_houses')  || [...FRIENDS_DEFAULT, 'Otro lugar'];
+  // Siempre desde defaults — nunca persiste en localStorage
+  localStorage.removeItem('pd_friends');
+  localStorage.removeItem('pd_cuts');
+  localStorage.removeItem('pd_houses');
+  let friends = [...FRIENDS_DEFAULT];
+  let cuts    = [...CUTS_DEFAULT];
+  let houses  = [...FRIENDS_DEFAULT, 'Otro lugar'];
   let eventos = load('pd_eventos') || [];
   let sheetsUrl       = localStorage.getItem('pd_sheets_url') || '';
   let spreadsheetUrl  = localStorage.getItem('pd_spreadsheet_url') || '';
