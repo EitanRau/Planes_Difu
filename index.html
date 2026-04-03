@@ -162,6 +162,15 @@
     .history-date { font-size: 12px; color: var(--text3); }
     .history-desc { font-size: 13px; color: var(--text2); margin-bottom: 5px; }
     .history-friends { font-size: 12px; color: var(--text3); }
+    .history-actions { display: flex; gap: 6px; margin-top: 10px; }
+    .btn-edit { padding: 5px 14px; font-size: 12px; border: 0.5px solid var(--purple-border); border-radius: var(--radius); background: var(--purple-bg); color: var(--purple-text); cursor: pointer; font-family: var(--font); font-weight: 500; }
+    .btn-edit:hover { filter: brightness(0.95); }
+    .btn-delete { padding: 5px 14px; font-size: 12px; border: 0.5px solid var(--border2); border-radius: var(--radius); background: var(--bg2); color: var(--text2); cursor: pointer; font-family: var(--font); font-weight: 500; }
+    .btn-delete:hover { border-color: var(--red-bar); color: var(--red-text); background: var(--red-bg); }
+    .edit-modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 200; align-items: flex-start; justify-content: center; padding: 1rem; overflow-y: auto; }
+    .edit-modal-overlay.open { display: flex; }
+    .edit-modal { background: var(--bg); border: 0.5px solid var(--border); border-radius: var(--radius-lg); padding: 1.5rem; width: 100%; max-width: 560px; margin: auto; }
+    .edit-modal h2 { font-size: 16px; font-weight: 600; margin-bottom: 1rem; }
 
     .empty { text-align: center; padding: 2.5rem; color: var(--text3); font-size: 14px; }
 
@@ -348,6 +357,53 @@
 </div>
 
 <div class="toast" id="toast"></div>
+
+<!-- EDIT MODAL -->
+<div class="edit-modal-overlay" id="edit-modal-overlay">
+  <div class="edit-modal">
+    <h2 id="edit-modal-title">Editar evento</h2>
+
+    <!-- Campos plan -->
+    <div id="edit-plan-fields">
+      <div class="row">
+        <div class="field"><label>Fecha</label><input type="date" id="edit-fecha" /></div>
+        <div class="field"><label>Tipo de plan</label><input type="text" id="edit-tipo" placeholder="Fútbol, Cine..." /></div>
+      </div>
+      <div class="field"><label>Descripción</label><textarea id="edit-desc" placeholder="Detalles..."></textarea></div>
+    </div>
+
+    <!-- Campos asado -->
+    <div id="edit-asado-fields" style="display:none;">
+      <div class="row">
+        <div class="field"><label>Fecha</label><input type="date" id="edit-asado-fecha" /></div>
+        <div class="field"><label>Descripción</label><input type="text" id="edit-asado-desc" placeholder="Quincho, cumple..." /></div>
+      </div>
+      <div class="field">
+        <label>Casa</label>
+        <div class="btn-grid" id="edit-house-grid"></div>
+      </div>
+      <div class="field">
+        <label>Cortes</label>
+        <div class="btn-grid" id="edit-cuts-grid"></div>
+      </div>
+    </div>
+
+    <!-- Asistentes (ambos tipos) -->
+    <div class="field">
+      <label>Asistentes</label>
+      <div class="sel-all-row">
+        <button onclick="editSelectAll()">Todos</button>
+        <button onclick="editDeselectAll()">Ninguno</button>
+      </div>
+      <div class="btn-grid" id="edit-friends-grid"></div>
+    </div>
+
+    <div class="modal-btns">
+      <button class="btn-cancel" onclick="closeEditModal()">Cancelar</button>
+      <button class="btn-connect" onclick="guardarEdicion()">Guardar cambios</button>
+    </div>
+  </div>
+</div>
 
 <script>
   const FRIENDS_DEFAULT = ['Raubvo','Zucho','Babbe','Lucas','Galo','Costi','Colo','Dylan','Tiago','Hamu','Nacho'];
@@ -626,17 +682,33 @@
   }
 
   function normalizarEvento(e) {
+    e = Object.assign({}, e); // no mutar el original
     // Normalizar fecha
     e.fecha = normalizarFecha(e.fecha);
-    // Si es plan y no tiene planTipo, buscar en campos alternativos
+    // Si es plan y no tiene planTipo
     if (e.tipo === 'plan' && !e.planTipo) {
       e.planTipo = e.tipo_plan || e.tipoPlan || e.plan || 'Plan';
     }
-    // Si asistentes no es array
+    // Si asistentes no es array, convertir
     if (typeof e.asistentes === 'string') {
       e.asistentes = e.asistentes.split(',').map(a => a.trim()).filter(Boolean);
     }
     if (!Array.isArray(e.asistentes)) e.asistentes = [];
+    // Filtrar asistentes inválidos: solo nombres conocidos o palabras cortas sin espacios
+    // Excluir: guiones, frases largas, descripciones accidentales
+    const AMIGOS_BASE = ['Raubvo','Zucho','Babbe','Lucas','Galo','Costi','Colo','Dylan','Tiago','Hamu','Nacho'];
+    e.asistentes = e.asistentes.filter(a => {
+      if (!a || a === '-' || a === '') return false;
+      // Si está en la lista base, siempre válido
+      if (AMIGOS_BASE.includes(a)) return true;
+      // Si está en friends (amigos agregados), válido
+      if (friends.includes(a)) return true;
+      // Si tiene espacios y más de 15 caracteres, es probablemente una descripción
+      if (a.includes(' ') && a.length > 15) return false;
+      // Si tiene números o símbolos raros, descartar
+      if (/[0-9@#$%^&*()_+=\[\]{};':"\\|<>?/]/.test(a)) return false;
+      return true;
+    });
     // Si cortes no es array
     if (e.cortes && typeof e.cortes === 'string') {
       e.cortes = e.cortes.split(',').map(c => c.trim()).filter(Boolean);
@@ -647,7 +719,7 @@
   function renderHistorial() {
     const list = document.getElementById('historial-list');
     const evs = eventos
-      .map(normalizarEvento)
+      .map((e, i) => ({ ...normalizarEvento(e), _idx: i }))
       .filter(e => histFilter === 'todos' || e.tipo === histFilter)
       .slice().reverse();
     if (!evs.length) { list.innerHTML = '<div class="empty">No hay eventos registrados aún</div>'; return; }
@@ -661,7 +733,134 @@
         </div>
         ${e.desc && e.desc !== '-' ? `<div class="history-desc">${e.desc}</div>` : ''}
         <div class="history-friends">${e.asistentes.length ? e.asistentes.join(' · ') : '-'}</div>
+        <div class="history-actions">
+          <button class="btn-edit" onclick="abrirEdicion(${e._idx})">✎ Editar</button>
+          <button class="btn-delete" onclick="borrarEvento(${e._idx})">Borrar</button>
+        </div>
       </div>`).join('') + '</div>';
+  }
+
+  // ── Editar / Borrar ────────────────────────────────────
+  let editIdx = null;
+  let editSel = new Set();
+  let editHouseSel = null;
+  let editCutsSel = new Set();
+
+  function abrirEdicion(idx) {
+    const ev = normalizarEvento({ ...eventos[idx] });
+    editIdx = idx;
+    editSel = new Set(ev.asistentes);
+    editHouseSel = ev.casa || null;
+    editCutsSel = new Set(ev.cortes || []);
+
+    if (ev.tipo === 'plan') {
+      document.getElementById('edit-modal-title').textContent = 'Editar plan';
+      document.getElementById('edit-plan-fields').style.display = '';
+      document.getElementById('edit-asado-fields').style.display = 'none';
+      document.getElementById('edit-fecha').value = ev.fecha;
+      document.getElementById('edit-tipo').value = ev.planTipo || '';
+      document.getElementById('edit-desc').value = ev.desc && ev.desc !== '-' ? ev.desc : '';
+    } else {
+      document.getElementById('edit-modal-title').textContent = 'Editar asado';
+      document.getElementById('edit-plan-fields').style.display = 'none';
+      document.getElementById('edit-asado-fields').style.display = '';
+      document.getElementById('edit-asado-fecha').value = ev.fecha;
+      document.getElementById('edit-asado-desc').value = ev.desc && ev.desc !== '-' ? ev.desc : '';
+      renderEditHouseGrid();
+      renderEditCutsGrid();
+    }
+
+    renderEditFriends();
+    document.getElementById('edit-modal-overlay').classList.add('open');
+  }
+
+  function closeEditModal() {
+    document.getElementById('edit-modal-overlay').classList.remove('open');
+    editIdx = null;
+  }
+
+  function renderEditFriends() {
+    const grid = document.getElementById('edit-friends-grid');
+    grid.innerHTML = '';
+    friends.forEach(f => {
+      const btn = document.createElement('button');
+      btn.className = 'toggle-btn' + (editSel.has(f) ? ' sel-purple' : '');
+      btn.textContent = f;
+      btn.onclick = () => {
+        editSel.has(f) ? editSel.delete(f) : editSel.add(f);
+        btn.className = 'toggle-btn' + (editSel.has(f) ? ' sel-purple' : '');
+      };
+      grid.appendChild(btn);
+    });
+  }
+
+  function renderEditHouseGrid() {
+    const grid = document.getElementById('edit-house-grid');
+    grid.innerHTML = '';
+    houses.forEach(h => {
+      const btn = document.createElement('button');
+      btn.className = 'toggle-btn' + (editHouseSel === h ? ' sel-teal' : '');
+      btn.textContent = h === 'Otro lugar' ? '📍 Otro lugar' : 'Casa ' + h;
+      btn.onclick = () => { editHouseSel = editHouseSel === h ? null : h; renderEditHouseGrid(); };
+      grid.appendChild(btn);
+    });
+  }
+
+  function renderEditCutsGrid() {
+    const grid = document.getElementById('edit-cuts-grid');
+    grid.innerHTML = '';
+    cuts.forEach(c => {
+      const btn = document.createElement('button');
+      btn.className = 'toggle-btn' + (editCutsSel.has(c) ? ' sel-coral' : '');
+      btn.textContent = c;
+      btn.onclick = () => {
+        editCutsSel.has(c) ? editCutsSel.delete(c) : editCutsSel.add(c);
+        btn.className = 'toggle-btn' + (editCutsSel.has(c) ? ' sel-coral' : '');
+      };
+      grid.appendChild(btn);
+    });
+  }
+
+  function editSelectAll()   { friends.forEach(f => editSel.add(f));  renderEditFriends(); }
+  function editDeselectAll() { editSel.clear(); renderEditFriends(); }
+
+  function guardarEdicion() {
+    if (editIdx === null) return;
+    const ev = { ...eventos[editIdx] };
+    const asistentes = [...editSel];
+    if (!asistentes.length) { showToast('Seleccioná al menos un asistente', '#A32D2D'); return; }
+
+    if (ev.tipo === 'plan') {
+      const tipo = document.getElementById('edit-tipo').value.trim();
+      if (!tipo) { showToast('Escribí el tipo de plan', '#A32D2D'); return; }
+      ev.fecha    = document.getElementById('edit-fecha').value;
+      ev.planTipo = tipo;
+      ev.desc     = document.getElementById('edit-desc').value.trim() || '-';
+    } else {
+      if (!editHouseSel)     { showToast('Seleccioná la casa', '#A32D2D'); return; }
+      if (!editCutsSel.size) { showToast('Seleccioná al menos un corte', '#A32D2D'); return; }
+      ev.fecha  = document.getElementById('edit-asado-fecha').value;
+      ev.casa   = editHouseSel;
+      ev.cortes = [...editCutsSel];
+      ev.desc   = document.getElementById('edit-asado-desc').value.trim() || '-';
+    }
+    ev.asistentes = asistentes;
+
+    eventos[editIdx] = ev;
+    save('pd_eventos', eventos);
+    closeEditModal();
+    renderHistorial();
+    renderStats();
+    showToast('Evento actualizado', '#3B6D11');
+  }
+
+  function borrarEvento(idx) {
+    if (!confirm('¿Borrar este evento? Esta acción no se puede deshacer.')) return;
+    eventos.splice(idx, 1);
+    save('pd_eventos', eventos);
+    renderHistorial();
+    renderStats();
+    showToast('Evento borrado', '#633806');
   }
 
   // ── Init ───────────────────────────────────────────────
