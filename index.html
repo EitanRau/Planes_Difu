@@ -218,6 +218,20 @@
     /* RACHA badge */
     .racha-badge { display: inline-flex; align-items: center; gap: 3px; font-size: 11px; font-weight: 600; padding: 2px 7px; border-radius: 99px; background: var(--amber-bg); color: var(--amber-text); margin-left: 4px; }
 
+    /* ASADOR GRID */
+    .asador-btn.sel-asador { background: var(--amber-bg); border-color: var(--amber-bar); color: var(--amber-text); font-weight: 500; }
+
+    /* TOP ASADORES cajón */
+    .top-asadores-card { background: var(--bg); border: 0.5px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; margin-bottom: 1rem; }
+    .top-asador-row { display: flex; align-items: center; gap:12px; padding: 14px 16px; }
+    .top-asador-row + .top-asador-row { border-top: 0.5px solid var(--border); }
+    .top-asador-medal { font-size: 22px; width: 30px; text-align: center; flex-shrink: 0; }
+    .top-asador-info { flex: 1; min-width: 0; }
+    .top-asador-name { font-size: 15px; font-weight: 600; color: var(--text); }
+    .top-asador-sub { font-size: 12px; color: var(--text3); margin-top: 1px; }
+    .top-asador-count { font-size: 22px; font-weight: 700; color: var(--amber-text); min-width: 32px; text-align: right; }
+
+    /* STATS ASADO */
     /* STATS ASADO */
     .stat-asado-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 1rem; }
     .stat-asado-card { background: var(--bg); border: 0.5px solid var(--border); border-radius: var(--radius-lg); padding: 14px; }
@@ -315,6 +329,11 @@
           <input type="text" id="new-cut" placeholder="Otro corte..." />
           <button class="coral" onclick="addCut()">+ Agregar</button>
         </div>
+      </div>
+      <hr class="divider">
+      <div class="field">
+        <label>¿Quién hizo el asado?</label>
+        <div class="btn-grid" id="asador-grid"></div>
       </div>
       <hr class="divider">
       <div class="field">
@@ -461,6 +480,7 @@
   let asadoSel  = new Set();
   let cutsSel   = new Set();
   let houseSel  = null;
+  let asadorSel = null;
   let statsFilter = 'todos';
   let histFilter  = 'todos';
 
@@ -547,6 +567,19 @@
     });
   }
 
+  function renderAsadorGrid() {
+    const grid = document.getElementById('asador-grid');
+    if (!grid) return;
+    grid.innerHTML = '';
+    friends.forEach(name => {
+      const btn = document.createElement('button');
+      btn.className = 'toggle-btn asador-btn' + (asadorSel === name ? ' sel-asador' : '');
+      btn.textContent = name;
+      btn.onclick = () => { asadorSel = asadorSel === name ? null : name; renderAsadorGrid(); };
+      grid.appendChild(btn);
+    });
+  }
+
   // ── Agregar ────────────────────────────────────────────
   function addFriend(mode) {
     const inp = document.getElementById(mode + '-new-friend');
@@ -599,6 +632,7 @@
       if (!cutsSel.size)  { showToast('Seleccioná al menos un corte', '#A32D2D'); return; }
       ev.casa   = houseSel;
       ev.cortes = [...cutsSel];
+      ev.asador = asadorSel || '';
       ev.desc   = document.getElementById('asado-desc').value.trim();
     }
 
@@ -625,9 +659,9 @@
       planSel.clear(); renderFriends('plan-friends-grid', planSel);
     } else {
       document.getElementById('asado-desc').value = '';
-      asadoSel.clear(); cutsSel.clear(); houseSel = null;
+      asadoSel.clear(); cutsSel.clear(); houseSel = null; asadorSel = null;
       renderFriends('asado-friends-grid', asadoSel);
-      renderCutsGrid(); renderHouseGrid();
+      renderCutsGrid(); renderHouseGrid(); renderAsadorGrid();
     }
 
     btn.disabled = false;
@@ -763,13 +797,16 @@
     const casasSorted = Object.entries(casaCounts).sort((a,b)=>b[1]-a[1]);
     const topCasa = casasSorted[0] || ['–',0];
 
-    // Top 2 que fueron a más asados
-    const amigoAsado = {};
-    friends.forEach(f => amigoAsado[f] = 0);
-    asados.forEach(e => e.asistentes.forEach(a => { amigoAsado[a] = (amigoAsado[a]||0)+1; }));
-    const topAmigos = Object.entries(amigoAsado).sort((a,b)=>b[1]-a[1]).slice(0, 2);
-    const top1 = topAmigos[0] || ['–', 0];
-    const top2 = topAmigos[1] || ['–', 0];
+    // Top 2 asadores (usando campo asador del evento)
+    const asadorCounts = {};
+    asados.forEach(e => {
+      if (e.asador && e.asador.trim()) {
+        asadorCounts[e.asador] = (asadorCounts[e.asador]||0) + 1;
+      }
+    });
+    const topAsadores = Object.entries(asadorCounts).sort((a,b)=>b[1]-a[1]).slice(0,2);
+    const top1 = topAsadores[0] || null;
+    const top2 = topAsadores[1] || null;
 
     const barRows = (entries, maxVal) => entries.slice(0,6).map(([label, count]) => {
       const pct = maxVal ? Math.round(count/maxVal*100) : 0;
@@ -779,6 +816,27 @@
         <div class="stat-bar-count">${count}</div>
       </div>`;
     }).join('');
+
+    const topAsadoresHTML = (top1 || top2) ? `
+      <div class="top-asadores-card">
+        <div style="padding:14px 16px 10px;font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.4px;">🔥 Ranking de asadores</div>
+        ${top1 ? `<div class="top-asador-row">
+          <div class="top-asador-medal">🥇</div>
+          <div class="top-asador-info">
+            <div class="top-asador-name">${top1[0]}</div>
+            <div class="top-asador-sub">${top1[1]} asado${top1[1]!==1?'s':''}</div>
+          </div>
+          <div class="top-asador-count">${top1[1]}</div>
+        </div>` : ''}
+        ${top2 ? `<div class="top-asador-row">
+          <div class="top-asador-medal">🥈</div>
+          <div class="top-asador-info">
+            <div class="top-asador-name">${top2[0]}</div>
+            <div class="top-asador-sub">${top2[1]} asado${top2[1]!==1?'s':''}</div>
+          </div>
+          <div class="top-asador-count">${top2[1]}</div>
+        </div>` : ''}
+      </div>` : '';
 
     body.innerHTML = `
       <div class="stat-asado-grid">
@@ -792,17 +850,9 @@
           <div class="stat-asado-value">${topCasa[0] !== '–' ? 'Casa '+topCasa[0] : '–'}</div>
           <div class="stat-asado-sub">${topCasa[1]} vez${topCasa[1]!==1?'es':''}</div>
         </div>
-        <div class="stat-asado-card">
-          <div class="stat-asado-label">🥇 Más asados</div>
-          <div class="stat-asado-value">${top1[0]}</div>
-          <div class="stat-asado-sub">${top1[1]} asado${top1[1]!==1?'s':''}</div>
-        </div>
-        <div class="stat-asado-card">
-          <div class="stat-asado-label">🥈 Segundo lugar</div>
-          <div class="stat-asado-value">${top2[0]}</div>
-          <div class="stat-asado-sub">${top2[1]} asado${top2[1]!==1?'s':''}</div>
-        </div>
       </div>
+
+      ${topAsadoresHTML}
 
       <div class="card">
         <div class="section-title" style="margin-bottom:12px;">Cortes más pedidos</div>
@@ -1120,6 +1170,7 @@
   renderFriends('plan-friends-grid', planSel);
   renderFriends('asado-friends-grid', asadoSel);
   renderHouseGrid();
+  renderAsadorGrid();
   renderCutsGrid();
   document.getElementById('plan-fecha').value = today();
   document.getElementById('asado-fecha').value = today();
