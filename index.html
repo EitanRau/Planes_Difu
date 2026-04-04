@@ -355,7 +355,7 @@
 
   // ── Estado — NADA de localStorage para datos ───────────
   // Sólo la URL y cuts/houses (preferencias de UI) van a localStorage
-  let sheetsUrl = localStorage.getItem('pd_url') || '';
+  let sheetsUrl = 'https://script.google.com/macros/s/AKfycbxZwlXyZ4XqVyQtPTb_6oWpr7484wwjWFGkS25lNNyoDpVHg548XG--efWpMC6yPyKi/exec';
   let sheetUrl2 = localStorage.getItem('pd_surl') || '';
   let cuts   = JSON.parse(localStorage.getItem('pd_cuts') || 'null') || [...CUTS_DEF];
   let houses = JSON.parse(localStorage.getItem('pd_houses') || 'null') || [...AMIGOS, 'Otro lugar'];
@@ -438,7 +438,7 @@
   function closeConfig() { $('ov-config').classList.remove('open'); }
   async function saveConfig() {
     const url = $('url-input').value.trim();
-    sheetsUrl = url; localStorage.setItem('pd_url', url);
+    sheetsUrl = url || 'https://script.google.com/macros/s/AKfycbxZwlXyZ4XqVyQtPTb_6oWpr7484wwjWFGkS25lNNyoDpVHg548XG--efWpMC6yPyKi/exec'; localStorage.setItem('pd_url', sheetsUrl);
     closeConfig();
     if (url) { await loadFromSheets(); } else { updateBanner(); toast('Desconectado de Sheets', '#633806'); }
   }
