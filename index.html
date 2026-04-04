@@ -8,71 +8,33 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg: #ffffff;
-      --bg2: #f5f5f3;
-      --bg3: #eeecea;
-      --text: #1a1a1a;
-      --text2: #666660;
-      --text3: #999993;
-      --border: rgba(0,0,0,0.12);
-      --border2: rgba(0,0,0,0.22);
-      --radius: 8px;
-      --radius-lg: 12px;
+      --bg: #ffffff; --bg2: #f5f5f3; --bg3: #eeecea;
+      --text: #1a1a1a; --text2: #666660; --text3: #999993;
+      --border: rgba(0,0,0,0.12); --border2: rgba(0,0,0,0.22);
+      --radius: 8px; --radius-lg: 12px;
       --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      --purple-bg: #EEEDFE;
-      --purple-border: #AFA9EC;
-      --purple-text: #3C3489;
-      --purple-mid: #7F77DD;
-      --teal-bg: #E1F5EE;
-      --teal-border: #5DCAA5;
-      --teal-text: #085041;
-      --coral-bg: #FAECE7;
-      --coral-border: #F0997B;
-      --coral-text: #712B13;
-      --green-bg: #EAF3DE;
-      --green-bar: #639922;
-      --green-text: #3B6D11;
-      --amber-bg: #FAEEDA;
-      --amber-bar: #EF9F27;
-      --amber-text: #633806;
-      --red-bg: #FCEBEB;
-      --red-bar: #E24B4A;
-      --red-text: #791F1F;
+      --purple-bg: #EEEDFE; --purple-border: #AFA9EC; --purple-text: #3C3489; --purple-mid: #7F77DD;
+      --teal-bg: #E1F5EE; --teal-border: #5DCAA5; --teal-text: #085041;
+      --coral-bg: #FAECE7; --coral-border: #F0997B; --coral-text: #712B13;
+      --green-bg: #EAF3DE; --green-bar: #639922; --green-text: #3B6D11;
+      --amber-bg: #FAEEDA; --amber-bar: #EF9F27; --amber-text: #633806;
+      --red-bg: #FCEBEB; --red-bar: #E24B4A; --red-text: #791F1F;
     }
-
     @media (prefers-color-scheme: dark) {
       :root {
-        --bg: #1c1c1a;
-        --bg2: #252523;
-        --bg3: #2e2e2b;
-        --text: #f0ede8;
-        --text2: #999993;
-        --text3: #666660;
-        --border: rgba(255,255,255,0.1);
-        --border2: rgba(255,255,255,0.2);
-        --purple-bg: #26215C;
-        --purple-border: #534AB7;
-        --purple-text: #CECBF6;
-        --teal-bg: #04342C;
-        --teal-border: #1D9E75;
-        --teal-text: #9FE1CB;
-        --coral-bg: #4A1B0C;
-        --coral-border: #D85A30;
-        --coral-text: #F5C4B3;
-        --green-bg: #173404;
-        --green-bar: #97C459;
-        --green-text: #C0DD97;
-        --amber-bg: #412402;
-        --amber-bar: #BA7517;
-        --amber-text: #FAC775;
-        --red-bg: #501313;
-        --red-bar: #E24B4A;
-        --red-text: #F7C1C1;
+        --bg: #1c1c1a; --bg2: #252523; --bg3: #2e2e2b;
+        --text: #f0ede8; --text2: #999993; --text3: #666660;
+        --border: rgba(255,255,255,0.1); --border2: rgba(255,255,255,0.2);
+        --purple-bg: #26215C; --purple-border: #534AB7; --purple-text: #CECBF6;
+        --teal-bg: #04342C; --teal-border: #1D9E75; --teal-text: #9FE1CB;
+        --coral-bg: #4A1B0C; --coral-border: #D85A30; --coral-text: #F5C4B3;
+        --green-bg: #173404; --green-bar: #97C459; --green-text: #C0DD97;
+        --amber-bg: #412402; --amber-bar: #BA7517; --amber-text: #FAC775;
+        --red-bg: #501313; --red-bar: #E24B4A; --red-text: #F7C1C1;
       }
     }
 
     body { font-family: var(--font); background: var(--bg3); color: var(--text); min-height: 100vh; }
-
     .app { max-width: 680px; margin: 0 auto; padding: 1.25rem 1rem 3rem; }
 
     .app-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 0.5px solid var(--border); }
@@ -97,17 +59,11 @@
     .section.active { display: block; }
 
     .card { background: var(--bg); border: 0.5px solid var(--border); border-radius: var(--radius-lg); padding: 1.25rem; margin-bottom: 1rem; }
-
     .section-title { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 14px; }
 
     .field { margin-bottom: 1rem; }
     .field label { display: block; font-size: 12px; color: var(--text2); margin-bottom: 6px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.4px; }
-    .field input, .field select, .field textarea {
-      width: 100%; padding: 9px 12px; font-size: 14px;
-      border: 0.5px solid var(--border2); border-radius: var(--radius);
-      background: var(--bg); color: var(--text); font-family: var(--font);
-      outline: none; transition: border-color 0.15s;
-    }
+    .field input, .field select, .field textarea { width: 100%; padding: 9px 12px; font-size: 14px; border: 0.5px solid var(--border2); border-radius: var(--radius); background: var(--bg); color: var(--text); font-family: var(--font); outline: none; transition: border-color 0.15s; }
     .field input:focus, .field select:focus, .field textarea:focus { border-color: var(--purple-mid); }
     .field textarea { height: 64px; resize: none; }
 
@@ -122,15 +78,15 @@
     .toggle-btn { padding: 8px 10px; font-size: 13px; border: 0.5px solid var(--border); border-radius: var(--radius); background: var(--bg2); color: var(--text2); cursor: pointer; text-align: center; transition: all 0.15s; font-family: var(--font); }
     .toggle-btn:hover { border-color: var(--border2); }
     .toggle-btn.sel-purple { background: var(--purple-bg); border-color: var(--purple-border); color: var(--purple-text); font-weight: 500; }
-    .toggle-btn.sel-teal { background: var(--teal-bg); border-color: var(--teal-border); color: var(--teal-text); font-weight: 500; }
-    .toggle-btn.sel-coral { background: var(--coral-bg); border-color: var(--coral-border); color: var(--coral-text); font-weight: 500; }
+    .toggle-btn.sel-teal   { background: var(--teal-bg);   border-color: var(--teal-border);   color: var(--teal-text);   font-weight: 500; }
+    .toggle-btn.sel-coral  { background: var(--coral-bg);  border-color: var(--coral-border);  color: var(--coral-text);  font-weight: 500; }
+    .toggle-btn.sel-asador { background: var(--amber-bg);  border-color: var(--amber-bar);     color: var(--amber-text);  font-weight: 500; }
 
     .add-row { display: flex; gap: 8px; margin-top: 9px; }
     .add-row input { flex: 1; padding: 8px 12px; font-size: 13px; border: 0.5px solid var(--border2); border-radius: var(--radius); background: var(--bg); color: var(--text); font-family: var(--font); outline: none; }
     .add-row input:focus { border-color: var(--purple-mid); }
     .add-row button { padding: 8px 14px; font-size: 13px; border-radius: var(--radius); cursor: pointer; font-family: var(--font); font-weight: 500; white-space: nowrap; border: 0.5px solid; }
-    .add-row button.purple { border-color: var(--purple-border); background: var(--purple-bg); color: var(--purple-text); }
-    .add-row button.teal { border-color: var(--teal-border); background: var(--teal-bg); color: var(--teal-text); }
+    .add-row button.teal  { border-color: var(--teal-border);  background: var(--teal-bg);  color: var(--teal-text); }
     .add-row button.coral { border-color: var(--coral-border); background: var(--coral-bg); color: var(--coral-text); }
 
     .divider { border: none; border-top: 0.5px solid var(--border); margin: 1.1rem 0; }
@@ -144,95 +100,37 @@
     .filter-tab { padding: 5px 14px; font-size: 13px; border: 0.5px solid var(--border2); border-radius: 99px; background: var(--bg2); color: var(--text2); cursor: pointer; font-family: var(--font); transition: all 0.15s; }
     .filter-tab.active { background: var(--purple-bg); border-color: var(--purple-border); color: var(--purple-text); font-weight: 500; }
 
-    .attend-row { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border: 0.5px solid var(--border); border-radius: var(--radius); background: var(--bg); margin-bottom: 6px; }
+    /* Asistencia */
+    .attend-row { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border: 0.5px solid var(--border); border-radius: var(--radius); background: var(--bg); margin-bottom: 6px; cursor: pointer; transition: background 0.15s; }
+    .attend-row:hover { background: var(--bg2); }
     .attend-avatar { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 600; flex-shrink: 0; }
     .attend-name { font-size: 14px; font-weight: 500; flex: 1; min-width: 0; }
     .attend-bar-wrap { flex: 2; height: 6px; background: var(--bg3); border-radius: 99px; overflow: hidden; min-width: 60px; }
     .attend-bar { height: 100%; border-radius: 99px; transition: width 0.4s; }
     .attend-count { font-size: 12px; color: var(--text3); min-width: 44px; text-align: right; }
     .attend-pct { font-size: 13px; font-weight: 600; min-width: 36px; text-align: right; }
+    .racha-badge { display: inline-flex; align-items: center; gap: 3px; font-size: 11px; font-weight: 600; padding: 2px 7px; border-radius: 99px; background: var(--amber-bg); color: var(--amber-text); margin-left: 4px; }
 
+    /* Historial */
     .history-list { display: flex; flex-direction: column; gap: 8px; }
     .history-item { padding: 12px 14px; border: 0.5px solid var(--border); border-radius: var(--radius); background: var(--bg); }
     .history-meta { display: flex; gap: 6px; align-items: center; margin-bottom: 6px; flex-wrap: wrap; }
     .badge { font-size: 11px; padding: 2px 9px; border-radius: 99px; font-weight: 500; }
-    .badge-plan { background: var(--purple-bg); color: var(--purple-text); }
-    .badge-asado { background: var(--coral-bg); color: var(--coral-text); }
-    .badge-casa { background: var(--teal-bg); color: var(--teal-text); }
+    .badge-plan   { background: var(--purple-bg); color: var(--purple-text); }
+    .badge-asado  { background: var(--coral-bg);  color: var(--coral-text); }
+    .badge-casa   { background: var(--teal-bg);   color: var(--teal-text); }
     .history-date { font-size: 12px; color: var(--text3); }
     .history-desc { font-size: 13px; color: var(--text2); margin-bottom: 5px; }
     .history-friends { font-size: 12px; color: var(--text3); }
     .history-actions { display: flex; gap: 6px; margin-top: 10px; }
-    .btn-edit { padding: 5px 14px; font-size: 12px; border: 0.5px solid var(--purple-border); border-radius: var(--radius); background: var(--purple-bg); color: var(--purple-text); cursor: pointer; font-family: var(--font); font-weight: 500; }
+    .btn-edit   { padding: 5px 14px; font-size: 12px; border: 0.5px solid var(--purple-border); border-radius: var(--radius); background: var(--purple-bg); color: var(--purple-text); cursor: pointer; font-family: var(--font); font-weight: 500; }
     .btn-edit:hover { filter: brightness(0.95); }
     .btn-delete { padding: 5px 14px; font-size: 12px; border: 0.5px solid var(--border2); border-radius: var(--radius); background: var(--bg2); color: var(--text2); cursor: pointer; font-family: var(--font); font-weight: 500; }
     .btn-delete:hover { border-color: var(--red-bar); color: var(--red-text); background: var(--red-bg); }
-    .edit-modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 200; align-items: flex-start; justify-content: center; padding: 1rem; overflow-y: auto; }
-    .edit-modal-overlay.open { display: flex; }
-    .edit-modal { background: var(--bg); border: 0.5px solid var(--border); border-radius: var(--radius-lg); padding: 1.5rem; width: 100%; max-width: 560px; margin: auto; }
-    .edit-modal h2 { font-size: 16px; font-weight: 600; margin-bottom: 1rem; }
 
     .empty { text-align: center; padding: 2.5rem; color: var(--text3); font-size: 14px; }
 
-    /* MODAL */
-    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.45); z-index: 100; align-items: center; justify-content: center; padding: 1rem; }
-    .modal-overlay.open { display: flex; }
-    .modal { background: var(--bg); border: 0.5px solid var(--border); border-radius: var(--radius-lg); padding: 1.5rem; width: 100%; max-width: 540px; max-height: 90vh; overflow-y: auto; }
-    .modal h2 { font-size: 17px; font-weight: 600; margin-bottom: 6px; }
-    .modal > p { font-size: 13px; color: var(--text2); margin-bottom: 1.2rem; line-height: 1.6; }
-    .step { display: flex; gap: 10px; margin-bottom: 12px; }
-    .step-num { width: 22px; height: 22px; border-radius: 50%; background: var(--purple-bg); color: var(--purple-text); font-size: 11px; font-weight: 600; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
-    .step-text { font-size: 13px; color: var(--text2); line-height: 1.6; }
-    .step-text strong { color: var(--text); font-weight: 500; }
-    pre { font-size: 11px; background: var(--bg2); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 12px; overflow-x: auto; color: var(--text); font-family: monospace; line-height: 1.6; margin: 10px 0; white-space: pre-wrap; word-break: break-all; }
-    .modal-btns { display: flex; gap: 8px; justify-content: flex-end; margin-top: 1rem; }
-    .modal-btns button { padding: 9px 20px; font-size: 13px; border-radius: var(--radius); cursor: pointer; font-family: var(--font); font-weight: 500; border: 0.5px solid; }
-    .btn-cancel { border-color: var(--border2); background: var(--bg2); color: var(--text2); }
-    .btn-connect { border-color: var(--purple-border); background: var(--purple-bg); color: var(--purple-text); }
-
-    /* SPINNER */
-    .spinner { display: inline-block; width: 14px; height: 14px; border: 2px solid var(--purple-border); border-top-color: #534AB7; border-radius: 50%; animation: spin 0.7s linear infinite; }
-    @keyframes spin { to { transform: rotate(360deg); } }
-
-    /* TOAST */
-    .toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); padding: 11px 22px; border-radius: var(--radius); font-size: 13px; font-weight: 500; opacity: 0; transition: opacity 0.3s; pointer-events: none; z-index: 9999; white-space: nowrap; color: #fff; box-shadow: 0 4px 16px rgba(0,0,0,0.2); }
-    .toast.show { opacity: 1; }
-
-
-    /* LOADING SCREEN */
-    .loading-screen { position: fixed; inset: 0; background: var(--bg3); z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px; transition: opacity 0.5s; }
-    .loading-screen.hide { opacity: 0; pointer-events: none; }
-    .loading-logo { font-size: 28px; font-weight: 700; color: var(--text); letter-spacing: -0.5px; }
-    .loading-logo span { color: #534AB7; }
-    .loading-bar-wrap { width: 180px; height: 3px; background: var(--border); border-radius: 99px; overflow: hidden; }
-    .loading-bar { height: 100%; width: 0%; background: #534AB7; border-radius: 99px; transition: width 0.4s ease; }
-    .loading-sub { font-size: 13px; color: var(--text3); }
-
-    /* CONFETTI */
-    .confetti-canvas { position: fixed; inset: 0; pointer-events: none; z-index: 8888; }
-
-    /* CHECK ANIMADO */
-    .save-check { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0); z-index: 8889; width: 80px; height: 80px; background: var(--green-bg); border: 2px solid var(--green-bar); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 36px; transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), opacity 0.3s; opacity: 0; }
-    .save-check.show { transform: translate(-50%, -50%) scale(1); opacity: 1; }
-
-    /* RACHA badge */
-    .racha-badge { display: inline-flex; align-items: center; gap: 3px; font-size: 11px; font-weight: 600; padding: 2px 7px; border-radius: 99px; background: var(--amber-bg); color: var(--amber-text); margin-left: 4px; }
-
-    /* ASADOR GRID */
-    .asador-btn.sel-asador { background: var(--amber-bg); border-color: var(--amber-bar); color: var(--amber-text); font-weight: 500; }
-
-    /* TOP ASADORES cajón */
-    .top-asadores-card { background: var(--bg); border: 0.5px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; margin-bottom: 1rem; }
-    .top-asador-row { display: flex; align-items: center; gap:12px; padding: 14px 16px; }
-    .top-asador-row + .top-asador-row { border-top: 0.5px solid var(--border); }
-    .top-asador-medal { font-size: 22px; width: 30px; text-align: center; flex-shrink: 0; }
-    .top-asador-info { flex: 1; min-width: 0; }
-    .top-asador-name { font-size: 15px; font-weight: 600; color: var(--text); }
-    .top-asador-sub { font-size: 12px; color: var(--text3); margin-top: 1px; }
-    .top-asador-count { font-size: 22px; font-weight: 700; color: var(--amber-text); min-width: 32px; text-align: right; }
-
-    /* STATS ASADO */
-    /* STATS ASADO */
+    /* Stats asado */
     .stat-asado-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 1rem; }
     .stat-asado-card { background: var(--bg); border: 0.5px solid var(--border); border-radius: var(--radius-lg); padding: 14px; }
     .stat-asado-label { font-size: 11px; color: var(--text3); text-transform: uppercase; letter-spacing: 0.4px; font-weight: 500; margin-bottom: 6px; }
@@ -243,6 +141,62 @@
     .stat-bar-outer { flex: 1; height: 6px; background: var(--bg3); border-radius: 99px; overflow: hidden; }
     .stat-bar-inner { height: 100%; border-radius: 99px; background: var(--coral-border); transition: width 0.5s; }
     .stat-bar-count { font-size: 12px; color: var(--text3); min-width: 24px; text-align: right; }
+    .top-asadores-card { background: var(--bg); border: 0.5px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; margin-bottom: 1rem; }
+    .top-asador-row { display: flex; align-items: center; gap: 12px; padding: 14px 16px; }
+    .top-asador-row + .top-asador-row { border-top: 0.5px solid var(--border); }
+    .top-asador-medal { font-size: 22px; width: 30px; text-align: center; flex-shrink: 0; }
+    .top-asador-name { font-size: 15px; font-weight: 600; color: var(--text); }
+    .top-asador-sub { font-size: 12px; color: var(--text3); margin-top: 1px; }
+    .top-asador-count { font-size: 22px; font-weight: 700; color: var(--amber-text); min-width: 32px; text-align: right; }
+
+    /* Modals */
+    .modal-overlay, .edit-modal-overlay, .desglose-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 200; align-items: flex-start; justify-content: center; padding: 1rem; overflow-y: auto; }
+    .modal-overlay.open, .edit-modal-overlay.open, .desglose-overlay.open { display: flex; }
+    .modal, .edit-modal, .desglose-modal { background: var(--bg); border: 0.5px solid var(--border); border-radius: var(--radius-lg); padding: 1.5rem; width: 100%; max-width: 540px; max-height: 90vh; overflow-y: auto; margin: auto; }
+    .modal h2, .edit-modal h2, .desglose-modal h2 { font-size: 17px; font-weight: 600; margin-bottom: 10px; }
+    .modal > p { font-size: 13px; color: var(--text2); margin-bottom: 1.2rem; line-height: 1.6; }
+    .step { display: flex; gap: 10px; margin-bottom: 12px; }
+    .step-num { width: 22px; height: 22px; border-radius: 50%; background: var(--purple-bg); color: var(--purple-text); font-size: 11px; font-weight: 600; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+    .step-text { font-size: 13px; color: var(--text2); line-height: 1.6; }
+    .step-text strong { color: var(--text); font-weight: 500; }
+    pre { font-size: 11px; background: var(--bg2); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 12px; overflow-x: auto; color: var(--text); font-family: monospace; line-height: 1.6; margin: 10px 0; white-space: pre-wrap; word-break: break-all; }
+    .modal-btns { display: flex; gap: 8px; justify-content: flex-end; margin-top: 1rem; }
+    .modal-btns button { padding: 9px 20px; font-size: 13px; border-radius: var(--radius); cursor: pointer; font-family: var(--font); font-weight: 500; border: 0.5px solid; }
+    .btn-cancel  { border-color: var(--border2); background: var(--bg2); color: var(--text2); }
+    .btn-connect { border-color: var(--purple-border); background: var(--purple-bg); color: var(--purple-text); }
+
+    /* Desglose */
+    .desglose-header { display: flex; align-items: center; gap: 14px; margin-bottom: 1.2rem; }
+    .desglose-avatar { width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; flex-shrink: 0; }
+    .desglose-stats { display: flex; gap: 8px; margin-bottom: 1rem; }
+    .desglose-stat { flex: 1; background: var(--bg2); border-radius: var(--radius); padding: 10px 12px; text-align: center; }
+    .desglose-stat-num { font-size: 22px; font-weight: 700; }
+    .desglose-stat-lbl { font-size: 11px; color: var(--text2); margin-top: 2px; }
+    .desglose-section-title { font-size: 12px; font-weight: 600; color: var(--text2); text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 8px; }
+    .desglose-list { display: flex; flex-direction: column; gap: 6px; max-height: 280px; overflow-y: auto; }
+    .desglose-item { display: flex; align-items: center; gap: 8px; padding: 8px 10px; border: 0.5px solid var(--border); border-radius: var(--radius); }
+    .desglose-item-date { font-size: 12px; color: var(--text3); min-width: 80px; flex-shrink: 0; }
+    .desglose-item-name { font-size: 13px; flex: 1; }
+
+    /* Spinner / Toast */
+    .spinner { display: inline-block; width: 14px; height: 14px; border: 2px solid var(--purple-border); border-top-color: #534AB7; border-radius: 50%; animation: spin 0.7s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); padding: 11px 22px; border-radius: var(--radius); font-size: 13px; font-weight: 500; opacity: 0; transition: opacity 0.3s; pointer-events: none; z-index: 9999; white-space: nowrap; color: #fff; }
+    .toast.show { opacity: 1; }
+
+    /* Loading screen */
+    .loading-screen { position: fixed; inset: 0; background: var(--bg3); z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px; transition: opacity 0.5s; }
+    .loading-screen.hide { opacity: 0; pointer-events: none; }
+    .loading-logo { font-size: 28px; font-weight: 700; color: var(--text); letter-spacing: -0.5px; }
+    .loading-logo span { color: #534AB7; }
+    .loading-bar-wrap { width: 180px; height: 3px; background: var(--border); border-radius: 99px; overflow: hidden; }
+    .loading-bar { height: 100%; width: 0%; background: #534AB7; border-radius: 99px; transition: width 0.4s ease; }
+    .loading-sub { font-size: 13px; color: var(--text3); }
+
+    /* Confetti */
+    .confetti-canvas { position: fixed; inset: 0; pointer-events: none; z-index: 8888; }
+    .save-check { position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%) scale(0); z-index: 8889; width: 80px; height: 80px; background: var(--green-bg); border: 2px solid var(--green-bar); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 36px; transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), opacity 0.3s; opacity: 0; }
+    .save-check.show { transform: translate(-50%,-50%) scale(1); opacity: 1; }
 
     @media (max-width: 480px) {
       .row { flex-direction: column; gap: 0; }
@@ -292,10 +246,7 @@
       <div class="field"><label>Descripción (opcional)</label><textarea id="plan-desc" placeholder="Detalles del plan..."></textarea></div>
       <div class="field">
         <label>¿Quiénes asistieron?</label>
-        <div class="sel-all-row">
-          <button onclick="selectAll('plan')">Todos</button>
-          <button onclick="deselectAll('plan')">Ninguno</button>
-        </div>
+        <div class="sel-all-row"><button onclick="selectAll('plan')">Todos</button><button onclick="deselectAll('plan')">Ninguno</button></div>
         <div class="btn-grid" id="plan-friends-grid"></div>
       </div>
       <div style="display:flex;justify-content:flex-end;margin-top:6px;">
@@ -338,10 +289,7 @@
       <hr class="divider">
       <div class="field">
         <label>¿Quiénes asistieron?</label>
-        <div class="sel-all-row">
-          <button onclick="selectAll('asado')">Todos</button>
-          <button onclick="deselectAll('asado')">Ninguno</button>
-        </div>
+        <div class="sel-all-row"><button onclick="selectAll('asado')">Todos</button><button onclick="deselectAll('asado')">Ninguno</button></div>
         <div class="btn-grid" id="asado-friends-grid"></div>
       </div>
       <div style="display:flex;justify-content:flex-end;margin-top:6px;">
@@ -357,6 +305,7 @@
       <button class="filter-tab" onclick="setFilter('plan')">Solo planes</button>
       <button class="filter-tab" onclick="setFilter('asado')">Solo asados</button>
     </div>
+    <div style="font-size:12px;color:var(--text3);margin-bottom:10px;">Tocá un nombre para ver el desglose</div>
     <div class="card" id="stats-card"><div class="empty">No hay eventos registrados aún</div></div>
   </div>
 
@@ -380,28 +329,10 @@
 <div class="modal-overlay" id="modal-overlay">
   <div class="modal">
     <h2>Conectar Google Sheets</h2>
-    <p>Seguí estos pasos para sincronizar automáticamente cada evento con tu planilla.</p>
-    <div class="step"><div class="step-num">1</div><div class="step-text">Abrí <strong>Google Sheets</strong>, creá un spreadsheet nuevo y llamalo <strong>Planes Difu</strong>.</div></div>
-    <div class="step"><div class="step-num">2</div><div class="step-text">Andá a <strong>Extensiones → Apps Script</strong>, borrá el contenido y pegá este código:</div></div>
-    <pre>function doPost(e) {
-  var ss = SpreadsheetApp.getActiveSpreadsheet();
-  var data = JSON.parse(e.postData.contents);
-  var sheet = ss.getSheetByName(data.hoja)
-              || ss.insertSheet(data.hoja);
-  if (sheet.getLastRow() === 0) {
-    sheet.appendRow(data.encabezados);
-    sheet.getRange(1,1,1,data.encabezados.length)
-         .setFontWeight('bold')
-         .setBackground('#e8eaf6');
-  }
-  sheet.appendRow(data.fila);
-  return ContentService
-    .createTextOutput(JSON.stringify({
-      ok: true, url: ss.getUrl()
-    }))
-    .setMimeType(ContentService.MimeType.JSON);
-}</pre>
-    <div class="step"><div class="step-num">3</div><div class="step-text">Hacé clic en <strong>Implementar → Nueva implementación</strong>. Tipo: <strong>Aplicación web</strong>. Acceso: <strong>Cualquier persona</strong>. Guardá y copiá la URL.</div></div>
+    <p>Seguí estos pasos. Una vez conectado, todos los dispositivos leen y escriben desde el mismo Sheets.</p>
+    <div class="step"><div class="step-num">1</div><div class="step-text">Abrí <strong>Google Sheets</strong>, creá un spreadsheet y llamalo <strong>Planes Difu</strong>.</div></div>
+    <div class="step"><div class="step-num">2</div><div class="step-text">Andá a <strong>Extensiones → Apps Script</strong>, borrá todo y pegá el código del archivo <strong>apps-script.gs</strong>.</div></div>
+    <div class="step"><div class="step-num">3</div><div class="step-text"><strong>Implementar → Nueva implementación</strong>. Tipo: Aplicación web. Acceso: Cualquier persona. Copiá la URL.</div></div>
     <div class="step"><div class="step-num">4</div><div class="step-text">Pegá la URL acá abajo y guardá.</div></div>
     <div class="field" style="margin-bottom:0;">
       <input type="text" id="sheets-url-input" placeholder="https://script.google.com/macros/s/.../exec" />
@@ -413,14 +344,10 @@
   </div>
 </div>
 
-<div class="toast" id="toast"></div>
-
 <!-- EDIT MODAL -->
 <div class="edit-modal-overlay" id="edit-modal-overlay">
   <div class="edit-modal">
     <h2 id="edit-modal-title">Editar evento</h2>
-
-    <!-- Campos plan -->
     <div id="edit-plan-fields">
       <div class="row">
         <div class="field"><label>Fecha</label><input type="date" id="edit-fecha" /></div>
@@ -428,33 +355,19 @@
       </div>
       <div class="field"><label>Descripción</label><textarea id="edit-desc" placeholder="Detalles..."></textarea></div>
     </div>
-
-    <!-- Campos asado -->
     <div id="edit-asado-fields" style="display:none;">
       <div class="row">
         <div class="field"><label>Fecha</label><input type="date" id="edit-asado-fecha" /></div>
-        <div class="field"><label>Descripción</label><input type="text" id="edit-asado-desc" placeholder="Quincho, cumple..." /></div>
+        <div class="field"><label>Descripción</label><input type="text" id="edit-asado-desc" placeholder="Quincho..." /></div>
       </div>
-      <div class="field">
-        <label>Casa</label>
-        <div class="btn-grid" id="edit-house-grid"></div>
-      </div>
-      <div class="field">
-        <label>Cortes</label>
-        <div class="btn-grid" id="edit-cuts-grid"></div>
-      </div>
+      <div class="field"><label>Casa</label><div class="btn-grid" id="edit-house-grid"></div></div>
+      <div class="field"><label>Cortes</label><div class="btn-grid" id="edit-cuts-grid"></div></div>
     </div>
-
-    <!-- Asistentes (ambos tipos) -->
     <div class="field">
       <label>Asistentes</label>
-      <div class="sel-all-row">
-        <button onclick="editSelectAll()">Todos</button>
-        <button onclick="editDeselectAll()">Ninguno</button>
-      </div>
+      <div class="sel-all-row"><button onclick="editSelectAll()">Todos</button><button onclick="editDeselectAll()">Ninguno</button></div>
       <div class="btn-grid" id="edit-friends-grid"></div>
     </div>
-
     <div class="modal-btns">
       <button class="btn-cancel" onclick="closeEditModal()">Cancelar</button>
       <button class="btn-connect" onclick="guardarEdicion()">Guardar cambios</button>
@@ -462,69 +375,140 @@
   </div>
 </div>
 
+<!-- DESGLOSE MODAL -->
+<div class="desglose-overlay" id="desglose-overlay">
+  <div class="desglose-modal">
+    <div class="desglose-header">
+      <div class="desglose-avatar" id="desglose-avatar"></div>
+      <div>
+        <div style="font-size:18px;font-weight:700;" id="desglose-nombre"></div>
+        <div style="font-size:13px;color:var(--text2);" id="desglose-sub"></div>
+      </div>
+    </div>
+    <div class="desglose-stats">
+      <div class="desglose-stat">
+        <div class="desglose-stat-num" id="dsg-planes"></div>
+        <div class="desglose-stat-lbl">Planes</div>
+      </div>
+      <div class="desglose-stat">
+        <div class="desglose-stat-num" id="dsg-asados"></div>
+        <div class="desglose-stat-lbl">Asados</div>
+      </div>
+      <div class="desglose-stat">
+        <div class="desglose-stat-num" id="dsg-pct" style="font-size:18px;"></div>
+        <div class="desglose-stat-lbl">Asistencia</div>
+      </div>
+    </div>
+    <div class="desglose-section-title">Eventos que fue</div>
+    <div class="desglose-list" id="desglose-list"></div>
+    <div class="modal-btns"><button class="btn-connect" onclick="closeDesglose()">Cerrar</button></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
 <script>
   const FRIENDS_DEFAULT = ['Raubvo','Zucho','Babbe','Lucas','Galo','Costi','Colo','Dylan','Tiago','Hamu','Nacho'];
   const CUTS_DEFAULT = ['Vacío','Asado de tira','Entraña','Chorizo','Morcilla','Colita de cuadril','Bife de chorizo','Matambre','Mollejas','Lomo','Chinchulín','Picaña'];
+  const AMIGOS_BASE = [...FRIENDS_DEFAULT];
 
-  const load = k => { try { return JSON.parse(localStorage.getItem(k)) } catch { return null } };
-  const save = (k,v) => localStorage.setItem(k, JSON.stringify(v));
+  const lsLoad = k => { try { return JSON.parse(localStorage.getItem(k)) } catch { return null } };
+  const lsSave = (k,v) => localStorage.setItem(k, JSON.stringify(v));
 
-  let friends = load('pd_friends') || [...FRIENDS_DEFAULT];
-  let cuts    = load('pd_cuts')    || [...CUTS_DEFAULT];
-  let houses  = load('pd_houses')  || [...FRIENDS_DEFAULT, 'Otro lugar'];
-  let eventos = load('pd_eventos') || [];
-  let sheetsUrl       = localStorage.getItem('pd_sheets_url') || '';
-  let spreadsheetUrl  = localStorage.getItem('pd_spreadsheet_url') || '';
+  let friends = [...FRIENDS_DEFAULT];
+  let cuts    = lsLoad('pd_cuts')   || [...CUTS_DEFAULT];
+  let houses  = lsLoad('pd_houses') || [...FRIENDS_DEFAULT, 'Otro lugar'];
+  let eventos = lsLoad('pd_eventos') || [];
+  let sheetsUrl      = localStorage.getItem('pd_sheets_url') || '';
+  let spreadsheetUrl = localStorage.getItem('pd_spreadsheet_url') || '';
 
-  let planSel   = new Set();
-  let asadoSel  = new Set();
-  let cutsSel   = new Set();
-  let houseSel  = null;
-  let asadorSel = null;
-  let statsFilter = 'todos';
-  let histFilter  = 'todos';
+  let planSel = new Set(), asadoSel = new Set(), cutsSel = new Set();
+  let houseSel = null, asadorSel = null;
+  let statsFilter = 'todos', histFilter = 'todos';
 
-  // ── Banner ─────────────────────────────────────────────
+  // ── Utils ───────────────────────────────────────────────
+  function today() { return new Date().toISOString().split('T')[0]; }
+
+  function normFecha(f) {
+    if (!f) return '-';
+    if (/^\d{4}-\d{2}-\d{2}$/.test(f)) return f;
+    const d = new Date(f);
+    if (!isNaN(d)) return d.toISOString().split('T')[0];
+    return f;
+  }
+
+  function normEvento(e) {
+    e = Object.assign({}, e);
+    e.fecha = normFecha(e.fecha);
+    if (e.tipo === 'plan' && !e.planTipo) e.planTipo = e.tipo_plan || e.tipoPlan || e.plan || 'Plan';
+    if (typeof e.asistentes === 'string') e.asistentes = e.asistentes.split(',').map(a=>a.trim()).filter(Boolean);
+    if (!Array.isArray(e.asistentes)) e.asistentes = [];
+    e.asistentes = e.asistentes.filter(a => {
+      if (!a || a === '-') return false;
+      if (AMIGOS_BASE.includes(a)) return true;
+      if (friends.includes(a)) return true;
+      if (a.includes(' ') && a.length > 15) return false;
+      if (/[0-9@#$%^&*+=\[\]{};'"\\|<>?]/.test(a)) return false;
+      return true;
+    });
+    if (e.cortes && typeof e.cortes === 'string') e.cortes = e.cortes.split(',').map(c=>c.trim()).filter(Boolean);
+    return e;
+  }
+
+  function colorFor(pct) {
+    if (pct >= 80) return { bar:'var(--green-bar)', text:'var(--green-text)', bg:'var(--green-bg)' };
+    if (pct >= 50) return { bar:'var(--amber-bar)', text:'var(--amber-text)', bg:'var(--amber-bg)' };
+    return { bar:'var(--red-bar)', text:'var(--red-text)', bg:'var(--red-bg)' };
+  }
+
+  function showToast(msg, bg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg; t.style.background = bg || '#3C3489';
+    t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 3200);
+  }
+
+  // ── Loading ─────────────────────────────────────────────
+  function showLoading(msg) {
+    const ls = document.getElementById('loading-screen');
+    const lb = document.getElementById('loading-bar');
+    document.getElementById('loading-sub').textContent = msg || 'Cargando...';
+    ls.classList.remove('hide'); lb.style.width = '0%';
+    setTimeout(() => lb.style.width = '65%', 50);
+  }
+  function hideLoading() {
+    const lb = document.getElementById('loading-bar');
+    lb.style.width = '100%';
+    setTimeout(() => { document.getElementById('loading-screen').classList.add('hide'); }, 450);
+  }
+
+  // ── Banner ──────────────────────────────────────────────
   function updateBanner() {
-    const dot  = document.getElementById('sheets-dot');
-    const text = document.getElementById('sheets-text');
-    const link = document.getElementById('sheets-link');
+    const dot = document.getElementById('sheets-dot');
+    const txt = document.getElementById('sheets-text');
+    const lnk = document.getElementById('sheets-link');
     if (sheetsUrl) {
       dot.className = 'sheets-dot ok';
-      text.textContent = 'Conectado a Google Sheets. Los eventos se sincronizan automáticamente.';
-      if (spreadsheetUrl) { link.href = spreadsheetUrl; link.style.display = 'block'; }
+      txt.textContent = 'Conectado a Google Sheets. Datos sincronizados en todos los dispositivos.';
+      if (spreadsheetUrl) { lnk.href = spreadsheetUrl; lnk.style.display = 'block'; }
     } else {
       dot.className = 'sheets-dot warn';
-      text.textContent = 'Google Sheets no configurado. Los datos se guardan en este dispositivo.';
-      link.style.display = 'none';
+      txt.textContent = 'Google Sheets no configurado. Los datos son locales a este dispositivo.';
+      lnk.style.display = 'none';
     }
   }
 
-  // ── Modal config ───────────────────────────────────────
-  function openConfig() {
-    document.getElementById('sheets-url-input').value = sheetsUrl;
-    document.getElementById('modal-overlay').classList.add('open');
-  }
+  // ── Config ──────────────────────────────────────────────
+  function openConfig() { document.getElementById('sheets-url-input').value = sheetsUrl; document.getElementById('modal-overlay').classList.add('open'); }
   function closeConfig() { document.getElementById('modal-overlay').classList.remove('open'); }
-  function saveConfig() {
+  async function saveConfig() {
     const url = document.getElementById('sheets-url-input').value.trim();
-    sheetsUrl = url;
-    localStorage.setItem('pd_sheets_url', url);
-    updateBanner();
+    sheetsUrl = url; localStorage.setItem('pd_sheets_url', url);
     closeConfig();
-    showToast(url ? 'Google Sheets conectado' : 'Configuración eliminada', url ? '#3B6D11' : '#633806');
+    if (url) { await cargarDesdeSheets(); }
+    else { updateBanner(); showToast('Configuración eliminada', '#633806'); }
   }
 
-  // ── Toast ──────────────────────────────────────────────
-  function showToast(msg, bg) {
-    const t = document.getElementById('toast');
-    t.textContent = msg;
-    t.style.background = bg || '#3C3489';
-    t.classList.add('show');
-    setTimeout(() => t.classList.remove('show'), 3200);
-  }
-
-  // ── Tabs ───────────────────────────────────────────────
+  // ── Tabs ────────────────────────────────────────────────
   function switchTab(name) {
     document.querySelectorAll('.tab').forEach((t,i) =>
       t.classList.toggle('active', ['plan','asado','stats','statsasado','historial'][i] === name));
@@ -535,85 +519,67 @@
     if (name === 'historial')  renderHistorial();
   }
 
-  // ── Grids ──────────────────────────────────────────────
-  function makeToggleGrid(containerId, items, selectedSet, colorClass, onToggle) {
-    const grid = document.getElementById(containerId);
-    grid.innerHTML = '';
-    items.forEach(item => {
-      const btn = document.createElement('button');
-      btn.className = 'toggle-btn' + (selectedSet.has(item) ? ' ' + colorClass : '');
-      btn.textContent = item;
-      btn.onclick = () => {
-        selectedSet.has(item) ? selectedSet.delete(item) : selectedSet.add(item);
-        btn.className = 'toggle-btn' + (selectedSet.has(item) ? ' ' + colorClass : '');
-        if (onToggle) onToggle();
-      };
-      grid.appendChild(btn);
+  // ── Grids ───────────────────────────────────────────────
+  function renderFriends(id, sel) {
+    const g = document.getElementById(id); g.innerHTML = '';
+    friends.forEach(f => {
+      const b = document.createElement('button');
+      b.className = 'toggle-btn' + (sel.has(f) ? ' sel-purple' : '');
+      b.textContent = f;
+      b.onclick = () => { sel.has(f) ? sel.delete(f) : sel.add(f); b.className = 'toggle-btn' + (sel.has(f) ? ' sel-purple' : ''); };
+      g.appendChild(b);
     });
   }
 
-  function renderFriends(id, sel) { makeToggleGrid(id, friends, sel, 'sel-purple'); }
-  function renderCutsGrid()       { makeToggleGrid('cuts-grid', cuts, cutsSel, 'sel-coral'); }
-
   function renderHouseGrid() {
-    const grid = document.getElementById('house-grid');
-    grid.innerHTML = '';
+    const g = document.getElementById('house-grid'); g.innerHTML = '';
     houses.forEach(h => {
-      const btn = document.createElement('button');
-      btn.className = 'toggle-btn' + (houseSel === h ? ' sel-teal' : '');
-      btn.textContent = h === 'Otro lugar' ? '📍 Otro lugar' : 'Casa ' + h;
-      btn.onclick = () => { houseSel = houseSel === h ? null : h; renderHouseGrid(); };
-      grid.appendChild(btn);
+      const b = document.createElement('button');
+      b.className = 'toggle-btn' + (houseSel === h ? ' sel-teal' : '');
+      b.textContent = h === 'Otro lugar' ? '📍 Otro lugar' : 'Casa ' + h;
+      b.onclick = () => { houseSel = houseSel === h ? null : h; renderHouseGrid(); };
+      g.appendChild(b);
+    });
+  }
+
+  function renderCutsGrid() {
+    const g = document.getElementById('cuts-grid'); g.innerHTML = '';
+    cuts.forEach(c => {
+      const b = document.createElement('button');
+      b.className = 'toggle-btn' + (cutsSel.has(c) ? ' sel-coral' : '');
+      b.textContent = c;
+      b.onclick = () => { cutsSel.has(c) ? cutsSel.delete(c) : cutsSel.add(c); b.className = 'toggle-btn' + (cutsSel.has(c) ? ' sel-coral' : ''); };
+      g.appendChild(b);
     });
   }
 
   function renderAsadorGrid() {
-    const grid = document.getElementById('asador-grid');
-    if (!grid) return;
-    grid.innerHTML = '';
-    friends.forEach(name => {
-      const btn = document.createElement('button');
-      btn.className = 'toggle-btn asador-btn' + (asadorSel === name ? ' sel-asador' : '');
-      btn.textContent = name;
-      btn.onclick = () => { asadorSel = asadorSel === name ? null : name; renderAsadorGrid(); };
-      grid.appendChild(btn);
+    const g = document.getElementById('asador-grid'); if (!g) return; g.innerHTML = '';
+    friends.forEach(n => {
+      const b = document.createElement('button');
+      b.className = 'toggle-btn' + (asadorSel === n ? ' sel-asador' : '');
+      b.textContent = n;
+      b.onclick = () => { asadorSel = asadorSel === n ? null : n; renderAsadorGrid(); };
+      g.appendChild(b);
     });
   }
 
-  // ── Agregar ────────────────────────────────────────────
-  function addFriend(mode) {
-    const inp = document.getElementById(mode + '-new-friend');
-    const n = inp.value.trim(); if (!n) return;
-    if (!friends.includes(n)) {
-      friends.push(n);
-      houses.splice(houses.length - 1, 0, n);
-      save('pd_friends', friends);
-      save('pd_houses', houses);
-    }
-    inp.value = '';
-    renderFriends('plan-friends-grid', planSel);
-    renderFriends('asado-friends-grid', asadoSel);
-    renderHouseGrid();
-  }
-
   function addHouse() {
-    const inp = document.getElementById('new-house');
-    const n = inp.value.trim(); if (!n) return;
-    if (!houses.includes(n)) { houses.splice(houses.length - 1, 0, n); save('pd_houses', houses); }
+    const inp = document.getElementById('new-house'); const n = inp.value.trim(); if (!n) return;
+    if (!houses.includes(n)) { houses.splice(houses.length - 1, 0, n); lsSave('pd_houses', houses); }
     inp.value = ''; houseSel = n; renderHouseGrid();
   }
 
   function addCut() {
-    const inp = document.getElementById('new-cut');
-    const n = inp.value.trim(); if (!n) return;
-    if (!cuts.includes(n)) { cuts.push(n); save('pd_cuts', cuts); }
+    const inp = document.getElementById('new-cut'); const n = inp.value.trim(); if (!n) return;
+    if (!cuts.includes(n)) { cuts.push(n); lsSave('pd_cuts', cuts); }
     inp.value = ''; renderCutsGrid();
   }
 
-  function selectAll(m)  { const s = m==='plan'?planSel:asadoSel; friends.forEach(f=>s.add(f)); renderFriends(m+'-friends-grid', s); }
-  function deselectAll(m){ const s = m==='plan'?planSel:asadoSel; s.clear(); renderFriends(m+'-friends-grid', s); }
+  function selectAll(m)   { const s = m==='plan'?planSel:asadoSel; friends.forEach(f=>s.add(f)); renderFriends(m+'-friends-grid', s); }
+  function deselectAll(m) { const s = m==='plan'?planSel:asadoSel; s.clear(); renderFriends(m+'-friends-grid', s); }
 
-  // ── Guardar ────────────────────────────────────────────
+  // ── Guardar ─────────────────────────────────────────────
   async function guardarEvento(mode) {
     const fecha = document.getElementById(mode + '-fecha').value;
     if (!fecha) { showToast('Seleccioná una fecha', '#A32D2D'); return; }
@@ -621,30 +587,27 @@
     if (!asistentes.length) { showToast('Seleccioná al menos un asistente', '#A32D2D'); return; }
 
     const ev = { tipo: mode, fecha, asistentes, _id: Date.now().toString(36) };
-
     if (mode === 'plan') {
       const tipo = document.getElementById('plan-tipo').value.trim();
       if (!tipo) { showToast('Escribí el tipo de plan', '#A32D2D'); return; }
       ev.planTipo = tipo;
       ev.desc = document.getElementById('plan-desc').value.trim();
     } else {
-      if (!houseSel)      { showToast('Seleccioná la casa', '#A32D2D'); return; }
-      if (!cutsSel.size)  { showToast('Seleccioná al menos un corte', '#A32D2D'); return; }
-      ev.casa   = houseSel;
-      ev.cortes = [...cutsSel];
+      if (!houseSel)     { showToast('Seleccioná la casa', '#A32D2D'); return; }
+      if (!cutsSel.size) { showToast('Seleccioná al menos un corte', '#A32D2D'); return; }
+      ev.casa = houseSel; ev.cortes = [...cutsSel];
       ev.asador = asadorSel || '';
-      ev.desc   = document.getElementById('asado-desc').value.trim();
+      ev.desc = document.getElementById('asado-desc').value.trim();
     }
 
     const btn = document.getElementById('btn-' + mode);
-    btn.disabled = true;
-    btn.innerHTML = '<span class="spinner"></span> Guardando...';
+    btn.disabled = true; btn.innerHTML = '<span class="spinner"></span> Guardando...';
 
     eventos.push(ev);
-    save('pd_eventos', eventos);
+    lsSave('pd_eventos', eventos);
 
     if (sheetsUrl) {
-      const ok = await syncSheets(ev);
+      const ok = await callSheets({ accion: 'agregar', ...buildFila(ev) });
       if (ok) { launchConfetti(); showSaveCheck(); }
       showToast(ok ? '¡Guardado y sincronizado!' : 'Guardado localmente (error en Sheets)', ok ? '#3B6D11' : '#854F0B');
     } else {
@@ -652,7 +615,6 @@
       showToast('Guardado localmente', '#3B6D11');
     }
 
-    // Reset
     if (mode === 'plan') {
       document.getElementById('plan-tipo').value = '';
       document.getElementById('plan-desc').value = '';
@@ -663,50 +625,35 @@
       renderFriends('asado-friends-grid', asadoSel);
       renderCutsGrid(); renderHouseGrid(); renderAsadorGrid();
     }
-
     btn.disabled = false;
     btn.innerHTML = mode === 'plan' ? 'Guardar plan' : 'Guardar asado';
   }
 
-  // ── Sync Sheets ────────────────────────────────────────
+  // ── Sheets API ──────────────────────────────────────────
   function buildFila(ev) {
-    if (ev.tipo === 'plan') {
-      return {
-        hoja: 'Planes',
-        encabezados: ['ID','Fecha','Tipo','Descripción','Asistentes','Total'],
-        fila: [ev._id, ev.fecha, ev.planTipo, ev.desc||'-', ev.asistentes.join(', '), ev.asistentes.length]
-      };
-    } else {
-      return {
-        hoja: 'Asados',
-        encabezados: ['ID','Fecha','Casa','Cortes','Descripción','Asistentes','Total'],
-        fila: [ev._id, ev.fecha, ev.casa, ev.cortes.join(', '), ev.desc||'-', ev.asistentes.join(', '), ev.asistentes.length]
-      };
-    }
+    if (ev.tipo === 'plan') return {
+      hoja: 'Planes',
+      encabezados: ['ID','Fecha','Tipo','Descripción','Asistentes','Total'],
+      fila: [ev._id, ev.fecha, ev.planTipo, ev.desc||'-', ev.asistentes.join(', '), ev.asistentes.length]
+    };
+    return {
+      hoja: 'Asados',
+      encabezados: ['ID','Fecha','Casa','Cortes','Asador','Descripción','Asistentes','Total'],
+      fila: [ev._id, ev.fecha, ev.casa, (ev.cortes||[]).join(', '), ev.asador||'-', ev.desc||'-', ev.asistentes.join(', '), ev.asistentes.length]
+    };
   }
 
   async function callSheets(payload) {
     if (!sheetsUrl) return false;
     try {
-      const res = await fetch(sheetsUrl, {
-        method: 'POST',
-        body: JSON.stringify(payload),
-        headers: { 'Content-Type': 'text/plain' }
-      });
+      const res = await fetch(sheetsUrl, { method: 'POST', body: JSON.stringify(payload), headers: { 'Content-Type': 'text/plain' } });
       const data = await res.json();
       if (data.ok && data.url) {
-        spreadsheetUrl = data.url;
-        localStorage.setItem('pd_spreadsheet_url', data.url);
-        const link = document.getElementById('sheets-link');
-        link.href = data.url; link.style.display = 'block';
+        spreadsheetUrl = data.url; localStorage.setItem('pd_spreadsheet_url', data.url);
+        const l = document.getElementById('sheets-link'); l.href = data.url; l.style.display = 'block';
       }
       return !!data.ok;
     } catch { return false; }
-  }
-
-  async function syncSheets(ev) {
-    const { hoja, encabezados, fila } = buildFila(ev);
-    return callSheets({ accion: 'agregar', hoja, encabezados, fila });
   }
 
   async function syncSheetsEditar(ev) {
@@ -715,11 +662,39 @@
   }
 
   async function syncSheetsEliminar(ev) {
-    const hoja = ev.tipo === 'plan' ? 'Planes' : 'Asados';
-    return callSheets({ accion: 'eliminar', hoja, id: ev._id });
+    return callSheets({ accion: 'eliminar', hoja: ev.tipo === 'plan' ? 'Planes' : 'Asados', id: ev._id });
   }
 
-  // ── Stats ──────────────────────────────────────────────
+  // ── Cargar desde Sheets ─────────────────────────────────
+  async function cargarDesdeSheets() {
+    if (!sheetsUrl) { hideLoading(); updateBanner(); return; }
+    showLoading('Sincronizando desde Sheets...');
+    try {
+      const res = await fetch(sheetsUrl, {
+        method: 'POST',
+        body: JSON.stringify({ accion: 'leer' }),
+        headers: { 'Content-Type': 'text/plain' }
+      });
+      const data = await res.json();
+      if (data.ok && Array.isArray(data.eventos)) {
+        eventos = data.eventos;
+        lsSave('pd_eventos', eventos);
+      }
+      if (data.url) {
+        spreadsheetUrl = data.url;
+        localStorage.setItem('pd_spreadsheet_url', data.url);
+        const l = document.getElementById('sheets-link'); l.href = data.url; l.style.display = 'block';
+      }
+    } catch (err) {
+      // sin conexión: usar localStorage
+    }
+    hideLoading();
+    updateBanner();
+    renderStats();
+    renderHistorial();
+  }
+
+  // ── Stats ───────────────────────────────────────────────
   function setFilter(f) {
     statsFilter = f;
     document.querySelectorAll('#tab-stats .filter-tab').forEach((b,i) =>
@@ -727,42 +702,29 @@
     renderStats();
   }
 
-  function colorFor(pct) {
-    if (pct >= 80) return { bar:'var(--green-bar)', text:'var(--green-text)', bg:'var(--green-bg)' };
-    if (pct >= 50) return { bar:'var(--amber-bar)', text:'var(--amber-text)', bg:'var(--amber-bg)' };
-    return { bar:'var(--red-bar)', text:'var(--red-text)', bg:'var(--red-bg)' };
-  }
-
   function calcRacha(name, evs) {
-    // Sort by date ascending
-    const sorted = [...evs].sort((a, b) => a.fecha < b.fecha ? -1 : a.fecha > b.fecha ? 1 : 0);
-    // Walk from the LAST event backwards — count current active streak
+    const sorted = [...evs].sort((a,b) => a.fecha < b.fecha ? -1 : 1);
     let racha = 0;
     for (let i = sorted.length - 1; i >= 0; i--) {
-      if (sorted[i].asistentes.includes(name)) {
-        racha++;
-      } else {
-        break; // missed one — streak is over
-      }
+      if (sorted[i].asistentes.includes(name)) racha++;
+      else break;
     }
     return racha;
   }
 
   function renderStats() {
     const card = document.getElementById('stats-card');
-    const evs = eventos.map(normalizarEvento).filter(e => statsFilter === 'todos' || e.tipo === statsFilter);
+    const evs = eventos.map(normEvento).filter(e => statsFilter === 'todos' || e.tipo === statsFilter);
     if (!evs.length) { card.innerHTML = '<div class="empty">No hay eventos registrados aún</div>'; return; }
-    const counts = {};
-    friends.forEach(f => counts[f] = 0);
-    evs.forEach(e => e.asistentes.forEach(a => { counts[a] = (counts[a]||0) + 1; }));
-    const sorted = Object.keys(counts).sort((a,b) => counts[b] - counts[a]);
+    const counts = {}; AMIGOS_BASE.forEach(f => counts[f] = 0);
+    evs.forEach(e => e.asistentes.forEach(a => { if (counts[a] !== undefined) counts[a]++; }));
+    const sorted = [...AMIGOS_BASE].sort((a,b) => counts[b] - counts[a]);
     card.innerHTML = sorted.map(name => {
-      const c = counts[name], total = evs.length;
-      const pct = Math.round(c / total * 100);
+      const c = counts[name], total = evs.length, pct = Math.round(c / total * 100);
       const col = colorFor(pct);
       const racha = calcRacha(name, evs);
       const rachaBadge = racha >= 2 ? `<span class="racha-badge">🔥 ${racha}</span>` : '';
-      return `<div class="attend-row">
+      return `<div class="attend-row" onclick="verDesglose('${name}')">
         <div class="attend-avatar" style="background:${col.bg};color:${col.text};">${name.slice(0,2).toUpperCase()}</div>
         <div class="attend-name">${name}${rachaBadge}</div>
         <div class="attend-bar-wrap"><div class="attend-bar" style="width:${pct}%;background:${col.bar};"></div></div>
@@ -772,37 +734,63 @@
     }).join('');
   }
 
-  // ── Stats Asado ────────────────────────────────────────
+  // ── Desglose ────────────────────────────────────────────
+  function verDesglose(nombre) {
+    const evsTodos = eventos.map(normEvento).filter(e => statsFilter === 'todos' || e.tipo === statsFilter);
+    const total = evsTodos.length;
+    const fueA  = evsTodos.filter(e => e.asistentes.includes(nombre));
+    const planes = fueA.filter(e => e.tipo === 'plan').length;
+    const asados = fueA.filter(e => e.tipo === 'asado').length;
+    const pct    = total > 0 ? Math.round(fueA.length / total * 100) : 0;
+    const col    = colorFor(pct);
+
+    document.getElementById('desglose-avatar').style.cssText = `background:${col.bg};color:${col.text};`;
+    document.getElementById('desglose-avatar').textContent = nombre.slice(0,2).toUpperCase();
+    document.getElementById('desglose-nombre').textContent = nombre;
+    document.getElementById('desglose-sub').textContent = `${fueA.length} de ${total} eventos`;
+    document.getElementById('dsg-planes').textContent = planes;
+    document.getElementById('dsg-asados').textContent = asados;
+    document.getElementById('dsg-pct').textContent = pct + '%';
+    document.getElementById('dsg-pct').style.color = col.text;
+
+    const list = document.getElementById('desglose-list');
+    if (!fueA.length) {
+      list.innerHTML = '<div style="font-size:13px;color:var(--text3);padding:8px 0;">No fue a ningún evento aún</div>';
+    } else {
+      list.innerHTML = fueA.slice().sort((a,b) => b.fecha.localeCompare(a.fecha)).map(e => {
+        const nombre_ev = e.tipo === 'plan' ? (e.planTipo || 'Plan') : 'Asado';
+        const detalle = e.desc && e.desc !== '-' ? e.desc : (e.casa ? 'Casa ' + e.casa : '');
+        return `<div class="desglose-item">
+          <span class="badge ${e.tipo==='plan'?'badge-plan':'badge-asado'}">${nombre_ev}</span>
+          <span class="desglose-item-date">${e.fecha}</span>
+          <span class="desglose-item-name">${detalle}</span>
+        </div>`;
+      }).join('');
+    }
+    document.getElementById('desglose-overlay').classList.add('open');
+  }
+
+  function closeDesglose() { document.getElementById('desglose-overlay').classList.remove('open'); }
+
+  // ── Stats Asado ─────────────────────────────────────────
   function renderStatsAsado() {
     const body = document.getElementById('statsasado-body');
-    const asados = eventos.map(normalizarEvento).filter(e => e.tipo === 'asado');
-    if (!asados.length) {
-      body.innerHTML = '<div class="card"><div class="empty">No hay asados registrados aún</div></div>';
-      return;
-    }
+    const asados = eventos.map(normEvento).filter(e => e.tipo === 'asado');
+    if (!asados.length) { body.innerHTML = '<div class="card"><div class="empty">No hay asados registrados aún</div></div>'; return; }
 
-    // Corte más elegido
     const corteCounts = {};
     asados.forEach(e => (e.cortes||[]).forEach(c => { corteCounts[c] = (corteCounts[c]||0)+1; }));
-    const cortesSorted = Object.entries(corteCounts).sort((a,b)=>b[1]-a[1]);
-    const topCorte = cortesSorted[0] || ['–',0];
+    const cortesSorted = Object.entries(corteCounts).sort((a,b) => b[1]-a[1]);
+    const topCorte = cortesSorted[0] || ['–', 0];
 
-    // Casa más usada
     const casaCounts = {};
     asados.forEach(e => { if (e.casa) casaCounts[e.casa] = (casaCounts[e.casa]||0)+1; });
-    const casasSorted = Object.entries(casaCounts).sort((a,b)=>b[1]-a[1]);
-    const topCasa = casasSorted[0] || ['–',0];
+    const casasSorted = Object.entries(casaCounts).sort((a,b) => b[1]-a[1]);
+    const topCasa = casasSorted[0] || ['–', 0];
 
-    // Top 2 asadores (usando campo asador del evento)
     const asadorCounts = {};
-    asados.forEach(e => {
-      if (e.asador && e.asador.trim()) {
-        asadorCounts[e.asador] = (asadorCounts[e.asador]||0) + 1;
-      }
-    });
-    const topAsadores = Object.entries(asadorCounts).sort((a,b)=>b[1]-a[1]).slice(0,2);
-    const top1 = topAsadores[0] || null;
-    const top2 = topAsadores[1] || null;
+    asados.forEach(e => { if (e.asador && e.asador.trim() && e.asador !== '-') asadorCounts[e.asador] = (asadorCounts[e.asador]||0)+1; });
+    const topAsadores = Object.entries(asadorCounts).sort((a,b) => b[1]-a[1]).slice(0, 2);
 
     const barRows = (entries, maxVal) => entries.slice(0,6).map(([label, count]) => {
       const pct = maxVal ? Math.round(count/maxVal*100) : 0;
@@ -813,25 +801,18 @@
       </div>`;
     }).join('');
 
-    const topAsadoresHTML = (top1 || top2) ? `
+    const topAsadoresHTML = topAsadores.length ? `
       <div class="top-asadores-card">
         <div style="padding:14px 16px 10px;font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.4px;">🔥 Ranking de asadores</div>
-        ${top1 ? `<div class="top-asador-row">
-          <div class="top-asador-medal">🥇</div>
-          <div class="top-asador-info">
-            <div class="top-asador-name">${top1[0]}</div>
-            <div class="top-asador-sub">${top1[1]} asado${top1[1]!==1?'s':''}</div>
-          </div>
-          <div class="top-asador-count">${top1[1]}</div>
-        </div>` : ''}
-        ${top2 ? `<div class="top-asador-row">
-          <div class="top-asador-medal">🥈</div>
-          <div class="top-asador-info">
-            <div class="top-asador-name">${top2[0]}</div>
-            <div class="top-asador-sub">${top2[1]} asado${top2[1]!==1?'s':''}</div>
-          </div>
-          <div class="top-asador-count">${top2[1]}</div>
-        </div>` : ''}
+        ${topAsadores.map(([n, c], i) => `
+          <div class="top-asador-row">
+            <div class="top-asador-medal">${i===0?'🥇':'🥈'}</div>
+            <div style="flex:1;min-width:0;">
+              <div class="top-asador-name">${n}</div>
+              <div class="top-asador-sub">${c} asado${c!==1?'s':''}</div>
+            </div>
+            <div class="top-asador-count">${c}</div>
+          </div>`).join('')}
       </div>` : '';
 
     body.innerHTML = `
@@ -843,21 +824,18 @@
         </div>
         <div class="stat-asado-card">
           <div class="stat-asado-label">🏠 Casa más usada</div>
-          <div class="stat-asado-value">${topCasa[0] !== '–' ? 'Casa '+topCasa[0] : '–'}</div>
+          <div class="stat-asado-value">${topCasa[0] !== '–' ? 'Casa ' + topCasa[0] : '–'}</div>
           <div class="stat-asado-sub">${topCasa[1]} veces</div>
         </div>
       </div>
-
       ${topAsadoresHTML}
-
       <div class="card">
         <div class="section-title" style="margin-bottom:12px;">Cortes más pedidos</div>
         ${cortesSorted.length ? barRows(cortesSorted, cortesSorted[0][1]) : '<div class="empty">Sin datos</div>'}
-      </div>
-    `;
+      </div>`;
   }
 
-  // ── Historial ──────────────────────────────────────────
+  // ── Historial ───────────────────────────────────────────
   function setHistFilter(f) {
     histFilter = f;
     document.querySelectorAll('#tab-historial .filter-tab').forEach((b,i) =>
@@ -865,67 +843,17 @@
     renderHistorial();
   }
 
-  function normalizarFecha(f) {
-    if (!f) return '-';
-    // Ya es formato YYYY-MM-DD
-    if (/^\d{4}-\d{2}-\d{2}$/.test(f)) return f;
-    // Es un timestamp largo (ej: "Thu Apr 02 2026 00:00:00 GMT-0300...")
-    const d = new Date(f);
-    if (!isNaN(d)) {
-      const y = d.getFullYear();
-      const m = String(d.getMonth()+1).padStart(2,'0');
-      const day = String(d.getDate()).padStart(2,'0');
-      return `${y}-${m}-${day}`;
-    }
-    return f;
-  }
-
-  function normalizarEvento(e) {
-    e = Object.assign({}, e); // no mutar el original
-    // Normalizar fecha
-    e.fecha = normalizarFecha(e.fecha);
-    // Si es plan y no tiene planTipo
-    if (e.tipo === 'plan' && !e.planTipo) {
-      e.planTipo = e.tipo_plan || e.tipoPlan || e.plan || 'Plan';
-    }
-    // Si asistentes no es array, convertir
-    if (typeof e.asistentes === 'string') {
-      e.asistentes = e.asistentes.split(',').map(a => a.trim()).filter(Boolean);
-    }
-    if (!Array.isArray(e.asistentes)) e.asistentes = [];
-    // Filtrar asistentes inválidos: solo nombres conocidos o palabras cortas sin espacios
-    // Excluir: guiones, frases largas, descripciones accidentales
-    const AMIGOS_BASE = ['Raubvo','Zucho','Babbe','Lucas','Galo','Costi','Colo','Dylan','Tiago','Hamu','Nacho'];
-    e.asistentes = e.asistentes.filter(a => {
-      if (!a || a === '-' || a === '') return false;
-      // Si está en la lista base, siempre válido
-      if (AMIGOS_BASE.includes(a)) return true;
-      // Si está en friends (amigos agregados), válido
-      if (friends.includes(a)) return true;
-      // Si tiene espacios y más de 15 caracteres, es probablemente una descripción
-      if (a.includes(' ') && a.length > 15) return false;
-      // Si tiene números o símbolos raros, descartar
-      if (/[0-9@#$%^&*()_+=\[\]{};':"\\|<>?/]/.test(a)) return false;
-      return true;
-    });
-    // Si cortes no es array
-    if (e.cortes && typeof e.cortes === 'string') {
-      e.cortes = e.cortes.split(',').map(c => c.trim()).filter(Boolean);
-    }
-    return e;
-  }
-
   function renderHistorial() {
     const list = document.getElementById('historial-list');
     const evs = eventos
-      .map((e, i) => ({ ...normalizarEvento(e), _idx: i }))
+      .map((e, i) => ({ ...normEvento(e), _idx: i }))
       .filter(e => histFilter === 'todos' || e.tipo === histFilter)
       .slice().reverse();
     if (!evs.length) { list.innerHTML = '<div class="empty">No hay eventos registrados aún</div>'; return; }
     list.innerHTML = '<div class="history-list">' + evs.map(e => `
       <div class="history-item">
         <div class="history-meta">
-          <span class="badge ${e.tipo==='plan'?'badge-plan':'badge-asado'}">${e.tipo==='plan' ? (e.planTipo||'Plan') : 'Asado'}</span>
+          <span class="badge ${e.tipo==='plan'?'badge-plan':'badge-asado'}">${e.tipo==='plan'?(e.planTipo||'Plan'):'Asado'}</span>
           <span class="history-date">${e.fecha}</span>
           ${e.casa ? `<span class="badge badge-casa">Casa ${e.casa}</span>` : ''}
           ${e.cortes && e.cortes.length ? `<span style="font-size:12px;color:var(--text3);">${e.cortes.join(', ')}</span>` : ''}
@@ -939,19 +867,13 @@
       </div>`).join('') + '</div>';
   }
 
-  // ── Editar / Borrar ────────────────────────────────────
-  let editIdx = null;
-  let editSel = new Set();
-  let editHouseSel = null;
-  let editCutsSel = new Set();
+  // ── Editar / Borrar ─────────────────────────────────────
+  let editIdx = null, editSel = new Set(), editHouseSel = null, editCutsSel = new Set();
 
   function abrirEdicion(idx) {
-    const ev = normalizarEvento({ ...eventos[idx] });
-    editIdx = idx;
-    editSel = new Set(ev.asistentes);
-    editHouseSel = ev.casa || null;
-    editCutsSel = new Set(ev.cortes || []);
-
+    const ev = normEvento({ ...eventos[idx] });
+    editIdx = idx; editSel = new Set(ev.asistentes);
+    editHouseSel = ev.casa || null; editCutsSel = new Set(ev.cortes || []);
     if (ev.tipo === 'plan') {
       document.getElementById('edit-modal-title').textContent = 'Editar plan';
       document.getElementById('edit-plan-fields').style.display = '';
@@ -965,62 +887,48 @@
       document.getElementById('edit-asado-fields').style.display = '';
       document.getElementById('edit-asado-fecha').value = ev.fecha;
       document.getElementById('edit-asado-desc').value = ev.desc && ev.desc !== '-' ? ev.desc : '';
-      renderEditHouseGrid();
-      renderEditCutsGrid();
+      renderEditHouseGrid(); renderEditCutsGrid();
     }
-
     renderEditFriends();
     document.getElementById('edit-modal-overlay').classList.add('open');
   }
 
-  function closeEditModal() {
-    document.getElementById('edit-modal-overlay').classList.remove('open');
-    editIdx = null;
-  }
+  function closeEditModal() { document.getElementById('edit-modal-overlay').classList.remove('open'); editIdx = null; }
 
   function renderEditFriends() {
-    const grid = document.getElementById('edit-friends-grid');
-    grid.innerHTML = '';
+    const g = document.getElementById('edit-friends-grid'); g.innerHTML = '';
     friends.forEach(f => {
-      const btn = document.createElement('button');
-      btn.className = 'toggle-btn' + (editSel.has(f) ? ' sel-purple' : '');
-      btn.textContent = f;
-      btn.onclick = () => {
-        editSel.has(f) ? editSel.delete(f) : editSel.add(f);
-        btn.className = 'toggle-btn' + (editSel.has(f) ? ' sel-purple' : '');
-      };
-      grid.appendChild(btn);
+      const b = document.createElement('button');
+      b.className = 'toggle-btn' + (editSel.has(f) ? ' sel-purple' : '');
+      b.textContent = f;
+      b.onclick = () => { editSel.has(f) ? editSel.delete(f) : editSel.add(f); b.className = 'toggle-btn' + (editSel.has(f) ? ' sel-purple' : ''); };
+      g.appendChild(b);
     });
   }
 
   function renderEditHouseGrid() {
-    const grid = document.getElementById('edit-house-grid');
-    grid.innerHTML = '';
+    const g = document.getElementById('edit-house-grid'); g.innerHTML = '';
     houses.forEach(h => {
-      const btn = document.createElement('button');
-      btn.className = 'toggle-btn' + (editHouseSel === h ? ' sel-teal' : '');
-      btn.textContent = h === 'Otro lugar' ? '📍 Otro lugar' : 'Casa ' + h;
-      btn.onclick = () => { editHouseSel = editHouseSel === h ? null : h; renderEditHouseGrid(); };
-      grid.appendChild(btn);
+      const b = document.createElement('button');
+      b.className = 'toggle-btn' + (editHouseSel === h ? ' sel-teal' : '');
+      b.textContent = h === 'Otro lugar' ? '📍 Otro lugar' : 'Casa ' + h;
+      b.onclick = () => { editHouseSel = editHouseSel === h ? null : h; renderEditHouseGrid(); };
+      g.appendChild(b);
     });
   }
 
   function renderEditCutsGrid() {
-    const grid = document.getElementById('edit-cuts-grid');
-    grid.innerHTML = '';
+    const g = document.getElementById('edit-cuts-grid'); g.innerHTML = '';
     cuts.forEach(c => {
-      const btn = document.createElement('button');
-      btn.className = 'toggle-btn' + (editCutsSel.has(c) ? ' sel-coral' : '');
-      btn.textContent = c;
-      btn.onclick = () => {
-        editCutsSel.has(c) ? editCutsSel.delete(c) : editCutsSel.add(c);
-        btn.className = 'toggle-btn' + (editCutsSel.has(c) ? ' sel-coral' : '');
-      };
-      grid.appendChild(btn);
+      const b = document.createElement('button');
+      b.className = 'toggle-btn' + (editCutsSel.has(c) ? ' sel-coral' : '');
+      b.textContent = c;
+      b.onclick = () => { editCutsSel.has(c) ? editCutsSel.delete(c) : editCutsSel.add(c); b.className = 'toggle-btn' + (editCutsSel.has(c) ? ' sel-coral' : ''); };
+      g.appendChild(b);
     });
   }
 
-  function editSelectAll()   { friends.forEach(f => editSel.add(f));  renderEditFriends(); }
+  function editSelectAll()   { friends.forEach(f => editSel.add(f)); renderEditFriends(); }
   function editDeselectAll() { editSel.clear(); renderEditFriends(); }
 
   function guardarEdicion() {
@@ -1028,146 +936,76 @@
     const ev = { ...eventos[editIdx] };
     const asistentes = [...editSel];
     if (!asistentes.length) { showToast('Seleccioná al menos un asistente', '#A32D2D'); return; }
-
     if (ev.tipo === 'plan') {
       const tipo = document.getElementById('edit-tipo').value.trim();
       if (!tipo) { showToast('Escribí el tipo de plan', '#A32D2D'); return; }
-      ev.fecha    = document.getElementById('edit-fecha').value;
+      ev.fecha = document.getElementById('edit-fecha').value;
       ev.planTipo = tipo;
-      ev.desc     = document.getElementById('edit-desc').value.trim() || '-';
+      ev.desc = document.getElementById('edit-desc').value.trim() || '-';
     } else {
       if (!editHouseSel)     { showToast('Seleccioná la casa', '#A32D2D'); return; }
       if (!editCutsSel.size) { showToast('Seleccioná al menos un corte', '#A32D2D'); return; }
-      ev.fecha  = document.getElementById('edit-asado-fecha').value;
-      ev.casa   = editHouseSel;
-      ev.cortes = [...editCutsSel];
-      ev.desc   = document.getElementById('edit-asado-desc').value.trim() || '-';
+      ev.fecha = document.getElementById('edit-asado-fecha').value;
+      ev.casa = editHouseSel; ev.cortes = [...editCutsSel];
+      ev.desc = document.getElementById('edit-asado-desc').value.trim() || '-';
     }
     ev.asistentes = asistentes;
     if (!ev._id) ev._id = Date.now().toString(36);
-
     eventos[editIdx] = ev;
-    save('pd_eventos', eventos);
-    closeEditModal();
-    renderHistorial();
-    renderStats();
-
+    lsSave('pd_eventos', eventos);
+    closeEditModal(); renderHistorial(); renderStats();
     if (sheetsUrl) {
-      syncSheetsEditar(ev).then(ok => {
-        showToast(ok ? 'Evento actualizado en Sheets' : 'Actualizado localmente (error en Sheets)', ok ? '#3B6D11' : '#854F0B');
-      });
-    } else {
-      showToast('Evento actualizado', '#3B6D11');
-    }
+      syncSheetsEditar(ev).then(ok => showToast(ok ? 'Actualizado en Sheets' : 'Actualizado localmente (error en Sheets)', ok ? '#3B6D11' : '#854F0B'));
+    } else showToast('Evento actualizado', '#3B6D11');
   }
 
   function borrarEvento(idx) {
     if (!confirm('¿Borrar este evento? Esta acción no se puede deshacer.')) return;
     const ev = eventos[idx];
     eventos.splice(idx, 1);
-    save('pd_eventos', eventos);
-    renderHistorial();
-    renderStats();
-
+    lsSave('pd_eventos', eventos);
+    renderHistorial(); renderStats();
     if (sheetsUrl && ev._id) {
-      syncSheetsEliminar(ev).then(ok => {
-        showToast(ok ? 'Evento eliminado en Sheets' : 'Eliminado localmente (error en Sheets)', ok ? '#633806' : '#854F0B');
-      });
-    } else {
-      showToast('Evento borrado', '#633806');
-    }
+      syncSheetsEliminar(ev).then(ok => showToast(ok ? 'Eliminado en Sheets' : 'Eliminado localmente (error en Sheets)', ok ? '#633806' : '#854F0B'));
+    } else showToast('Evento borrado', '#633806');
   }
 
-  // ── Loading screen ────────────────────────────────────
-  function showLoading(msg) {
-    const ls = document.getElementById('loading-screen');
-    const lb = document.getElementById('loading-bar');
-    const lsub = document.getElementById('loading-sub');
-    ls.classList.remove('hide');
-    lb.style.width = '0%';
-    lsub.textContent = msg || 'Cargando eventos...';
-    // Animate bar
-    setTimeout(() => lb.style.width = '60%', 50);
-  }
-  function hideLoading() {
-    const ls = document.getElementById('loading-screen');
-    const lb = document.getElementById('loading-bar');
-    lb.style.width = '100%';
-    setTimeout(() => { ls.classList.add('hide'); setTimeout(() => lb.style.width='0%', 500); }, 400);
-  }
-
-  // ── Confetti ───────────────────────────────────────────
+  // ── Confetti ────────────────────────────────────────────
   function launchConfetti() {
     const canvas = document.getElementById('confetti-canvas');
     const ctx = canvas.getContext('2d');
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-    const pieces = Array.from({length: 80}, () => ({
-      x: Math.random() * canvas.width,
-      y: -10 - Math.random() * 80,
-      r: 4 + Math.random() * 6,
-      d: 2 + Math.random() * 3,
+    canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+    const pieces = Array.from({length:80}, () => ({
+      x: Math.random() * canvas.width, y: -10 - Math.random() * 80,
+      r: 4 + Math.random() * 6, d: 2 + Math.random() * 3,
       color: ['#534AB7','#5DCAA5','#F0997B','#EF9F27','#639922','#E24B4A'][Math.floor(Math.random()*6)],
-      tilt: Math.random() * 10 - 5,
-      tiltSpeed: 0.1 + Math.random() * 0.2
+      tilt: Math.random()*10-5, tiltSpeed: 0.1+Math.random()*0.2
     }));
     let frame = 0;
-    const MAX = 90;
     function draw() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.clearRect(0,0,canvas.width,canvas.height);
       pieces.forEach(p => {
         ctx.beginPath();
-        ctx.ellipse(p.x, p.y, p.r, p.r * 0.5, p.tilt * Math.PI / 180, 0, 2 * Math.PI);
-        ctx.fillStyle = p.color;
-        ctx.fill();
-        p.y += p.d;
-        p.tilt += p.tiltSpeed;
-        p.x += Math.sin(frame * 0.05 + p.tilt) * 0.8;
+        ctx.ellipse(p.x, p.y, p.r, p.r*0.5, p.tilt*Math.PI/180, 0, 2*Math.PI);
+        ctx.fillStyle = p.color; ctx.fill();
+        p.y += p.d; p.tilt += p.tiltSpeed; p.x += Math.sin(frame*0.05+p.tilt)*0.8;
       });
       frame++;
-      if (frame < MAX) requestAnimationFrame(draw);
-      else ctx.clearRect(0, 0, canvas.width, canvas.height);
+      if (frame < 90) requestAnimationFrame(draw);
+      else ctx.clearRect(0,0,canvas.width,canvas.height);
     }
     draw();
   }
 
   function showSaveCheck() {
     const el = document.getElementById('save-check');
-    el.classList.add('show');
-    setTimeout(() => el.classList.remove('show'), 1400);
+    el.classList.add('show'); setTimeout(() => el.classList.remove('show'), 1400);
   }
 
-  // ── Cargar desde Sheets ────────────────────────────────
-  async function cargarDesdeSheets() {
-    showLoading('Sincronizando eventos...');
-    try {
-      const res = await fetch(sheetsUrl + '?accion=leer');
-      const data = await res.json();
-      if (data.ok && Array.isArray(data.eventos)) {
-        eventos = data.eventos;
-        save('pd_eventos', eventos);
-      }
-      if (data.url) {
-        spreadsheetUrl = data.url;
-        localStorage.setItem('pd_spreadsheet_url', data.url);
-        const link = document.getElementById('sheets-link');
-        link.href = data.url; link.style.display = 'block';
-      }
-    } catch (e) { /* fallback a localStorage */ }
-    hideLoading();
-    updateBanner();
-    renderStats();
-    renderHistorial();
-  }
-
-  // ── Init ───────────────────────────────────────────────
-  function today() { return new Date().toISOString().split('T')[0]; }
-
+  // ── Init ────────────────────────────────────────────────
   renderFriends('plan-friends-grid', planSel);
   renderFriends('asado-friends-grid', asadoSel);
-  renderHouseGrid();
-  renderAsadorGrid();
-  renderCutsGrid();
+  renderHouseGrid(); renderAsadorGrid(); renderCutsGrid();
   document.getElementById('plan-fecha').value = today();
   document.getElementById('asado-fecha').value = today();
   cargarDesdeSheets();
