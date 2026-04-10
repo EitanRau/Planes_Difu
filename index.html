@@ -603,7 +603,7 @@
     const sorted=[...AMIGOS].sort((a,b)=>counts[b]-counts[a]);
     card.innerHTML = sorted.map(name=>{
       const c=counts[name], tot=evs.length, pct=Math.round(c/tot*100);
-      const cl=col(pct), r=racha(name,evs);
+      const cl=col(pct), r=racha(name,eventos);
       const rb = r>=2?`<span class="racha">🔥 ${r}</span>`:'';
       return `<div class="arow" onclick="showDsg('${name}')">
         <div class="avatar" style="background:${cl.bg};color:${cl.text}">${name.slice(0,2).toUpperCase()}</div>
@@ -794,5 +794,4 @@
   loadFromSheets();
 </script>
 </body>
-</html>
 </html>
