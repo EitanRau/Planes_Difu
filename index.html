@@ -584,8 +584,14 @@
   }
 
   function racha(name, evs) {
-    const sorted = [...evs].sort((a,b)=>a.fecha<b.fecha?-1:1);
-    let r=0; for(let i=sorted.length-1;i>=0;i--){ if(sorted[i].asistentes.includes(name)) r++; else break; } return r;
+    // Ordena por fecha y cuenta cuántos eventos consecutivos más recientes fue
+    const sorted = [...evs].sort((a,b) => a.fecha < b.fecha ? -1 : a.fecha > b.fecha ? 1 : 0);
+    let r = 0;
+    for (let i = sorted.length - 1; i >= 0; i--) {
+      if (sorted[i].asistentes.includes(name)) r++;
+      else break;
+    }
+    return r;
   }
 
   function renderStats() {
@@ -679,10 +685,14 @@
   }
   function renderHist() {
     const list=$('hist-list');
-    const evs=eventos.filter(e=>histFilt==='todos'||e.tipo===histFilt).slice().reverse();
-    if(!evs.length){list.innerHTML='<div class="empty">No hay eventos registrados</div>';return;}
+    const evsFilt = eventos
+      .map((e,i) => ({...e, _realIdx: i}))
+      .filter(e => histFilt==='todos' || e.tipo===histFilt)
+      .sort((a,b) => b.fecha < a.fecha ? -1 : b.fecha > a.fecha ? 1 : 0);
+    if(!evsFilt.length){list.innerHTML='<div class="empty">No hay eventos registrados</div>';return;}
+    const evs = evsFilt;
     list.innerHTML='<div class="hlist">'+evs.map((e,ri)=>{
-      const idx = eventos.length-1-ri; // índice real en array
+      const idx = e._realIdx;
       return `<div class="hitem">
         <div class="hmeta">
           <span class="badge ${e.tipo==='plan'?'bp':'ba'}">${e.tipo==='plan'?(e.planTipo||'Plan'):'Asado'}</span>
@@ -693,8 +703,8 @@
         ${e.desc&&e.desc!=='-'?`<div class="hdesc">${e.desc}</div>`:''}
         <div class="hfriends">${e.asistentes.length?e.asistentes.join(' · '):'-'}</div>
         <div class="hactions">
-          <button class="bedit" onclick="openEdit(${idx})">✎ Editar</button>
-          <button class="bdel"  onclick="delEv(${idx})">Borrar</button>
+          <button class="bedit" onclick="openEdit(${e._realIdx})">✎ Editar</button>
+          <button class="bdel"  onclick="delEv(${e._realIdx})">Borrar</button>
         </div>
       </div>`;
     }).join('')+'</div>';
@@ -784,4 +794,5 @@
   loadFromSheets();
 </script>
 </body>
+</html>
 </html>
