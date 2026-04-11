@@ -32,19 +32,23 @@
     }}
     body{font-family:var(--font);background:var(--bg3);color:var(--text);min-height:100vh}
     .app{max-width:680px;margin:0 auto;padding:1.25rem 1rem 3rem}
+    /* Header */
     .app-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:.5px solid var(--border)}
     .app-title{font-size:22px;font-weight:700;letter-spacing:-.3px}
     .app-title span{color:#534AB7}
     .config-btn{padding:7px 14px;font-size:12px;border:.5px solid var(--border2);border-radius:var(--r);background:var(--bg2);color:var(--text2);cursor:pointer;font-family:var(--font)}
+    /* Banner */
     .banner{display:flex;align-items:center;gap:10px;padding:10px 14px;border:.5px solid var(--border);border-radius:var(--r);background:var(--bg2);margin-bottom:1rem}
     .dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
     .dot.ok{background:var(--gbar)}.dot.warn{background:var(--abar)}.dot.err{background:var(--rbar)}
     .banner-text{font-size:13px;color:var(--text2);flex:1}
     .sheets-link{font-size:12px;color:#534AB7;text-decoration:none;font-weight:500;white-space:nowrap}
+    /* Tabs */
     .tabs{display:flex;border-bottom:.5px solid var(--border);margin-bottom:1.5rem;gap:2px;overflow-x:auto}
     .tab{padding:9px 18px;font-size:14px;font-weight:500;border:none;background:none;color:var(--text2);cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;flex-shrink:0;font-family:var(--font)}
     .tab.active{color:var(--text);border-bottom:2px solid var(--text)}
     .section{display:none}.section.active{display:block}
+    /* Card / Field */
     .card{background:var(--bg);border:.5px solid var(--border);border-radius:var(--rl);padding:1.25rem;margin-bottom:1rem}
     .stitle{font-size:15px;font-weight:600;margin-bottom:14px}
     .field{margin-bottom:1rem}
@@ -53,6 +57,7 @@
     .field input:focus,.field textarea:focus{border-color:var(--pm)}
     .field textarea{height:64px;resize:none}
     .row{display:flex;gap:12px}.row .field{flex:1;min-width:0}
+    /* Grids */
     .sel-row{display:flex;gap:6px;margin-bottom:8px}
     .sel-row button{padding:4px 10px;font-size:12px;border:.5px solid var(--border);border-radius:var(--r);background:var(--bg2);color:var(--text2);cursor:pointer;font-family:var(--font)}
     .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:7px}
@@ -67,11 +72,14 @@
     .add-row button.bt{border-color:var(--tbo);background:var(--tb);color:var(--tt)}
     .add-row button.bc{border-color:var(--cbo);background:var(--cb);color:var(--ct)}
     .divider{border:none;border-top:.5px solid var(--border);margin:1.1rem 0}
+    /* Botón guardar */
     .bsave{display:inline-flex;align-items:center;gap:8px;padding:10px 26px;font-size:14px;font-weight:500;border:.5px solid var(--pbo);border-radius:var(--r);background:var(--pb);color:var(--pt);cursor:pointer;font-family:var(--font);transition:all .15s}
     .bsave:hover{filter:brightness(.95)}.bsave:active{transform:scale(.98)}.bsave:disabled{opacity:.5;cursor:not-allowed}
+    /* Filter tabs */
     .ftabs{display:flex;gap:6px;margin-bottom:1rem;flex-wrap:wrap}
     .ftab{padding:5px 14px;font-size:13px;border:.5px solid var(--border2);border-radius:99px;background:var(--bg2);color:var(--text2);cursor:pointer;font-family:var(--font)}
     .ftab.active{background:var(--pb);border-color:var(--pbo);color:var(--pt);font-weight:500}
+    /* Asistencia */
     .arow{display:flex;align-items:center;gap:10px;padding:10px 12px;border:.5px solid var(--border);border-radius:var(--r);background:var(--bg);margin-bottom:6px;cursor:pointer;transition:background .12s}
     .arow:hover{background:var(--bg2)}
     .avatar{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0}
@@ -81,6 +89,7 @@
     .acount{font-size:12px;color:var(--text3);min-width:44px;text-align:right}
     .apct{font-size:13px;font-weight:700;min-width:36px;text-align:right}
     .racha{display:inline-flex;align-items:center;gap:3px;font-size:11px;font-weight:600;padding:2px 7px;border-radius:99px;background:var(--ab);color:var(--at);margin-left:4px}
+    /* Historial */
     .hlist{display:flex;flex-direction:column;gap:8px}
     .hitem{padding:12px 14px;border:.5px solid var(--border);border-radius:var(--r);background:var(--bg)}
     .hmeta{display:flex;gap:6px;align-items:center;margin-bottom:6px;flex-wrap:wrap}
@@ -94,6 +103,7 @@
     .bdel{padding:5px 14px;font-size:12px;border:.5px solid var(--border2);border-radius:var(--r);background:var(--bg2);color:var(--text2);cursor:pointer;font-family:var(--font);font-weight:500}
     .bdel:hover{border-color:var(--rbar);color:var(--rt);background:var(--rb)}
     .empty{text-align:center;padding:2.5rem;color:var(--text3);font-size:14px}
+    /* Stats asado */
     .sa-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1rem}
     .sa-card{background:var(--bg);border:.5px solid var(--border);border-radius:var(--rl);padding:14px}
     .sa-label{font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:.4px;font-weight:500;margin-bottom:6px}
@@ -111,6 +121,7 @@
     .top-name{font-size:15px;font-weight:600}
     .top-sub{font-size:12px;color:var(--text3);margin-top:1px}
     .top-n{font-size:22px;font-weight:700;color:var(--at);min-width:32px;text-align:right}
+    /* Modals */
     .overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:200;align-items:flex-start;justify-content:center;padding:1rem;overflow-y:auto}
     .overlay.open{display:flex}
     .modal{background:var(--bg);border:.5px solid var(--border);border-radius:var(--rl);padding:1.5rem;width:100%;max-width:540px;max-height:90vh;overflow-y:auto;margin:auto}
@@ -125,6 +136,7 @@
     .mbtns button{padding:9px 20px;font-size:13px;border-radius:var(--r);cursor:pointer;font-family:var(--font);font-weight:500;border:.5px solid}
     .bcancel{border-color:var(--border2);background:var(--bg2);color:var(--text2)}
     .bok{border-color:var(--pbo);background:var(--pb);color:var(--pt)}
+    /* Desglose */
     .dsg-header{display:flex;align-items:center;gap:14px;margin-bottom:1.2rem}
     .dsg-avatar{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;flex-shrink:0}
     .dsg-stats{display:flex;gap:8px;margin-bottom:1rem}
@@ -136,10 +148,12 @@
     .dsg-item{display:flex;align-items:center;gap:8px;padding:8px 10px;border:.5px solid var(--border);border-radius:var(--r)}
     .dsg-date{font-size:12px;color:var(--text3);min-width:80px;flex-shrink:0}
     .dsg-name{font-size:13px;flex:1}
+    /* Spinner / Toast */
     .spin{display:inline-block;width:14px;height:14px;border:2px solid var(--pbo);border-top-color:#534AB7;border-radius:50%;animation:spin .7s linear infinite}
     @keyframes spin{to{transform:rotate(360deg)}}
     .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);padding:11px 22px;border-radius:var(--r);font-size:13px;font-weight:500;opacity:0;transition:opacity .3s;pointer-events:none;z-index:9999;white-space:nowrap;color:#fff}
     .toast.show{opacity:1}
+    /* Loading */
     .loading{position:fixed;inset:0;background:var(--bg3);z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;transition:opacity .5s}
     .loading.hide{opacity:0;pointer-events:none}
     .logo{font-size:28px;font-weight:700;letter-spacing:-.5px}
@@ -147,6 +161,7 @@
     .lbar-wrap{width:200px;height:3px;background:var(--border);border-radius:99px;overflow:hidden}
     .lbar{height:100%;width:0;background:#534AB7;border-radius:99px;transition:width .4s ease}
     .lsub{font-size:13px;color:var(--text3)}
+    /* Confetti / Check */
     .ccanvas{position:fixed;inset:0;pointer-events:none;z-index:8888}
     .check{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(0);z-index:8889;width:80px;height:80px;background:var(--gb);border:2px solid var(--gbar);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:36px;transition:transform .3s cubic-bezier(.34,1.56,.64,1),opacity .3s;opacity:0}
     .check.show{transform:translate(-50%,-50%) scale(1);opacity:1}
@@ -161,25 +176,25 @@
   <div class="lsub" id="lsub">Cargando eventos...</div>
 </div>
 <canvas class="ccanvas" id="ccanvas"></canvas>
-<div class="check" id="check">&#10003;</div>
+<div class="check" id="check">✓</div>
 
 <div class="app">
   <div class="app-header">
     <div class="app-title">Planes <span>Difu</span></div>
-    <button class="config-btn" onclick="openConfig()">&#9881; Configurar Sheets</button>
+    <button class="config-btn" onclick="openConfig()">⚙ Configurar Sheets</button>
   </div>
 
   <div class="banner">
     <div class="dot warn" id="dot"></div>
     <div class="banner-text" id="btext">Google Sheets no configurado.</div>
-    <a id="slink" href="#" style="display:none" class="sheets-link" target="_blank">Abrir Sheets &rarr;</a>
+    <a id="slink" href="#" style="display:none" class="sheets-link" target="_blank">Abrir Sheets →</a>
   </div>
 
   <div class="tabs">
     <button class="tab active" onclick="go('plan')">Planes</button>
     <button class="tab" onclick="go('asado')">Asados</button>
     <button class="tab" onclick="go('stats')">Asistencia</button>
-    <button class="tab" onclick="go('statsasado')">&#x1F969; Stats</button>
+    <button class="tab" onclick="go('statsasado')">🥩 Stats</button>
     <button class="tab" onclick="go('hist')">Historial</button>
   </div>
 
@@ -189,11 +204,11 @@
       <div class="stitle">Registrar plan</div>
       <div class="row">
         <div class="field"><label>Fecha</label><input type="date" id="plan-fecha"/></div>
-        <div class="field"><label>Tipo de plan</label><input type="text" id="plan-tipo" placeholder="F&uacute;tbol, Cine, Cumple..."/></div>
+        <div class="field"><label>Tipo de plan</label><input type="text" id="plan-tipo" placeholder="Fútbol, Cine, Cumple..."/></div>
       </div>
-      <div class="field"><label>Descripci&oacute;n (opcional)</label><textarea id="plan-desc" placeholder="Detalles..."></textarea></div>
+      <div class="field"><label>Descripción (opcional)</label><textarea id="plan-desc" placeholder="Detalles..."></textarea></div>
       <div class="field">
-        <label>&iquest;Qui&eacute;nes asistieron?</label>
+        <label>¿Quiénes asistieron?</label>
         <div class="sel-row"><button onclick="selAll('plan')">Todos</button><button onclick="selNone('plan')">Ninguno</button></div>
         <div class="grid" id="g-plan-friends"></div>
       </div>
@@ -209,7 +224,7 @@
       <div class="stitle">Registrar asado</div>
       <div class="row">
         <div class="field"><label>Fecha</label><input type="date" id="asado-fecha"/></div>
-        <div class="field"><label>Descripci&oacute;n (opcional)</label><input type="text" id="asado-desc" placeholder="Quincho, cumple..."/></div>
+        <div class="field"><label>Descripción (opcional)</label><input type="text" id="asado-desc" placeholder="Quincho, cumple..."/></div>
       </div>
       <hr class="divider">
       <div class="field">
@@ -224,10 +239,10 @@
         <div class="add-row"><input type="text" id="new-cut" placeholder="Otro corte..."/><button class="bc" onclick="addCut()">+ Agregar</button></div>
       </div>
       <hr class="divider">
-      <div class="field"><label>&iquest;Qui&eacute;n hizo el asado?</label><div class="grid" id="g-asador"></div></div>
+      <div class="field"><label>¿Quién hizo el asado?</label><div class="grid" id="g-asador"></div></div>
       <hr class="divider">
       <div class="field">
-        <label>&iquest;Qui&eacute;nes asistieron?</label>
+        <label>¿Quiénes asistieron?</label>
         <div class="sel-row"><button onclick="selAll('asado')">Todos</button><button onclick="selNone('asado')">Ninguno</button></div>
         <div class="grid" id="g-asado-friends"></div>
       </div>
@@ -244,7 +259,7 @@
       <button class="ftab" onclick="setFilt('plan')">Solo planes</button>
       <button class="ftab" onclick="setFilt('asado')">Solo asados</button>
     </div>
-    <div style="font-size:12px;color:var(--text3);margin-bottom:10px">Toc&aacute; un nombre para ver el desglose</div>
+    <div style="font-size:12px;color:var(--text3);margin-bottom:10px">Tocá un nombre para ver el desglose</div>
     <div class="card" id="stats-card"><div class="empty">No hay eventos registrados</div></div>
   </div>
 
@@ -266,11 +281,11 @@
 <div class="overlay" id="ov-config">
   <div class="modal">
     <h2>Conectar Google Sheets</h2>
-    <p>Una vez conectado, todos los dispositivos leen y escriben desde el mismo Sheets.</p>
-    <div class="step"><div class="step-n">1</div><div class="step-t">Abr&iacute; <strong>Google Sheets</strong>, cre&aacute; un spreadsheet y llam&aacute;lo <strong>Planes Difu</strong>.</div></div>
-    <div class="step"><div class="step-n">2</div><div class="step-t">And&aacute; a <strong>Extensiones &rarr; Apps Script</strong>, borr&aacute; todo y peg&aacute; el c&oacute;digo del archivo <strong>apps-script.gs</strong>.</div></div>
-    <div class="step"><div class="step-n">3</div><div class="step-t"><strong>Implementar &rarr; Nueva implementaci&oacute;n</strong>. Tipo: Aplicaci&oacute;n web. Acceso: Cualquier persona. Copi&aacute; la URL.</div></div>
-    <div class="step"><div class="step-n">4</div><div class="step-t">Peg&aacute; la URL ac&aacute; abajo y guard&aacute;.</div></div>
+    <p>Una vez conectado, todos los dispositivos leen y escriben desde el mismo Sheets. Los datos son iguales en todos lados.</p>
+    <div class="step"><div class="step-n">1</div><div class="step-t">Abrí <strong>Google Sheets</strong>, creá un spreadsheet y llamalo <strong>Planes Difu</strong>.</div></div>
+    <div class="step"><div class="step-n">2</div><div class="step-t">Andá a <strong>Extensiones → Apps Script</strong>, borrá todo y pegá el código del archivo <strong>apps-script.gs</strong>.</div></div>
+    <div class="step"><div class="step-n">3</div><div class="step-t"><strong>Implementar → Nueva implementación</strong>. Tipo: Aplicación web. Acceso: Cualquier persona. Copiá la URL.</div></div>
+    <div class="step"><div class="step-n">4</div><div class="step-t">Pegá la URL acá abajo y guardá.</div></div>
     <div class="field" style="margin-bottom:0"><input type="text" id="url-input" placeholder="https://script.google.com/macros/s/.../exec"/></div>
     <div class="mbtns">
       <button class="bcancel" onclick="closeConfig()">Cancelar</button>
@@ -288,12 +303,12 @@
         <div class="field"><label>Fecha</label><input type="date" id="e-fecha"/></div>
         <div class="field"><label>Tipo de plan</label><input type="text" id="e-tipo"/></div>
       </div>
-      <div class="field"><label>Descripci&oacute;n</label><textarea id="e-desc"></textarea></div>
+      <div class="field"><label>Descripción</label><textarea id="e-desc"></textarea></div>
     </div>
     <div id="edit-asado-f" style="display:none">
       <div class="row">
         <div class="field"><label>Fecha</label><input type="date" id="e-afecha"/></div>
-        <div class="field"><label>Descripci&oacute;n</label><input type="text" id="e-adesc"/></div>
+        <div class="field"><label>Descripción</label><input type="text" id="e-adesc"/></div>
       </div>
       <div class="field"><label>Casa</label><div class="grid" id="e-houses"></div></div>
       <div class="field"><label>Cortes</label><div class="grid" id="e-cuts"></div></div>
@@ -334,19 +349,26 @@
 <div class="toast" id="toast"></div>
 
 <script>
+  // ── Constantes ──────────────────────────────────────────
   const AMIGOS  = ['Raubvo','Zucho','Babbe','Lucas','Galo','Costi','Colo','Dylan','Tiago','Hamu','Nacho'];
-  const CUTS_DEF = ['Vac\u00edo','Asado de tira','Entra\u00f1a','Chorizo','Morcilla','Colita de cuadril','Bife de chorizo','Matambre','Mollejas','Lomo','Chinchul\u00edn','Pica\u00f1a'];
+  const CUTS_DEF = ['Vacío','Asado de tira','Entraña','Chorizo','Morcilla','Colita de cuadril','Bife de chorizo','Matambre','Mollejas','Lomo','Chinchulín','Picaña'];
 
+  // ── Estado — NADA de localStorage para datos ───────────
+  // Sólo la URL y cuts/houses (preferencias de UI) van a localStorage
   let sheetsUrl = 'https://script.google.com/macros/s/AKfycbxZwlXyZ4XqVyQtPTb_6oWpr7484wwjWFGkS25lNNyoDpVHg548XG--efWpMC6yPyKi/exec';
   let sheetUrl2 = localStorage.getItem('pd_surl') || '';
   let cuts   = JSON.parse(localStorage.getItem('pd_cuts') || 'null') || [...CUTS_DEF];
   let houses = JSON.parse(localStorage.getItem('pd_houses') || 'null') || [...AMIGOS, 'Otro lugar'];
+
+  // Eventos: SIEMPRE desde Sheets. Estado en memoria.
   let eventos = [];
+
   let planSel = new Set(), asadoSel = new Set(), cutsSel = new Set();
   let houseSel = null, asadorSel = null;
   let statsFilt = 'todos', histFilt = 'todos';
   let editIdx = null, eSel = new Set(), eHouse = null, eCuts = new Set();
 
+  // ── Utils ───────────────────────────────────────────────
   const $ = id => document.getElementById(id);
   const today = () => new Date().toISOString().split('T')[0];
 
@@ -385,6 +407,7 @@
     return {bar:'var(--rbar)',text:'var(--rt)',bg:'var(--rb)'};
   }
 
+  // ── Loading ─────────────────────────────────────────────
   function showLoad(msg) {
     $('lsub').textContent = msg || 'Cargando...';
     $('loading').classList.remove('hide');
@@ -396,6 +419,7 @@
     setTimeout(() => $('loading').classList.add('hide'), 400);
   }
 
+  // ── Banner ──────────────────────────────────────────────
   function updateBanner() {
     const dot = $('dot'), txt = $('btext'), lnk = $('slink');
     if (sheetsUrl) {
@@ -404,21 +428,22 @@
       if (sheetUrl2) { lnk.href = sheetUrl2; lnk.style.display = 'block'; }
     } else {
       dot.className = 'dot warn';
-      txt.textContent = 'Google Sheets no configurado.';
+      txt.textContent = 'Google Sheets no configurado. Los datos sólo existen en este dispositivo.';
       lnk.style.display = 'none';
     }
   }
 
+  // ── Config ──────────────────────────────────────────────
   function openConfig() { $('url-input').value = sheetsUrl; $('ov-config').classList.add('open'); }
   function closeConfig() { $('ov-config').classList.remove('open'); }
   async function saveConfig() {
     const url = $('url-input').value.trim();
-    sheetsUrl = url || 'https://script.google.com/macros/s/AKfycbxZwlXyZ4XqVyQtPTb_6oWpr7484wwjWFGkS25lNNyoDpVHg548XG--efWpMC6yPyKi/exec';
-    localStorage.setItem('pd_url', sheetsUrl);
+    sheetsUrl = url || 'https://script.google.com/macros/s/AKfycbxZwlXyZ4XqVyQtPTb_6oWpr7484wwjWFGkS25lNNyoDpVHg548XG--efWpMC6yPyKi/exec'; localStorage.setItem('pd_url', sheetsUrl);
     closeConfig();
     if (url) { await loadFromSheets(); } else { updateBanner(); toast('Desconectado de Sheets', '#633806'); }
   }
 
+  // ── Sheets ──────────────────────────────────────────────
   async function callSheets(payload) {
     if (!sheetsUrl) return null;
     try {
@@ -429,6 +454,7 @@
     } catch { return null; }
   }
 
+  // Leer TODOS los eventos desde Sheets y refrescar la UI
   async function loadFromSheets() {
     if (!sheetsUrl) { hideLoad(); updateBanner(); renderAll(); return; }
     showLoad('Sincronizando desde Sheets...');
@@ -454,6 +480,7 @@
     };
   }
 
+  // ── Tabs ────────────────────────────────────────────────
   const TABS = ['plan','asado','stats','statsasado','hist'];
   function go(name) {
     document.querySelectorAll('.tab').forEach((t,i) => t.classList.toggle('active', TABS[i] === name));
@@ -464,6 +491,7 @@
     if (name==='hist')       renderHist();
   }
 
+  // ── Grids helpers ────────────────────────────────────────
   function buildGrid(containerId, items, isSelected, colorClass, onToggle) {
     const g = $(containerId); g.innerHTML = '';
     items.forEach(item => {
@@ -480,8 +508,9 @@
   function renderCuts()         { buildGrid('g-cuts', cuts, c=>cutsSel.has(c), 'sc', c=>{ cutsSel.has(c)?cutsSel.delete(c):cutsSel.add(c); }); }
   function renderHouses() {
     buildGrid('g-houses', houses, h=>houseSel===h, 'st', h=>{ houseSel = houseSel===h?null:h; renderHouses(); });
+    // Re-render with correct labels
     const g = $('g-houses');
-    Array.from(g.children).forEach((b,i) => { b.textContent = houses[i]==='Otro lugar' ? '\u{1F4CD} Otro lugar' : 'Casa '+houses[i]; });
+    Array.from(g.children).forEach((b,i) => { b.textContent = houses[i]==='Otro lugar' ? '📍 Otro lugar' : 'Casa '+houses[i]; });
   }
   function renderAsador() {
     buildGrid('g-asador', AMIGOS, n=>asadorSel===n, 'sa', n=>{ asadorSel = asadorSel===n?null:n; renderAsador(); });
@@ -501,31 +530,36 @@
   function selAll(m)  { const s=m==='plan'?planSel:asadoSel; AMIGOS.forEach(f=>s.add(f)); m==='plan'?renderPlanFriends():renderAsadoFriends(); }
   function selNone(m) { const s=m==='plan'?planSel:asadoSel; s.clear(); m==='plan'?renderPlanFriends():renderAsadoFriends(); }
 
+  // ── Guardar ──────────────────────────────────────────────
   async function guardar(mode) {
     const fecha = $(mode+'-fecha').value;
-    if (!fecha) { toast('Selecion\u00e1 una fecha','#A32D2D'); return; }
+    if (!fecha) { toast('Seleccioná una fecha','#A32D2D'); return; }
     const asistentes = mode==='plan'?[...planSel]:[...asadoSel];
-    if (!asistentes.length) { toast('Selecion\u00e1 al menos un asistente','#A32D2D'); return; }
+    if (!asistentes.length) { toast('Seleccioná al menos un asistente','#A32D2D'); return; }
+
     const ev = { tipo:mode, fecha, asistentes, _id: Date.now().toString(36) };
     if (mode==='plan') {
       const tipo = $('plan-tipo').value.trim();
-      if (!tipo) { toast('Escrib\u00ed el tipo de plan','#A32D2D'); return; }
+      if (!tipo) { toast('Escribí el tipo de plan','#A32D2D'); return; }
       ev.planTipo = tipo; ev.desc = $('plan-desc').value.trim();
     } else {
-      if (!houseSel)     { toast('Selecion\u00e1 la casa','#A32D2D'); return; }
-      if (!cutsSel.size) { toast('Selecion\u00e1 al menos un corte','#A32D2D'); return; }
+      if (!houseSel)     { toast('Seleccioná la casa','#A32D2D'); return; }
+      if (!cutsSel.size) { toast('Seleccioná al menos un corte','#A32D2D'); return; }
       ev.casa=houseSel; ev.cortes=[...cutsSel]; ev.asador=asadorSel||''; ev.desc=$('asado-desc').value.trim();
     }
+
     const btn = $('btn-'+mode);
     btn.disabled=true; btn.innerHTML='<span class="spin"></span> Guardando...';
+
     if (sheetsUrl) {
       const { fila, tipo: t } = buildFila(ev);
       const d = await callSheets({ accion:'agregar', tipo: t, fila });
       if (d && d.ok) {
+        // Actualizar eventos desde la respuesta del servidor
         if (Array.isArray(d.eventos)) eventos = d.eventos.map(normEv);
         else eventos.push(normEv(ev));
         confetti(); showCheck();
-        toast('\u00a1Guardado y sincronizado!','#3B6D11');
+        toast('¡Guardado y sincronizado!','#3B6D11');
       } else {
         toast('Error al guardar en Sheets','#A32D2D');
       }
@@ -534,12 +568,15 @@
       confetti(); showCheck();
       toast('Guardado (sin Sheets configurado)','#854F0B');
     }
+
+    // Reset form
     if (mode==='plan') { $('plan-tipo').value=''; $('plan-desc').value=''; planSel.clear(); renderPlanFriends(); }
     else { $('asado-desc').value=''; asadoSel.clear(); cutsSel.clear(); houseSel=null; asadorSel=null; renderAsadoFriends(); renderCuts(); renderHouses(); renderAsador(); }
     btn.disabled=false; btn.innerHTML = mode==='plan'?'Guardar plan':'Guardar asado';
     renderAll();
   }
 
+  // ── Stats ────────────────────────────────────────────────
   function setFilt(f) {
     statsFilt=f;
     document.querySelectorAll('#tab-stats .ftab').forEach((b,i)=>b.classList.toggle('active',['todos','plan','asado'][i]===f));
@@ -547,14 +584,15 @@
   }
 
   function racha(name, evs) {
-    const sorted = [...evs].sort((a,b) => a.fecha < b.fecha ? -1 : a.fecha > b.fecha ? 1 : 0);
-    let lastWent = -1;
-    for (let i = sorted.length - 1; i >= 0; i--) {
-      if (sorted[i].asistentes.includes(name)) { lastWent = i; break; }
-    }
-    if (lastWent === -1) return 0;
+    // Solo usar eventos con fecha valida YYYY-MM-DD, ordenar ascendente
+    const sorted = evs
+      .filter(e => /^\d{4}-\d{2}-\d{2}$/.test(e.fecha))
+      .sort((a,b) => a.fecha < b.fecha ? -1 : a.fecha > b.fecha ? 1 : 0);
+    if (!sorted.length) return 0;
+    // Contar desde el evento mas reciente hacia atras
+    // Si no fue al ultimo evento, racha activa = 0
     let r = 0;
-    for (let i = lastWent; i >= 0; i--) {
+    for (let i = sorted.length - 1; i >= 0; i--) {
       if (sorted[i].asistentes.includes(name)) r++;
       else break;
     }
@@ -571,7 +609,7 @@
     card.innerHTML = sorted.map(name=>{
       const c=counts[name], tot=evs.length, pct=Math.round(c/tot*100);
       const cl=col(pct), r=racha(name,eventos);
-      const rb = r>=2?`<span class="racha">\u{1F525} ${r}</span>`:'';
+      const rb = r>=2?`<span class="racha">🔥 ${r}</span>`:'';
       return `<div class="arow" onclick="showDsg('${name}')">
         <div class="avatar" style="background:${cl.bg};color:${cl.text}">${name.slice(0,2).toUpperCase()}</div>
         <div class="aname">${name}${rb}</div>
@@ -582,6 +620,7 @@
     }).join('');
   }
 
+  // ── Desglose ─────────────────────────────────────────────
   function showDsg(nombre) {
     const evs = eventos.filter(e=>statsFilt==='todos'||e.tipo===statsFilt);
     const fueA = evs.filter(e=>e.asistentes.includes(nombre));
@@ -596,7 +635,7 @@
     $('dsg-a').textContent  = fueA.filter(e=>e.tipo==='asado').length;
     $('dsg-pct').textContent = pct+'%'; $('dsg-pct').style.color=cl.text;
     const list = $('dsg-list');
-    if (!fueA.length) { list.innerHTML='<div style="font-size:13px;color:var(--text3);padding:8px 0">No fue a ning\u00fan evento a\u00fan</div>'; }
+    if (!fueA.length) { list.innerHTML='<div style="font-size:13px;color:var(--text3);padding:8px 0">No fue a ningún evento aún</div>'; }
     else list.innerHTML = fueA.slice().sort((a,b)=>b.fecha.localeCompare(a.fecha)).map(e=>{
       const nm = e.tipo==='plan'?(e.planTipo||'Plan'):'Asado';
       const det = e.desc&&e.desc!=='-'?e.desc:(e.casa?'Casa '+e.casa:'');
@@ -610,6 +649,7 @@
   }
   function closeDsg() { $('ov-dsg').classList.remove('open'); }
 
+  // ── Stats Asado ──────────────────────────────────────────
   function renderStatsAsado() {
     const body = $('statsasado-body');
     const asados = eventos.filter(e=>e.tipo==='asado');
@@ -621,27 +661,28 @@
       if(e.asador&&e.asador!=='-') ac[e.asador]=(ac[e.asador]||0)+1;
     });
     const cs=Object.entries(cc).sort((a,b)=>b[1]-a[1]);
-    const topC=cs[0]||['\u2013',0];
-    const topCa=(Object.entries(casac).sort((a,b)=>b[1]-a[1])[0])||['\u2013',0];
+    const topC=cs[0]||['–',0];
+    const topCa=(Object.entries(casac).sort((a,b)=>b[1]-a[1])[0])||['–',0];
     const topA=Object.entries(ac).sort((a,b)=>b[1]-a[1]).slice(0,2);
     const bars=(ent,max)=>ent.slice(0,6).map(([l,n])=>`<div class="sbar-row">
       <div class="sbar-lbl" title="${l}">${l}</div>
       <div class="sbar-out"><div class="sbar-in" style="width:${max?Math.round(n/max*100):0}%"></div></div>
       <div class="sbar-n">${n}</div></div>`).join('');
     const asadorHtml=topA.length?`<div class="top-card">
-      <div style="padding:14px 16px 10px;font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.4px">\u{1F525} Ranking de asadores</div>
+      <div style="padding:14px 16px 10px;font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.4px">🔥 Ranking de asadores</div>
       ${topA.map(([n,c],i)=>`<div class="top-row">
-        <div class="top-medal">${i===0?'\u{1F947}':'\u{1F948}'}</div>
+        <div class="top-medal">${i===0?'🥇':'🥈'}</div>
         <div style="flex:1"><div class="top-name">${n}</div><div class="top-sub">${c} asado${c!==1?'s':''}</div></div>
         <div class="top-n">${c}</div></div>`).join('')}
     </div>`:'';
     body.innerHTML=`<div class="sa-grid">
-      <div class="sa-card"><div class="sa-label">\u{1F969} Corte estrella</div><div class="sa-val">${topC[0]}</div><div class="sa-sub">${topC[1]} veces</div></div>
-      <div class="sa-card"><div class="sa-label">\u{1F3E0} Casa m\u00e1s usada</div><div class="sa-val">${topCa[0]!=='\u2013'?'Casa '+topCa[0]:'\u2013'}</div><div class="sa-sub">${topCa[1]} veces</div></div>
-    </div>${asadorHtml}<div class="card"><div class="stitle" style="margin-bottom:12px">Cortes m\u00e1s pedidos</div>
+      <div class="sa-card"><div class="sa-label">🥩 Corte estrella</div><div class="sa-val">${topC[0]}</div><div class="sa-sub">${topC[1]} veces</div></div>
+      <div class="sa-card"><div class="sa-label">🏠 Casa más usada</div><div class="sa-val">${topCa[0]!=='–'?'Casa '+topCa[0]:'–'}</div><div class="sa-sub">${topCa[1]} veces</div></div>
+    </div>${asadorHtml}<div class="card"><div class="stitle" style="margin-bottom:12px">Cortes más pedidos</div>
     ${cs.length?bars(cs,cs[0][1]):'<div class="empty">Sin datos</div>'}</div>`;
   }
 
+  // ── Historial ─────────────────────────────────────────────
   function setHFilt(f) {
     histFilt=f;
     document.querySelectorAll('#tab-hist .ftab').forEach((b,i)=>b.classList.toggle('active',['todos','plan','asado'][i]===f));
@@ -652,9 +693,11 @@
     const evsFilt = eventos
       .map((e,i) => ({...e, _realIdx: i}))
       .filter(e => histFilt==='todos' || e.tipo===histFilt)
-      .sort((a,b) => b.fecha > a.fecha ? 1 : b.fecha < a.fecha ? -1 : 0);
+      .sort((a,b) => b.fecha < a.fecha ? -1 : b.fecha > a.fecha ? 1 : 0);
     if(!evsFilt.length){list.innerHTML='<div class="empty">No hay eventos registrados</div>';return;}
-    list.innerHTML='<div class="hlist">'+evsFilt.map(e=>{
+    const evs = evsFilt;
+    list.innerHTML='<div class="hlist">'+evs.map((e,ri)=>{
+      const idx = e._realIdx;
       return `<div class="hitem">
         <div class="hmeta">
           <span class="badge ${e.tipo==='plan'?'bp':'ba'}">${e.tipo==='plan'?(e.planTipo||'Plan'):'Asado'}</span>
@@ -663,15 +706,16 @@
           ${e.cortes&&e.cortes.length?`<span style="font-size:12px;color:var(--text3)">${e.cortes.join(', ')}</span>`:''}
         </div>
         ${e.desc&&e.desc!=='-'?`<div class="hdesc">${e.desc}</div>`:''}
-        <div class="hfriends">${e.asistentes.length?e.asistentes.join(' \u00b7 '):'-'}</div>
+        <div class="hfriends">${e.asistentes.length?e.asistentes.join(' · '):'-'}</div>
         <div class="hactions">
-          <button class="bedit" onclick="openEdit(${e._realIdx})">\u270e Editar</button>
+          <button class="bedit" onclick="openEdit(${e._realIdx})">✎ Editar</button>
           <button class="bdel"  onclick="delEv(${e._realIdx})">Borrar</button>
         </div>
       </div>`;
     }).join('')+'</div>';
   }
 
+  // ── Editar ───────────────────────────────────────────────
   function openEdit(idx) {
     const ev = eventos[idx];
     editIdx=idx; eSel=new Set(ev.asistentes); eHouse=ev.casa||null; eCuts=new Set(ev.cortes||[]);
@@ -683,8 +727,8 @@
       $('edit-title').textContent='Editar asado';
       $('edit-plan-f').style.display='none'; $('edit-asado-f').style.display='';
       $('e-afecha').value=ev.fecha; $('e-adesc').value=ev.desc&&ev.desc!=='-'?ev.desc:'';
-      buildGrid('e-houses', houses, h=>eHouse===h, 'st', h=>{ eHouse=eHouse===h?null:h; buildGrid('e-houses',houses,h=>eHouse===h,'st',arguments.callee); const g=$('e-houses'); Array.from(g.children).forEach((b,i)=>{ b.textContent=houses[i]==='Otro lugar'?'\u{1F4CD} Otro lugar':'Casa '+houses[i]; }); });
-      const g=$('e-houses'); Array.from(g.children).forEach((b,i)=>{ b.textContent=houses[i]==='Otro lugar'?'\u{1F4CD} Otro lugar':'Casa '+houses[i]; });
+      buildGrid('e-houses', houses, h=>eHouse===h, 'st', h=>{ eHouse=eHouse===h?null:h; buildGrid('e-houses',houses,h=>eHouse===h,'st',arguments.callee); const g=$('e-houses'); Array.from(g.children).forEach((b,i)=>{ b.textContent=houses[i]==='Otro lugar'?'📍 Otro lugar':'Casa '+houses[i]; }); });
+      const g=$('e-houses'); Array.from(g.children).forEach((b,i)=>{ b.textContent=houses[i]==='Otro lugar'?'📍 Otro lugar':'Casa '+houses[i]; });
       buildGrid('e-cuts', cuts, c=>eCuts.has(c), 'sc', c=>{ eCuts.has(c)?eCuts.delete(c):eCuts.add(c); });
     }
     buildGrid('e-friends', AMIGOS, f=>eSel.has(f), 'sp', f=>{ eSel.has(f)?eSel.delete(f):eSel.add(f); });
@@ -698,13 +742,13 @@
     if (editIdx===null) return;
     const ev={...eventos[editIdx]};
     const asistentes=[...eSel];
-    if (!asistentes.length) { toast('Selecion\u00e1 al menos un asistente','#A32D2D'); return; }
+    if (!asistentes.length) { toast('Seleccioná al menos un asistente','#A32D2D'); return; }
     if (ev.tipo==='plan') {
-      const t=$('e-tipo').value.trim(); if(!t){toast('Escrib\u00ed el tipo de plan','#A32D2D');return;}
+      const t=$('e-tipo').value.trim(); if(!t){toast('Escribí el tipo de plan','#A32D2D');return;}
       ev.fecha=$('e-fecha').value; ev.planTipo=t; ev.desc=$('e-desc').value.trim()||'-';
     } else {
-      if(!eHouse){toast('Selecion\u00e1 la casa','#A32D2D');return;}
-      if(!eCuts.size){toast('Selecion\u00e1 al menos un corte','#A32D2D');return;}
+      if(!eHouse){toast('Seleccioná la casa','#A32D2D');return;}
+      if(!eCuts.size){toast('Seleccioná al menos un corte','#A32D2D');return;}
       ev.fecha=$('e-afecha').value; ev.casa=eHouse; ev.cortes=[...eCuts]; ev.desc=$('e-adesc').value.trim()||'-';
     }
     ev.asistentes=asistentes;
@@ -724,7 +768,7 @@
   }
 
   async function delEv(idx) {
-    if (!confirm('\u00bfBorrar este evento? No se puede deshacer.')) return;
+    if (!confirm('¿Borrar este evento? No se puede deshacer.')) return;
     const ev=eventos[idx];
     if (sheetsUrl && ev._id) {
       const d=await callSheets({accion:'eliminar',tipo:ev.tipo,id:ev._id});
@@ -738,6 +782,7 @@
     renderAll();
   }
 
+  // ── Confetti / Check ────────────────────────────────────
   function confetti() {
     const cv=$('ccanvas'),ctx=cv.getContext('2d');
     cv.width=innerWidth; cv.height=innerHeight;
@@ -748,6 +793,7 @@
   }
   function showCheck() { const e=$('check');e.classList.add('show');setTimeout(()=>e.classList.remove('show'),1400); }
 
+  // ── Init ────────────────────────────────────────────────
   renderPlanFriends(); renderAsadoFriends(); renderHouses(); renderAsador(); renderCuts();
   $('plan-fecha').value=today(); $('asado-fecha').value=today();
   loadFromSheets();
