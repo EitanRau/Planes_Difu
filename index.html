@@ -470,13 +470,14 @@
   function renderAll() { renderStats(); renderHist(); }
 
   function buildFila(ev) {
+    const ts = ev._ts || Date.now();
     if (ev.tipo === 'plan') return {
       tipo: 'plan',
-      fila: [ev._id, ev.fecha, ev.planTipo, ev.desc||'-', ev.asistentes.join(', '), ev.asistentes.length]
+      fila: [ev._id, ev.fecha, ev.planTipo, ev.desc||'-', ev.asistentes.join(', '), ev.asistentes.length, ts]
     };
     return {
       tipo: 'asado',
-      fila: [ev._id, ev.fecha, ev.casa, (ev.cortes||[]).join(', '), ev.asador||'-', ev.desc||'-', ev.asistentes.join(', '), ev.asistentes.length]
+      fila: [ev._id, ev.fecha, ev.casa, (ev.cortes||[]).join(', '), ev.asador||'-', ev.desc||'-', ev.asistentes.join(', '), ev.asistentes.length, ts]
     };
   }
 
@@ -537,7 +538,7 @@
     const asistentes = mode==='plan'?[...planSel]:[...asadoSel];
     if (!asistentes.length) { toast('Seleccioná al menos un asistente','#A32D2D'); return; }
 
-    const ev = { tipo:mode, fecha, asistentes, _id: Date.now().toString(36) };
+    const ev = { tipo:mode, fecha, asistentes, _id: Date.now().toString(36), _ts: Date.now() };
     if (mode==='plan') {
       const tipo = $('plan-tipo').value.trim();
       if (!tipo) { toast('Escribí el tipo de plan','#A32D2D'); return; }
@@ -583,14 +584,20 @@
     renderStats();
   }
 
-  function racha(name, evs) {
-    // Solo usar eventos con fecha valida YYYY-MM-DD, ordenar ascendente
-    const sorted = evs
+  function sortEventos(evs) {
+    // Ordenar por fecha, y si son iguales usar _ts (momento de carga) como desempate
+    return [...evs]
       .filter(e => /^\d{4}-\d{2}-\d{2}$/.test(e.fecha))
-      .sort((a,b) => a.fecha < b.fecha ? -1 : a.fecha > b.fecha ? 1 : 0);
+      .sort((a,b) => {
+        if (a.fecha < b.fecha) return -1;
+        if (a.fecha > b.fecha) return 1;
+        return (Number(a._ts)||0) - (Number(b._ts)||0);
+      });
+  }
+
+  function racha(name, evs) {
+    const sorted = sortEventos(evs);
     if (!sorted.length) return 0;
-    // Contar desde el evento mas reciente hacia atras
-    // Si no fue al ultimo evento, racha activa = 0
     let r = 0;
     for (let i = sorted.length - 1; i >= 0; i--) {
       if (sorted[i].asistentes.includes(name)) r++;
