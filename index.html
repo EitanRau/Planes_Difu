@@ -504,8 +504,26 @@
     });
   }
 
-  function renderPlanFriends()  { buildGrid('g-plan-friends',  AMIGOS, f=>planSel.has(f), 'sp', f=>{ planSel.has(f)?planSel.delete(f):planSel.add(f); }); }
-  function renderAsadoFriends() { buildGrid('g-asado-friends', AMIGOS, f=>asadoSel.has(f),'sp', f=>{ asadoSel.has(f)?asadoSel.delete(f):asadoSel.add(f); }); }
+  function renderPlanFriends() {
+    const g = $('g-plan-friends'); g.innerHTML = '';
+    AMIGOS.forEach(f => {
+      const b = document.createElement('button');
+      b.className = 'tbtn' + (planSel.has(f) ? ' sp' : '');
+      b.textContent = f;
+      b.onclick = () => { planSel.has(f) ? planSel.delete(f) : planSel.add(f); renderPlanFriends(); };
+      g.appendChild(b);
+    });
+  }
+  function renderAsadoFriends() {
+    const g = $('g-asado-friends'); g.innerHTML = '';
+    AMIGOS.forEach(f => {
+      const b = document.createElement('button');
+      b.className = 'tbtn' + (asadoSel.has(f) ? ' sp' : '');
+      b.textContent = f;
+      b.onclick = () => { asadoSel.has(f) ? asadoSel.delete(f) : asadoSel.add(f); renderAsadoFriends(); };
+      g.appendChild(b);
+    });
+  }
   function renderCuts()         { buildGrid('g-cuts', cuts, c=>cutsSel.has(c), 'sc', c=>{ cutsSel.has(c)?cutsSel.delete(c):cutsSel.add(c); }); }
   function renderHouses() {
     buildGrid('g-houses', houses, h=>houseSel===h, 'st', h=>{ houseSel = houseSel===h?null:h; renderHouses(); });
@@ -738,12 +756,22 @@
       const g=$('e-houses'); Array.from(g.children).forEach((b,i)=>{ b.textContent=houses[i]==='Otro lugar'?'📍 Otro lugar':'Casa '+houses[i]; });
       buildGrid('e-cuts', cuts, c=>eCuts.has(c), 'sc', c=>{ eCuts.has(c)?eCuts.delete(c):eCuts.add(c); });
     }
-    buildGrid('e-friends', AMIGOS, f=>eSel.has(f), 'sp', f=>{ eSel.has(f)?eSel.delete(f):eSel.add(f); });
+    renderEditFriends();
     $('ov-edit').classList.add('open');
   }
   function closeEdit() { $('ov-edit').classList.remove('open'); editIdx=null; }
-  function eSelAll()  { AMIGOS.forEach(f=>eSel.add(f)); buildGrid('e-friends',AMIGOS,f=>eSel.has(f),'sp',f=>{eSel.has(f)?eSel.delete(f):eSel.add(f);}); }
-  function eSelNone() { eSel.clear(); buildGrid('e-friends',AMIGOS,f=>eSel.has(f),'sp',f=>{eSel.has(f)?eSel.delete(f):eSel.add(f);}); }
+  function renderEditFriends() {
+    const g = $('e-friends'); g.innerHTML = '';
+    AMIGOS.forEach(f => {
+      const b = document.createElement('button');
+      b.className = 'tbtn' + (eSel.has(f) ? ' sp' : '');
+      b.textContent = f;
+      b.onclick = () => { eSel.has(f) ? eSel.delete(f) : eSel.add(f); renderEditFriends(); };
+      g.appendChild(b);
+    });
+  }
+  function eSelAll()  { AMIGOS.forEach(f=>eSel.add(f)); renderEditFriends(); }
+  function eSelNone() { eSel.clear(); renderEditFriends(); }
 
   async function saveEdit() {
     if (editIdx===null) return;
